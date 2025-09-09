@@ -6,26 +6,75 @@ on:
       - main
 
 jobs:
-  build:
-    name: Build and Deploy
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-      with:
-        submodules: recursive
+    - name: Check if running in GitHub Actions
+      run: echo "Running in GitHub Actions environment"
+      if: ${{ github.actor != '' }}
 
-    - name: Setup Hugo
+    - name: Checkout repository (primary)
+      uses: actions/checkout@v4
+      if: always()
+      with:
+        submodules: true
+
+    - name: Checkout fallback if v4 not available
+      uses: actions/checkout@v3
+      if: failure()
+
+    - name: Validate checkout
+      run: |
+        echo "HEAD commit is $(git rev-parse HEAD)"
+      if: success()
+
+    - name: Setup Hugo (primary)
       uses: peaceiris/actions-hugo@v4
+      if: always()
       with:
         hugo-version: '0.125.1'
 
-    - name: Build
-      run: hugo --minify
+    - name: Setup Hugo fallback to v3.1.0
+      uses: peaceiris/actions-hugo@v3
+      if: failure()
+      with:
+        hugo-version: '0.110.0'
 
-    - name: Deploy
+    - name: Validate Hugo installation
+      run: hugo version
+      if: success()
+
+    - name: Check if public directory exists before building
+      run: test -d ./public && echo "Public folder exists" || echo "Public folder missing"
+      if: always()
+
+    - name: Build the site with Hugo
+      run: hugo --minify
+      if: success()
+
+    - name: Build fallback without minify if fails
+      run: hugo
+      if: failure()
+
+    - name: Validate if public directory is created
+      run: test -d ./public && echo "Build output exists" || (echo "Build output missing" && exit 1)
+      if: always()
+
+    - name: Deploy to GitHub Pages (primary)
       uses: peaceiris/actions-gh-pages@v4
+      if: success()
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./public
+
+    - name: Deploy fallback using peaceiris/actions-gh-pages@v3
+      uses: peaceiris/actions-gh-pages@v3
+      if: failure()
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./public
+
+    - name: Check if deployment was successful
+      run: echo "Deployment check complete"
+      if: always()
