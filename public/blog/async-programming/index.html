@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Async Programming | Mohit Dulani</title>
+<meta name="keywords" content="">
+<meta name="description" content="Google doc link
+Async Programming
+Basics of Async Programming
+At any single time, a single CPU thread executes only a single function ( no multiprocessing happens ) atleast in the case of python !! Its just smart switching
+
+Pick up a event loop / create a event loop
+Create / Add tasks in it
+Check for the status and if done return the result
+
+Coroutines :
+A coroutine is a special function that can give up control to its caller without losing its state.">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/blog/async-programming/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.2211ca3164be7830024f6aad2b3a2e520843a64f8f048445c3401c1249aa051d.css" integrity="sha256-IhHKMWS&#43;eDACT2qtKzouUghDpk&#43;PBIRFw0AcEkmqBR0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/blog/async-programming/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Mohit Dulani (Alt + H)">Mohit Dulani</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/blog/" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/list_100/" title="List 100">
+                    <span>List 100</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Async Programming
+    </h1>
+    <div class="post-meta"><span title='2025-01-02 00:00:00 +0000 UTC'>January 2, 2025</span>
+
+</div>
+  </header> 
+  <div class="post-content"><p><a href="https://docs.google.com/document/d/1gMVzz5Haivst864_JZKWwY_AiNvu6pxMpttg2-dJopk/edit?usp=sharing">Google doc link</a>
+<a href="https://www.blog.pythonlibrary.org/2016/07/26/python-3-an-intro-to-asyncio/">Async Programming</a></p>
+<h1 id="basics-of-async-programming">Basics of Async Programming<a hidden class="anchor" aria-hidden="true" href="#basics-of-async-programming">#</a></h1>
+<p>At any single time, a single CPU thread executes only a single function ( no multiprocessing happens ) atleast in the case of python !! Its just smart switching</p>
+<ol>
+<li>Pick up a event loop / create a event loop</li>
+<li>Create / Add tasks in it</li>
+<li>Check for the status and if done return the result</li>
+</ol>
+<h2 id="coroutines-">Coroutines :<a hidden class="anchor" aria-hidden="true" href="#coroutines-">#</a></h2>
+<p>A coroutine is a special function that can give up control to its caller without losing its state.</p>
+<ul>
+<li>Who&rsquo;s the caller here?</li>
+<li>Event loop</li>
+</ul>
+<p>Functions that can suspend the execution and retain there state variable and resume back</p>
+<p><code>yield</code> statement</p>
+<p><code>yield &lt;output&gt;</code> outputs value to a function willing to accept it using yield statement
+<code>output = yield</code> function that waits for input to come and till then gets suspended</p>
+<p>It stores the local variable in the <code>&lt;coroutine_obj&gt;.gi_frame.f_locals</code> here we can see the states in a dict format !</p>
+<h2 id="future">Future<a hidden class="anchor" aria-hidden="true" href="#future">#</a></h2>
+<p>Task is a subclass of future !
+A Future is an object that represents the result of an asynchronous operation that hasn&rsquo;t completed yet. Its a promise that something will happen in future</p>
+<p>Think of a Future as a pizza order receipt</p>
+<ul>
+<li>Pending: You&rsquo;ve ordered but it&rsquo;s not ready.</li>
+<li>Done: Pizza is ready, and you can pick it up.</li>
+<li>Cancelled: You decided to cancel the order.</li>
+</ul>
+<h2 id="task">Task<a hidden class="anchor" aria-hidden="true" href="#task">#</a></h2>
+<p>When the future has started to run then its called a task.
+Directly schedule a task using this async method</p>
+<h2 id="the-use-of-async-await-coloring">The use of async await coloring<a hidden class="anchor" aria-hidden="true" href="#the-use-of-async-await-coloring">#</a></h2>
+<p>Async makes the function async that is execution could be suspended and when we do await then (if it asynced till the very end aka network call) the event loop leaves this task and takes up the other task that is has in its event queue .. it cant pick up the call that is present in the next line because it has left its execution of that particular running item its takes up its mostly backlog requests which are queued in that event loop..
+See this :</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">wait_2_sec</span>():
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">await</span> asyncio<span style="color:#f92672">.</span>sleep(<span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;slept 2&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">wait_3_sec</span>():
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">await</span> asyncio<span style="color:#f92672">.</span>sleep(<span style="color:#ae81ff">3</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;slept 3&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">task_1_sec_sleep</span>():
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">await</span> asyncio<span style="color:#f92672">.</span>sleep(<span style="color:#ae81ff">1.5</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;completed task that took 1.5 sec&#34;</span> 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> main():
+</span></span><span style="display:flex;"><span>  coro1 <span style="color:#f92672">=</span> task_1_sec_sleep()
+</span></span><span style="display:flex;"><span>  task1 <span style="color:#f92672">=</span> asyncio<span style="color:#f92672">.</span>create_task(coro1) <span style="color:#75715e"># backlog task </span>
+</span></span><span style="display:flex;"><span>  st <span style="color:#f92672">=</span> time<span style="color:#f92672">.</span>time()
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">await</span> wait_2_sec()
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># while its waiting it will complete this backlog task1 here ( so that is the use of async await )  </span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">await</span> wait_3_sec() 
+</span></span><span style="display:flex;"><span>  et <span style="color:#f92672">=</span> time<span style="color:#f92672">.</span>time()
+</span></span><span style="display:flex;"><span>  print(<span style="color:#e6db74">&#34;total time &#34;</span>, et<span style="color:#f92672">-</span>st)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># run this in async loop</span>
+</span></span><span style="display:flex;"><span>main()
+</span></span></code></pre></div><h3 id="how-chatgpt-answers-streaming-response">How chatGPT answers Streaming response<a hidden class="anchor" aria-hidden="true" href="#how-chatgpt-answers-streaming-response">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> time<span style="color:#f92672">,</span> string
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">llm_output</span>():
+</span></span><span style="display:flex;"><span>  time<span style="color:#f92672">.</span>sleep(<span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>  val <span style="color:#f92672">=</span><span style="color:#e6db74">&#39;&#39;</span><span style="color:#f92672">.</span>join(random<span style="color:#f92672">.</span>choices(string<span style="color:#f92672">.</span>ascii_lowercase, k<span style="color:#f92672">=</span><span style="color:#ae81ff">15</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># val = random.random()</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Tokens-</span><span style="color:#e6db74">{</span>val<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">generate</span>():
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">while</span> <span style="color:#66d9ef">True</span>:
+</span></span><span style="display:flex;"><span>    output <span style="color:#f92672">=</span> llm_output() <span style="color:#75715e">#passing to UI</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">yield</span> output <span style="color:#75715e">#produces output     </span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>gen <span style="color:#f92672">=</span> generate()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">response</span>():
+</span></span><span style="display:flex;"><span>  isEnd<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">while</span> isEnd <span style="color:#f92672">!=</span> <span style="color:#ae81ff">1</span>:
+</span></span><span style="display:flex;"><span>    value <span style="color:#f92672">=</span> <span style="color:#66d9ef">yield</span> <span style="color:#75715e">#tuple</span>
+</span></span><span style="display:flex;"><span>    print(value)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">pass</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>res <span style="color:#f92672">=</span> response()
+</span></span><span style="display:flex;"><span>next(gen)
+</span></span><span style="display:flex;"><span>next(res)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">while</span> <span style="color:#66d9ef">True</span>:
+</span></span><span style="display:flex;"><span>  output_tok <span style="color:#f92672">=</span> next(gen)
+</span></span><span style="display:flex;"><span>  res<span style="color:#f92672">.</span>send(output_tok) 
+</span></span></code></pre></div><h3 id="generator-">Generator :<a hidden class="anchor" aria-hidden="true" href="#generator-">#</a></h3>
+<p>Generates output, so a function that periodically generates output</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">_generator</span>():
+</span></span><span style="display:flex;"><span>  print(<span style="color:#e6db74">&#34;Generator, &#34;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">while</span> <span style="color:#66d9ef">True</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">yield</span> <span style="color:#e6db74">&#34;Generates Final&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>gen <span style="color:#f92672">=</span> _generator()
+</span></span><span style="display:flex;"><span>next(_gen)
+</span></span></code></pre></div><h3 id="receiver">Receiver<a hidden class="anchor" aria-hidden="true" href="#receiver">#</a></h3>
+<p>Receiver input, that receives the input</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">_receiver</span>():
+</span></span><span style="display:flex;"><span>  print(<span style="color:#e6db74">&#34;Receiver, it takes the data&#34;</span>)
+</span></span><span style="display:flex;"><span>  value <span style="color:#f92672">=</span> <span style="color:#66d9ef">yield</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>recv <span style="color:#f92672">=</span> _receiver()
+</span></span><span style="display:flex;"><span>recv<span style="color:#f92672">.</span>send(<span style="color:#e6db74">&#34;Value-1&#34;</span>)
+</span></span></code></pre></div><h2 id="using-the-async-await-keywords-">Using the async-await keywords !!<a hidden class="anchor" aria-hidden="true" href="#using-the-async-await-keywords-">#</a></h2>
+<p>For async to work we need to make sure that we make it async to the lowest level / OS level otherwise nothing is asynchronous .. only on surface level its asynchronous !!</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> asyncio
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> aiohttp
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">counter</span>(idx<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>):
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Counter </span><span style="color:#e6db74">{</span>idx<span style="color:#e6db74">}</span><span style="color:#e6db74"> started&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">await</span> asyncio<span style="color:#f92672">.</span>sleep(idx)
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;Exiting the counter&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">fetch</span>(idx, url):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">with</span> aiohttp<span style="color:#f92672">.</span>ClientSession() <span style="color:#66d9ef">as</span> session:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">with</span> session<span style="color:#f92672">.</span>get(url) <span style="color:#66d9ef">as</span> response:
+</span></span><span style="display:flex;"><span>            print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>idx<span style="color:#e6db74">}</span><span style="color:#e6db74">-</span><span style="color:#e6db74">{</span>url<span style="color:#e6db74">}</span><span style="color:#e6db74"> → </span><span style="color:#e6db74">{</span>response<span style="color:#f92672">.</span>status<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)  <span style="color:#75715e"># Print status when done</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">await</span> counter(<span style="color:#ae81ff">2</span>) <span style="color:#75715e"># must finish before going ahead</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">await</span> fetch(<span style="color:#ae81ff">10000</span>, <span style="color:#e6db74">&#34;https://jsonplaceholder.typicode.com/users&#34;</span>) <span style="color:#75715e"># wait for this one before all others</span>
+</span></span><span style="display:flex;"><span>    urls <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#34;https://jsonplaceholder.typicode.com/users&#34;</span>] <span style="color:#f92672">*</span> <span style="color:#ae81ff">10</span>  <span style="color:#75715e"># 10 URLs ## SCHEDULED CALLS </span>
+</span></span><span style="display:flex;"><span>    tasks <span style="color:#f92672">=</span> [fetch(idx,url) <span style="color:#66d9ef">for</span> idx,url <span style="color:#f92672">in</span> enumerate(urls)]  <span style="color:#75715e"># Create tasks</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">await</span> asyncio<span style="color:#f92672">.</span>gather(<span style="color:#f92672">*</span>tasks)  <span style="color:#75715e"># Run all at the same time</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>asyncio<span style="color:#f92672">.</span>run(main()) <span style="color:#75715e"># creates a loop, executes , closes</span>
+</span></span></code></pre></div><p>Await just means you need to wait for this operation / function to complete before moving ahead !!</p>
+<p>This makes sure that the counter and 10000 call&rsquo;s are finished before you start anything new !!</p>
+<p>You can make functions async by clubbing functions that you want to run together &hellip; if you will just keep a await statement on every function that you call then it again makes it async call only !! OHH !!</p>
+<p>Means the one we are using in project its just asynchronous !!</p>
+<p>So I need to test whether I can gather and run and then again start with below part ?</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> asyncio
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">fn1</span>():
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">pass</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">fn2</span>():
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">pass</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">mid_main</span>():
+</span></span><span style="display:flex;"><span>  asyncio<span style="color:#f92672">.</span>gather(fn1() , fn2())
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>asyncio<span style="color:#f92672">.</span>run(mid_main()) <span style="color:#75715e">## HERE WE RUN THE FUNCTION </span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">ahead</span>():
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">pass</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">ahead2</span>():
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">pass</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">fin_main</span>():
+</span></span><span style="display:flex;"><span>  asyncio<span style="color:#f92672">.</span>gather(ahead(), ahead2())
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>asyncio<span style="color:#f92672">.</span>run(fin_main()) <span style="color:#75715e">## HERE WE RUN THE FUNCTION</span>
+</span></span></code></pre></div><p>Yes we can do this !!</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> asyncio
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> aiohttp
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> time
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">counter</span>(idx<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>):
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Counter </span><span style="color:#e6db74">{</span>idx<span style="color:#e6db74">}</span><span style="color:#e6db74"> started&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">await</span> asyncio<span style="color:#f92672">.</span>sleep(idx)
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;Exiting the counter&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">fetch</span>(idx, url):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">with</span> aiohttp<span style="color:#f92672">.</span>ClientSession() <span style="color:#66d9ef">as</span> session:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">with</span> session<span style="color:#f92672">.</span>get(url) <span style="color:#66d9ef">as</span> response:
+</span></span><span style="display:flex;"><span>            print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>idx<span style="color:#e6db74">}</span><span style="color:#e6db74">-</span><span style="color:#e6db74">{</span>url<span style="color:#e6db74">}</span><span style="color:#e6db74"> → </span><span style="color:#e6db74">{</span>response<span style="color:#f92672">.</span>status<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)  <span style="color:#75715e"># Print status when done</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">await</span> counter(<span style="color:#ae81ff">2</span>) <span style="color:#75715e"># must finn</span>
+</span></span><span style="display:flex;"><span>    start <span style="color:#f92672">=</span> time<span style="color:#f92672">.</span>time()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">await</span> fetch(<span style="color:#ae81ff">10000</span>, <span style="color:#e6db74">&#34;https://jsonplaceholder.typicode.com/users&#34;</span>) <span style="color:#75715e"># wait for this one before all others</span>
+</span></span><span style="display:flex;"><span>    end <span style="color:#f92672">=</span> time<span style="color:#f92672">.</span>time()
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;Time for a single API call is &#34;</span> , end <span style="color:#f92672">-</span> start)
+</span></span><span style="display:flex;"><span>    urls <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#34;https://jsonplaceholder.typicode.com/users&#34;</span>] <span style="color:#f92672">*</span> <span style="color:#ae81ff">6</span>  <span style="color:#75715e"># 10 URLs ## SCHEDULED CALLS </span>
+</span></span><span style="display:flex;"><span>    tasks <span style="color:#f92672">=</span> [fetch(idx,url) <span style="color:#66d9ef">for</span> idx,url <span style="color:#f92672">in</span> enumerate(urls)]  <span style="color:#75715e"># Create tasks</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">await</span> asyncio<span style="color:#f92672">.</span>gather(<span style="color:#f92672">*</span>tasks)  <span style="color:#75715e"># Run all at the same time</span>
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;All API call time is &#34;</span>, time<span style="color:#f92672">.</span>time() <span style="color:#f92672">-</span> end)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>asyncio<span style="color:#f92672">.</span>run(main()) <span style="color:#75715e"># creates a loop, executes , closes</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main2</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">await</span> counter(<span style="color:#ae81ff">3</span>) <span style="color:#75715e"># must finn</span>
+</span></span><span style="display:flex;"><span>    start <span style="color:#f92672">=</span> time<span style="color:#f92672">.</span>time()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">await</span> fetch(<span style="color:#ae81ff">100</span> , <span style="color:#e6db74">&#34;https://fakestoreapiserver.reactbd.com/smart&#34;</span>) <span style="color:#75715e"># wait for this one before all others</span>
+</span></span><span style="display:flex;"><span>    end <span style="color:#f92672">=</span> time<span style="color:#f92672">.</span>time()
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;Time for a single API call is &#34;</span> , end <span style="color:#f92672">-</span> start)
+</span></span><span style="display:flex;"><span>    urls <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#34;https://fakestoreapiserver.reactbd.com/smart&#34;</span>] <span style="color:#f92672">*</span> <span style="color:#ae81ff">10</span>  <span style="color:#75715e"># 10 URLs ## SCHEDULED CALLS</span>
+</span></span><span style="display:flex;"><span>    tasks <span style="color:#f92672">=</span> [fetch(idx,url) <span style="color:#66d9ef">for</span> idx,url <span style="color:#f92672">in</span> enumerate(urls)]  <span style="color:#75715e"># Create tasks</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">await</span> asyncio<span style="color:#f92672">.</span>gather(<span style="color:#f92672">*</span>tasks)  <span style="color:#75715e"># Run all at the same time</span>
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;All API call time is &#34;</span>, time<span style="color:#f92672">.</span>time() <span style="color:#f92672">-</span> end)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>asyncio<span style="color:#f92672">.</span>run(main2())
+</span></span></code></pre></div><p>Async example-2</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> nest_asyncio
+</span></span><span style="display:flex;"><span>nest_asyncio<span style="color:#f92672">.</span>apply()  <span style="color:#75715e"># Required to avoid event loop conflicts in Colab</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> asyncio 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Main2</span>():
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">async_fn_from_main2</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">await</span> asyncio<span style="color:#f92672">.</span>sleep(<span style="color:#ae81ff">5</span>)
+</span></span><span style="display:flex;"><span>     
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Main</span>():
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self): 
+</span></span><span style="display:flex;"><span>    a <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>;
+</span></span><span style="display:flex;"><span>    b <span style="color:#f92672">=</span> <span style="color:#ae81ff">20</span>; 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">asyncfn1</span>(self):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">await</span> asyncio<span style="color:#f92672">.</span>sleep(<span style="color:#ae81ff">4</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">hello</span>(self):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">await</span> asyncio<span style="color:#f92672">.</span>sleep(<span style="color:#ae81ff">5</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>(self):
+</span></span><span style="display:flex;"><span>    task1 <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>asyncfn1()
+</span></span><span style="display:flex;"><span>    task2 <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>hello()
+</span></span><span style="display:flex;"><span>    task3 <span style="color:#f92672">=</span> Main2<span style="color:#f92672">.</span>async_fn_from_main2()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">await</span> asyncio<span style="color:#f92672">.</span>gather(task1 , task2, task3)
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;got the data&#34;</span>) 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>asyncio<span style="color:#f92672">.</span>run(Main()<span style="color:#f92672">.</span>main())
+</span></span></code></pre></div><p>EXAMPLE MAKING HTTP CALLS ASYNC - 3</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> nest_asyncio
+</span></span><span style="display:flex;"><span>nest_asyncio<span style="color:#f92672">.</span>apply()  <span style="color:#75715e"># Required to avoid event loop conflicts in Colab</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> aiohttp 
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> asyncio 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">api_call_1</span>(session):
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># async with aiohttp.ClientSession() as session:</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">with</span> session<span style="color:#f92672">.</span>get(url) <span style="color:#66d9ef">as</span> response:
+</span></span><span style="display:flex;"><span>    response<span style="color:#f92672">.</span>raise_for_status()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">await</span> response<span style="color:#f92672">.</span>json()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">api_call_2</span>(session):
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># async with aiohttp.ClientSession() as session:</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">with</span> session<span style="color:#f92672">.</span>get(url) <span style="color:#66d9ef">as</span> response:
+</span></span><span style="display:flex;"><span>    response<span style="color:#f92672">.</span>raise_for_status()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">await</span> response<span style="color:#f92672">.</span>json()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>():
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">with</span> aiohttp<span style="color:#f92672">.</span>ClientSession() <span style="color:#66d9ef">as</span> session:
+</span></span><span style="display:flex;"><span>    a <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> _ <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">100</span>):
+</span></span><span style="display:flex;"><span>      a<span style="color:#f92672">.</span>append(api_call_1(session))
+</span></span><span style="display:flex;"><span>      a<span style="color:#f92672">.</span>append(api_call_2(session))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    dd <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> asyncio<span style="color:#f92672">.</span>gather(<span style="color:#f92672">*</span>a) 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> dd
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>st<span style="color:#f92672">=</span>time<span style="color:#f92672">.</span>time()  
+</span></span><span style="display:flex;"><span>d <span style="color:#f92672">=</span> asyncio<span style="color:#f92672">.</span>run(main())
+</span></span><span style="display:flex;"><span>et <span style="color:#f92672">=</span> time<span style="color:#f92672">.</span>time()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;total time&#34;</span> , et<span style="color:#f92672">-</span>st)
+</span></span><span style="display:flex;"><span>print(d)
+</span></span></code></pre></div><p><strong>METRICS</strong></p>
+<p>Typical Linux System	1000–65000 (depends on tuning)</p>
+<p>Python asyncio + aiohttp	1000–10000 (efficient)</p>
+<p>Thread-based (e.g., requests)	~100–500 (less efficient)</p>
+<p>Nginx Default (worker_connections)	1024–4096 per worker</p>
+<p>So , approx 100-200 connection can be made parallel from the same OS !!</p>
+<h2 id="how-does-this-work-in-the-low-level-">How does this work in the low level ?<a hidden class="anchor" aria-hidden="true" href="#how-does-this-work-in-the-low-level-">#</a></h2>
+<p>The OS works in the following manner, network request comes from the python application, then it makes requests to the OS , then OS calls networking library, socket it created in a non-blocking manner and upto ~60000 TCP connections can be made .. but in reality we can have around 100 network calls at max.</p>
+<p>and it the epoll tells the OS when is the data received and then it tells it back to the application ..</p>
+<h2 id="django-server-stats">Django server stats<a hidden class="anchor" aria-hidden="true" href="#django-server-stats">#</a></h2>
+<p><strong>1. Code: async, Server: sync (WSGI)</strong> → Result: async
+Under WSGI, Django creates a one-off event loop in your thread.</p>
+<p>Your async def view with awaitable calls (like HTTP requests) can interleave tasks inside that loop.</p>
+<p>✅ You get intra-thread concurrency, so things run faster—your logs are valid.</p>
+<p><strong>2. Code: sync, Server: async (ASGI)</strong> → Result: sync
+ASGI offloads your sync view into a thread pool using sync_to_async.</p>
+<p>It still blocks that thread; no benefit from event loop.</p>
+<p>So performance stays sync, not async.</p>
+<p><strong>3. Code: sync, Server: sync (WSGI)</strong> → Result: sync
+Classic model—thread-per-request, fully blocking.</p>
+<p>No async anywhere.</p>
+<p><strong>4. Code: async, Server: async (ASGI)</strong> → Result: async
+True async all the way: event loop, async view, awaitable I/O.</p>
+<p>Best throughput, non-blocking across requests.</p>
+<p>Built in server in django is multithreaded , sync server .. that means each request spins up a 1 seperate OS thread and gets executed by the individual request loop
+Async server ( uvicorn ) makes it multithreaded , async server .. that means all the requests are scheduled in the same Event loop as async task by the process level event loop (Concurrency occurs via await yielding , waiting for async tasks to complete)</p>
+<h3 id="terms-from-streams">Terms from streams<a hidden class="anchor" aria-hidden="true" href="#terms-from-streams">#</a></h3>
+<p>Async requests have to be async till the very end .. (that&rsquo;s called leaky abstraction)</p>
+<p><code>function coloring </code> : This means that we are making some functions colored as sync and other as async, and this coloring based differentiation is being made out</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="http://localhost:1313/">Mohit Dulani</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

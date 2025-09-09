@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Learning Basics of networking | Mohit Dulani</title>
+<meta name="keywords" content="">
+<meta name="description" content="Basics of Networking
+Google doc link 
+SSH explained
+ssh is a secure way to connect to a machine
+Logic
+A 2 layer key is setup , a public and private key you
+Setup
+Lets say a machine in London wants to talk to a machine in Delhi , london machine is connected to wifi and has a fixed internal IP ( 192.168.1.200 ) , the wifi IP is Dynamic , so in the router&rsquo;s setting we need to create a port forwarding rule to internal IP (192.168.1.200) on port 22">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/blog/learning-basics-of-networking/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.2211ca3164be7830024f6aad2b3a2e520843a64f8f048445c3401c1249aa051d.css" integrity="sha256-IhHKMWS&#43;eDACT2qtKzouUghDpk&#43;PBIRFw0AcEkmqBR0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/blog/learning-basics-of-networking/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Mohit Dulani (Alt + H)">Mohit Dulani</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/blog/" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/list_100/" title="List 100">
+                    <span>List 100</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Learning Basics of networking
+    </h1>
+    <div class="post-meta"><span title='2025-01-02 00:00:00 +0000 UTC'>January 2, 2025</span>
+
+</div>
+  </header> 
+  <div class="post-content"><h2 id="basics-of-networking">Basics of Networking<a hidden class="anchor" aria-hidden="true" href="#basics-of-networking">#</a></h2>
+<p><a href="https://docs.google.com/document/d/1dQU7fJDfAWogpLl-JptT1eaHzGoXHpcx_y3KVeejCAc/edit?usp=sharing">Google doc link </a></p>
+<h3 id="ssh-explained">SSH explained<a hidden class="anchor" aria-hidden="true" href="#ssh-explained">#</a></h3>
+<p><code>ssh</code> is a secure way to connect to a machine</p>
+<p><strong>Logic</strong>
+A 2 layer key is setup , a public and private key you</p>
+<p><strong>Setup</strong>
+Lets say a machine in London wants to talk to a machine in Delhi , london machine is connected to wifi and has a fixed internal IP ( 192.168.1.200 ) , the wifi IP is Dynamic , so in the router&rsquo;s setting we need to create a port forwarding rule to internal IP (192.168.1.200) on port 22</p>
+<p>and on the Delhi machine we need to turn connect using:
+<code>ssh -p 2222 your_username@Public_IP</code> : This tells ssh to connect to router&rsquo;s public IP</p>
+<p><strong>Working</strong></p>
+<h3 id="tcp-explained--transmission-control-protocol-">TCP explained ( Transmission control protocol )<a hidden class="anchor" aria-hidden="true" href="#tcp-explained--transmission-control-protocol-">#</a></h3>
+<p>A protocol to send data over internet its nothing just a reliable method and ensures reliability of data.</p>
+<p><strong>Logic and Example</strong></p>
+<p>Example:
+Lets say you want to share 10MB of data from your device on internet
+The OS just hands over it to networking stack that has TCP built into it</p>
+<p>TCP breaks it into smaller chunks called segments.
+Labeling, each segment gets a unique sequence number
+IP layer to provide the headers to the data</p>
+<p>The Data Link layer (handled by your NIC and drivers) and the Physical layer (your network hardware, e.g., Ethernet, Wi-Fi).</p>
+<p><strong>Setup</strong></p>
+<p><strong>Working</strong></p>
+<h2 id="protocols">Protocols<a hidden class="anchor" aria-hidden="true" href="#protocols">#</a></h2>
+<p>HTTP protocol was made by internet engineering task force , and its a document that explain this protocol and rules of how to use it ..
+Set of rules like language , so any 2 parties that follow these rules or speak this language can talk to each other</p>
+<p>HTTP is made on top of TCP, (OSI model) , the syn , syn-ack , ack this happens over TCP protocol</p>
+<h3 id="rpc-vs-http">RPC vs HTTP<a hidden class="anchor" aria-hidden="true" href="#rpc-vs-http">#</a></h3>
+<p>Learning about rpc , grpc , http and alternatives</p>
+<p>rpc : remote procedure call</p>
+<p>client calls a function, the function is located on the server, the server then returns the value back to client</p>
+<p>marshalling is same as serialization i.e. conversion of objects into format suitable to transmit like bit-stream</p>
+<p>unmarshalling is same as deserialization i.e. reconstruct to original form from serialized form</p>
+<p><code>Stubs</code> : stubs or proxies that are generated from Interface definition language , RPC system convert these remote execution over the network .. ( not clear yet )</p>
+<p><img alt="rpc-example" loading="lazy" src="https://slideplayer.com/slide/8976075/27/images/15/Example+of+an+RPC+No+message+passing+at+all+is+visible+to+the+programmer..jpg"></p>
+<p>client converts to stub -&gt; sends the stubs over the network using ( http/2 , tcp ) then the server recreates this stub , calls the actual function and return backs the data</p>
+<ul>
+<li>Internal system : this means microservices talking to each other, each having its own container and these services like inside the same kubernetes cluster ..</li>
+</ul>
+<p>rpc is better than rest for internal system  call :</p>
+<ol>
+<li>function level granularity , each endpoint is mapped to a function / method</li>
+<li>protocol buffers : defines input and output schemas with backward compatibility resources ,</li>
+<li>protobuf : its a compact data-type to share the data over the network in comparison to verbose text based formats like JSON , this improves speed of sharing , reduces</li>
+</ol>
+<ul>
+<li>IDL : Interface description language, is a generic term for a language that lets a program or object written in one language communicate with another program written in an unknown language.</li>
+</ul>
+<p><code>statically typed language</code> : where the type is defined by the developer, at compile time and not at the runtime
+<code>dynamically typed language</code> : where the type is defined by the program at the runtime</p>
+<pre tabindex="0"><code>— HTTP connection — 
+
+@app.route(‘/users/&lt;int:user_id&gt;’): 
+def get_user(user_id): 
+	return jsonify({ 
+		‘user_id’ : user_id, 
+		‘name’: &#39;Alice&#39;
+	})
+
+
+
+call it using 
+
+&gt;&gt; requests.get(“http://localhost:5000/users/12”)
+
+
+-- grpc protocol  -- 
+
+``user.proto``
+
+syntax = ‘proto3&#39;; 
+
+service UserService  { 
+	rpc GetUser (UserRequest) returns (UserResponse);
+
+}
+
+
+message UserRequest { 
+	int32 user_id = 1;
+}
+ 
+
+message UserResponse { 
+	int32 user_id = 1;
+	string name = 2;
+}
+— 
+
+
+`grpc code`
+
+`python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. user.proto`
+
+`
+.protoc = proto compiler 
+python_out = generates standard python classes from .proto definitions 
+grpc_python_out = generate grpc specific python code ( stubs ) 
+`
+
+user.proto : using the above python command
+user_pb2.py  : this file gets translated to `{file_name}_pb2`, this contains the actual `message`
+user_pb2_grpc.py  : this file means `method` specified
+</code></pre>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="http://localhost:1313/">Mohit Dulani</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head>
+	<meta name="generator" content="Hugo 0.150.0"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Mohit Dulani</title>
+
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.2211ca3164be7830024f6aad2b3a2e520843a64f8f048445c3401c1249aa051d.css" integrity="sha256-IhHKMWS&#43;eDACT2qtKzouUghDpk&#43;PBIRFw0AcEkmqBR0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/index.xml">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+</head>
+
+<body class="list" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Mohit Dulani (Alt + H)">Mohit Dulani</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/blog/" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/list_100/" title="List 100">
+                    <span>List 100</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Learning Celery
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Background task Maintaining background tasks specially in python django is damn tough, so we to think spawning some daemon threads and getting that solved is very tough .. so rather we should use celery that starts a complete new process and doesnt maintain any-thing inside main process
+Celery What is the use of celery ? and its comparisons
+asyncio.create_task() : This creates and executes task in event loop ( efficient management of event loop )
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-03-29 00:00:00 +0000 UTC'>March 29, 2025</span></footer>
+  <a class="entry-link" aria-label="post link to Learning Celery" href="http://localhost:1313/blog/learning-celery/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Editing the node modules and github commands
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>A noob method of playing with Node modules
+Steps to follow to update code from a node_module like d3-force directly !!
+So what we get in a node_modules are the build folder that dont support HRM (hot reload module) so we have to make changes and then build that folder using the rollup module ( maybe we can use other libs also !!)
+Steps:
+Make that change in the file that you want !!(be it debugging statements or logic change ) Install the required files, using npm install and if required change the package manager from yarn to npm Then lookup to package.json and you might find a function named “prepublishOnly” Run the command npm run prepublishOnly, If the command requires the some folder , build those or remove those folders from the npm command !! Then once you fix the errors , got the errors solved , then we build this file using npm run prepublishOnly Then run the development server using the npm run dev -- --cache This is how to rebuild a node-module !!
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-03-26 00:00:00 +0000 UTC'>March 26, 2025</span></footer>
+  <a class="entry-link" aria-label="post link to Editing the node modules and github commands" href="http://localhost:1313/blog/github-and-node-modules/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Learning the &#39;Why&#39; in Deep Learning
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>https://claude.ai/share/82ba8ee9-f673-4f8a-a89a-9fd380bd0e53
+We all know about DL architectures, but do we know how researchers arrived at this !!
+How to arrive at a deep learning architecture ? How to make connections between layers and be intuitionally correct ? The logic behind a deep learning architecture , how to make the gradients flow from different parameters space and still making sense , and the use of residual connections , layer normalisation .. etc
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-03-17 00:00:00 +0000 UTC'>March 17, 2025</span></footer>
+  <a class="entry-link" aria-label="post link to Learning the &#39;Why&#39; in Deep Learning" href="http://localhost:1313/blog/learning-why-in-deep-learning/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Learning internals of building a PC
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>computer from starting up computerphile explaining CPU Inside a CPU blog explaining cpu working compiler explorer What is a disassembler? and what does that mean? Disassembles Machine code to human readable assembly code and the assembly code is specific to the processor as it depends on ISA of the processor !! Popular disassembler is IDA ( integrated disassembler ) Modern compilers add a lot of functions to make it efficient so its becomes an art decompiling it !!
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-03-07 00:00:00 +0000 UTC'>March 7, 2025</span></footer>
+  <a class="entry-link" aria-label="post link to Learning internals of building a PC" href="http://localhost:1313/blog/learning-computers/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Learning Authentication
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Learning Authentication and Tokens So when using an auth library like Auth0 we get 2 tokens :
+JWT ( JSON web token ) Access token What’s the use of these 2 and not just use 1 ?
+ID Token is all about who the user is , the details , identity of the user , user’s unique identifier
+Access Token is your key to authorization. It tells the resource server that the bearer of the token has permission to access specific resources.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-03-06 00:00:00 +0000 UTC'>March 6, 2025</span></footer>
+  <a class="entry-link" aria-label="post link to Learning Authentication" href="http://localhost:1313/blog/learning-authentication/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Learning about Hardware and ROS and controllers
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Learning Hardware stuff Nice_Chat : https://chatgpt.com/share/67c0be3f-ca80-8009-b271-f3c1f626edbf
+Learning microcontrollers Esp32 : One of the most popular microcontroller that is inbuilt with bluetooth and wifi card ! ATmega328P : Microcontroller that is used in Arduino UNO
+GPIO : general purpose input output ( can act as input or output pin, depending on the code and its usage )
+What is a firmware ? Firmware is a low level control over hardware , directly written in the hardware RAM, to the memory ( embedded in metal ) kinda like a kernel that manages / controls the microcontroller
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-02-28 00:00:00 +0000 UTC'>February 28, 2025</span></footer>
+  <a class="entry-link" aria-label="post link to Learning about Hardware and ROS and controllers" href="http://localhost:1313/blog/learning-hardware/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Learning TypeScript
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Typescript
+Intro and Setup for Typescript Superset of Javascript, its built on top of JS
+JS is a dynamically typed language, where we dont define the types and they are associated with run-time also like python whereas, TypeScript is a statically typed language, you define types to variable like , C , java
+You need to compile Typescript to work for your case, it compiles .ts to .js and
+Learning typescript let id = 5; // js let id: number = 5; // typescript Here we defined a type and as the modern browsers can only understand JS and no this fancy languages so we need to compile this to JS.
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-02-28 00:00:00 +0000 UTC'>February 28, 2025</span></footer>
+  <a class="entry-link" aria-label="post link to Learning TypeScript" href="http://localhost:1313/blog/learning-typescript/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Learning Crawl 4 AI
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Crawl-4-AI Getting relevant data from Crawl4AI Its good at generating markdown format but seems to be a a bit off getting structured data out from it !!
+So it provides 2 inbuilt strategies :
+Using Content Selection (https://docs.crawl4ai.com/core/content-selection/) Using CSS based selection import asyncio import json from crawl4ai import AsyncWebCrawler, CacheMode from crawl4ai.async_configs import BrowserConfig, CrawlerRunConfig from crawl4ai.extraction_strategy import JsonXPathExtractionStrategy from bs4 import BeautifulSoup browser_config = BrowserConfig( headless=False, # Changed to headless mode user_agent_mode=&#34;random&#34; ) crawler_config = CrawlerRunConfig( cache_mode=CacheMode.ENABLED, magic=True, verbose=True, log_console=True, wait_until=&#34;networkidle&#34;, simulate_user=True, exclude_external_images=True, css_selector=&#34;div.yuRUbf a&#34;, ) query = &#34;https://www.google.com/search?q=health&#34; async def main(): try: async with AsyncWebCrawler(config=browser_config) as crawler: urls = [query&#43;&#34;&amp;start=0&#34; , query&#43;&#34;&amp;start=10&#34;] result = await crawler.arun( url=query, config=crawler_config ) print(&#34;Extraction completed successfully&#34;) # Add inside your main function with open(&#34;raw_html.html&#34;, &#34;w&#34;, encoding=&#34;utf-8&#34;) as f: f.write(result.cleaned_html if hasattr(result, &#39;html&#39;) else &#34;No HTML available&#34;) print(&#34;Cleaned HTML is :&#34; , result.cleaned_html) # print not helpful content from this !! except Exception as e: print(f&#34;Crawling failed: {e}&#34;) asyncio.run(main()) Using Schema based extraction : import asyncio import json from crawl4ai import AsyncWebCrawler, CacheMode from crawl4ai.async_configs import BrowserConfig, CrawlerRunConfig from crawl4ai.extraction_strategy import JsonXPathExtractionStrategy from bs4 import BeautifulSoup # Updated schema to be more resilient to Google&#39;s layout changes schema = { &#34;name&#34;: &#34;Link-Title-Schema&#34;, &#34;baseSelector&#34;: &#34;//div[contains(@class, &#39;yuRUbf&#39;)]&#34;, # More flexible match &#34;fields&#34;: [ { &#34;name&#34;: &#34;link&#34;, &#34;selector&#34;: &#34;.//a&#34;, # Direct child anchor tag &#34;type&#34;: &#34;attribute&#34;, &#34;attribute&#34;: &#34;href&#34; } ] } browser_config = BrowserConfig( headless=False, # Changed to headless mode user_agent_mode=&#34;random&#34; ) crawler_config = CrawlerRunConfig( cache_mode=CacheMode.ENABLED, magic=True, verbose=True, log_console=True, wait_until=&#34;networkidle&#34;, simulate_user=True, exclude_external_images=True, extraction_strategy=JsonXPathExtractionStrategy(schema=schema, verbose=True) ) query = &#34;https://www.google.com/search?q=health&#34; async def main(): try: async with AsyncWebCrawler(config=browser_config) as crawler: urls = [query&#43;&#34;&amp;start=0&#34; , query&#43;&#34;&amp;start=10&#34;] result = await crawler.arun( url=query, config=crawler_config ) print(&#34;Extraction completed successfully&#34;) print(&#34;Cleaned HTML is :&#34; , result.cleaned_html) soup = BeautifulSoup(result.html, &#34;html.parser&#34;) links = [a[&#34;href&#34;] for a in soup.select(&#34;div.yuRUbf a&#34;) if a.has_attr(&#34;href&#34;)] print(&#34;Extracted Links:&#34;, links) with open(&#34;extracted_links.txt&#34;, &#34;w&#34;) as f: f.write(&#34;\n&#34;.join(links)) # Check if extracted content exists if result.extracted_content: print(f&#34;Length of extracted content: {len(result.extracted_content)}&#34;) try: # Try to parse as JSON data = json.loads(result.extracted_content) print(f&#34;Successfully parsed JSON with {len(data)} entries&#34;) except json.JSONDecodeError as e: print(f&#34;Could not parse JSON: {e}&#34;) print(f&#34;Raw content: {result.extracted_content[:200]}...&#34;) else: print(&#34;No content was extracted&#34;) # Save markdown and media try: with open(&#34;result_markdown.md&#34;, &#34;w&#34;) as f: f.write(result.markdown) print(&#34;Saved markdown file&#34;) with open(&#34;result_media.md&#34;, &#34;w&#34;) as f: f.write(str(result.media)) print(&#34;Saved media file&#34;) except IOError as e: print(f&#34;Error saving files: {e}&#34;) except Exception as e: print(f&#34;Crawling failed: {e}&#34;) asyncio.run(main()) Custom Methods to get relevant data: Get the full HTML from the page and then pass this to the beautiful soup parser ( to get the HTML ) and then use the logic there to get the desired output !!
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-02-20 00:00:00 +0000 UTC'>February 20, 2025</span></footer>
+  <a class="entry-link" aria-label="post link to Learning Crawl 4 AI" href="http://localhost:1313/blog/learning-crawl4ai/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Learning nginx
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Proxy Something that sits in front of client is called proxy !
+HTTP and Frontend working So the frontend code renders on the user site (everyone knows but how does that happen ?)
+The user requests the site url https://mysite.com , the http protocol goes to the hosted server and gets code for frontend site data and then render to the user system. In the frontend code we mention in depth what we want , how we want , how to interact with the data ..
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-02-16 00:00:00 +0000 UTC'>February 16, 2025</span></footer>
+  <a class="entry-link" aria-label="post link to Learning nginx" href="http://localhost:1313/blog/learning-hosting-and-nginx/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Learning D3 js
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Learning D3 js D3.js is declarative rather than imperative, meaning you describe what you want the visualization to look like, and D3 handles the details. For someone used to more imperative approaches (like traditional programming), this might feel a bit abstract or confusing at first.
+Simulation : Its like a mini physics engine, where instead of manually positioning every elements you let the simulation apply forces ( like gravity , repulsion , attraction ) to your nodes. f
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2025-02-15 00:00:00 +0000 UTC'>February 15, 2025</span></footer>
+  <a class="entry-link" aria-label="post link to Learning D3 js" href="http://localhost:1313/blog/learning-d3/"></a>
+</article>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="prev" href="http://localhost:1313/page/2/">
+      «&nbsp;Prev&nbsp;
+    </a>
+    <a class="next" href="http://localhost:1313/page/4/">Next&nbsp;&nbsp;»
+    </a>
+  </nav>
+</footer>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="http://localhost:1313/">Mohit Dulani</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+baseURL: "https://example.com"
+languageCode: "en-us"
+title: "Mohit Dulani"
+theme: "github.com/adityatelange/hugo-PaperMod"
+ignoreLogs:
+  - warning-goldmark-raw-html
+
+params:
+  homeInfoParams:
+    Title: "Mohit Dulani"
+    Content: |
+      I am a **Machine learning practioner and a researcher**. My expertise lies in building scalable backend infra solutions and deploying real time latency ML system.
+
+      - Earlier I have worked with startups and helped them scale up their ML infra with no additional latency
+
+      - 👋 Welcome to my **codex** , here you will find scratch pad of ideas and learning
+  socialIcons:
+    - name: "github"
+      url: "https://github.com/"
+    - name: "discord"
+      url: "https://discord.com/"
+    - name: "x"
+      url: "https://x.com/"
+    - name: "ko-fi"
+      url: "https://ko-fi.com/"
+
+menu:
+  main:
+    - identifier: "blog"
+      name: "Blog"
+      url: "/blog/"
+      weight: 10
+    - identifier: "list_100"
+      name: "List 100"
+      url: "/list_100/"
+      weight: 20
+
+module:
+  imports:
+      mounts:
+        - source: "assets"
+          target: "assets"
+        - source: "layouts"
+          target: "layouts"

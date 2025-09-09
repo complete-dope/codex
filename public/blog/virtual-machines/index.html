@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Virtual Machine | Mohit Dulani</title>
+<meta name="keywords" content="">
+<meta name="description" content="Connecting to a Azure VM using ssh and RDP
+Configure a VM based on the specs
+Connecting with SSH
+Directly connect using ssh create an inbound rule for ssh, you get the ssh key !
+Connecting with RDP
+RDP , install ubuntu-desktop, 3389 is the port for RDP  , 22 for ssh , 80 for http , 443 for https !
+Azure VM RDP Setup Guide
+1. Install Desktop Environment (Ubuntu Desktop)
+
+Install desktop environment (if not already installed):
+sudo apt update
+sudo apt install ubuntu-desktop
+
+
+2. Install and Configure XRDP
+
+
+Install xrdp:">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/blog/virtual-machines/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.2211ca3164be7830024f6aad2b3a2e520843a64f8f048445c3401c1249aa051d.css" integrity="sha256-IhHKMWS&#43;eDACT2qtKzouUghDpk&#43;PBIRFw0AcEkmqBR0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/blog/virtual-machines/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Mohit Dulani (Alt + H)">Mohit Dulani</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/blog/" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/list_100/" title="List 100">
+                    <span>List 100</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Virtual Machine
+    </h1>
+    <div class="post-meta"><span title='2025-09-03 00:00:00 +0000 UTC'>September 3, 2025</span>
+
+</div>
+  </header> 
+  <div class="post-content"><p>Connecting to a Azure VM using ssh and RDP</p>
+<p>Configure a VM based on the specs</p>
+<h1 id="connecting-with-ssh">Connecting with SSH<a hidden class="anchor" aria-hidden="true" href="#connecting-with-ssh">#</a></h1>
+<p>Directly connect using ssh create an inbound rule for ssh, you get the ssh key !</p>
+<h1 id="connecting-with-rdp">Connecting with RDP<a hidden class="anchor" aria-hidden="true" href="#connecting-with-rdp">#</a></h1>
+<p>RDP , install ubuntu-desktop, 3389 is the port for RDP  , 22 for ssh , 80 for http , 443 for https !</p>
+<h1 id="azure-vm-rdp-setup-guide">Azure VM RDP Setup Guide<a hidden class="anchor" aria-hidden="true" href="#azure-vm-rdp-setup-guide">#</a></h1>
+<h2 id="1-install-desktop-environment-ubuntu-desktop">1. Install Desktop Environment (Ubuntu Desktop)<a hidden class="anchor" aria-hidden="true" href="#1-install-desktop-environment-ubuntu-desktop">#</a></h2>
+<ul>
+<li><strong>Install desktop environment (if not already installed):</strong>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt update
+</span></span><span style="display:flex;"><span>sudo apt install ubuntu-desktop
+</span></span></code></pre></div></li>
+</ul>
+<h2 id="2-install-and-configure-xrdp">2. Install and Configure XRDP<a hidden class="anchor" aria-hidden="true" href="#2-install-and-configure-xrdp">#</a></h2>
+<ul>
+<li>
+<p><strong>Install xrdp:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt install xrdp
+</span></span></code></pre></div></li>
+<li>
+<p><strong>Start and enable xrdp service:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo systemctl enable --now xrdp
+</span></span></code></pre></div></li>
+</ul>
+<h2 id="3-verify-xrdp-service">3. Verify XRDP Service<a hidden class="anchor" aria-hidden="true" href="#3-verify-xrdp-service">#</a></h2>
+<ul>
+<li>
+<p><strong>Check if xrdp is listening on port 3389:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo ss -tulpn | grep <span style="color:#ae81ff">3389</span>
+</span></span></code></pre></div></li>
+<li>
+<p><strong>Check xrdp logs for issues:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo journalctl -u xrdp --no-pager -n <span style="color:#ae81ff">50</span>
+</span></span></code></pre></div></li>
+</ul>
+<h2 id="4-ensure-firewall-allows-rdp">4. Ensure Firewall Allows RDP<a hidden class="anchor" aria-hidden="true" href="#4-ensure-firewall-allows-rdp">#</a></h2>
+<ul>
+<li>
+<p><strong>Check firewall status:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo ufw status verbose
+</span></span><span style="display:flex;"><span>sudo iptables -L -n
+</span></span></code></pre></div></li>
+<li>
+<p><strong>Allow RDP port (3389) in the firewall:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo ufw allow 3389/tcp
+</span></span><span style="display:flex;"><span>sudo iptables -A INPUT -p tcp --dport <span style="color:#ae81ff">3389</span> -j ACCEPT
+</span></span></code></pre></div></li>
+</ul>
+<h2 id="5-check-azure-nsg-network-security-group">5. Check Azure NSG (Network Security Group)<a hidden class="anchor" aria-hidden="true" href="#5-check-azure-nsg-network-security-group">#</a></h2>
+<ul>
+<li><strong>Ensure there’s an inbound rule allowing TCP port 3389</strong> in the NSG associated with your VM&rsquo;s network interface or subnet.</li>
+</ul>
+<h2 id="6-test-rdp-connection">6. Test RDP Connection<a hidden class="anchor" aria-hidden="true" href="#6-test-rdp-connection">#</a></h2>
+<ul>
+<li>
+<p><strong>Use Remmina or another RDP client to connect to the VM:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>remmina --protocol<span style="color:#f92672">=</span>RDP --server<span style="color:#f92672">=</span>&lt;VM_IP_ADDRESS&gt;
+</span></span></code></pre></div></li>
+<li>
+<p><strong>Check port availability with Nmap:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nmap -p <span style="color:#ae81ff">3389</span> &lt;VM_IP_ADDRESS&gt;
+</span></span></code></pre></div></li>
+</ul>
+<h2 id="7-restart-the-vm-if-needed">7. Restart the VM (if needed)<a hidden class="anchor" aria-hidden="true" href="#7-restart-the-vm-if-needed">#</a></h2>
+<ul>
+<li><strong>Perform a hard restart</strong> if you encounter issues:
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo reboot
+</span></span></code></pre></div></li>
+</ul>
+<p>By following these steps, you’ll set up and troubleshoot RDP access to your Azure VM with a GUI.</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="http://localhost:1313/">Mohit Dulani</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

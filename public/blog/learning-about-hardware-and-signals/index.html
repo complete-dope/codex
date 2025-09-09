@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Learning about Electrical signals | Mohit Dulani</title>
+<meta name="keywords" content="">
+<meta name="description" content="Electro Magnetic Field
+Learning about Electronics , signals , communication
+Communication
+Communication is sending information from one place to another.
+In wireless communication, we don’t use wires or cables — instead, we use waves to send information.
+Wave is simply a way to move energy or information from one place to another. Imagine throwing a pebble in a pond, ripples carry energy outwards
+Waves in communication work in a similar way, but instead of water, they travel through air or space.">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/blog/learning-about-hardware-and-signals/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.2211ca3164be7830024f6aad2b3a2e520843a64f8f048445c3401c1249aa051d.css" integrity="sha256-IhHKMWS&#43;eDACT2qtKzouUghDpk&#43;PBIRFw0AcEkmqBR0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/blog/learning-about-hardware-and-signals/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Mohit Dulani (Alt + H)">Mohit Dulani</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/blog/" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/list_100/" title="List 100">
+                    <span>List 100</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Learning about Electrical signals
+    </h1>
+    <div class="post-meta"><span title='2025-01-15 00:00:00 +0000 UTC'>January 15, 2025</span>
+
+</div>
+  </header> 
+  <div class="post-content"><p><a href="https://www.youtube.com/watch?v=XoVW7CRR5JY">Electro Magnetic Field</a></p>
+<h1 id="learning-about-electronics--signals--communication">Learning about Electronics , signals , communication<a hidden class="anchor" aria-hidden="true" href="#learning-about-electronics--signals--communication">#</a></h1>
+<h2 id="communication">Communication<a hidden class="anchor" aria-hidden="true" href="#communication">#</a></h2>
+<p>Communication is sending information from one place to another.</p>
+<p>In wireless communication, we don’t use wires or cables — instead, we use waves to send information.</p>
+<p>Wave is simply a way to move energy or information from one place to another. Imagine throwing a pebble in a pond, ripples carry energy outwards</p>
+<p>Waves in communication work in a similar way, but instead of water, they travel through air or space.</p>
+<p>Electrons exchange virtual photons (which disappears fast enough such that we cannot detect it) and experience a repulsive force in space like ( every action has an equal and opposite reaction kind off ) to consider all these interaction we take in account electric field
+Electrons &ldquo;talk&rdquo; to each other by throwing invisible &ldquo;balls&rdquo; (virtual photons). When one throws a ball, it recoils, and when the other catches it, it feels the push. This back-and-forth exchange creates the repulsive force we observe as the action of the electric field.</p>
+<p>A &ldquo;field&rdquo; refers to an area or space where forces can be felt.
+Also we can imagine it as an football field where electrons play</p>
+<p>And at the special relativity level, we see that electrons and protons , they contract in the direction of the motion .. think of this as , at high speed a plane moving towards right direction gets compressed and things in opposites gets delayed and this relativity effect happen in objects and as they are made up of atoms they experience a force and this force on charge in an movement of electrons and protons is called Magnetic field.</p>
+<h3 id="coiled-wire-and-the-forces-it-experiences">Coiled wire and the forces it experiences<a hidden class="anchor" aria-hidden="true" href="#coiled-wire-and-the-forces-it-experiences">#</a></h3>
+<p>??</p>
+<h3 id="information-in-waves-">Information in waves ?<a hidden class="anchor" aria-hidden="true" href="#information-in-waves-">#</a></h3>
+<p>How information encodes and travels in air ? Doesnt get lost ? penetrates through objects ? How far can that go?</p>
+<ol>
+<li></li>
+</ol>
+<p>Waves carry information in there characteristics ..</p>
+<p>Amplitude (height of the wave)
+Frequency (how often waves repeat)
+Phase (timing of the waves)</p>
+<p>AM Radio: Changes amplitude to encode sound
+FM Radio: Changes frequency to encode sound
+Modern digital: Uses combinations of these to pack more information</p>
+<ol start="2">
+<li>
+<p>$ travels $
+travel in line of people standing close together and vibrating
+Low frequencies (like bass) travel farther and penetrate objects better
+High frequencies (like treble) travel shorter distances and are easily blocked</p>
+</li>
+<li></li>
+</ol>
+<p>Actually, they do! Waves get weaker (attenuate) due to:
+Spreading out (like ripples in a pond getting smaller)
+Absorption by air/objects
+Interference from other waves
+Temperature and weather conditions</p>
+<h3 id="what-is-electromagnetic-">What is electromagnetic ?<a hidden class="anchor" aria-hidden="true" href="#what-is-electromagnetic-">#</a></h3>
+<p>Sunlight is an EM wave
+Electromagnetic waves to send information wirelessly. These waves are made up of:</p>
+<p>Electric fields: Invisible &ldquo;push&rdquo; forces.
+Magnetic fields: Invisible &ldquo;pull&rdquo; forces. They work together and move through the air at the speed of light.</p>
+<p>Imagine you want to send a message across a lake:</p>
+<p>Digital Signal: You tap a wooden stick in the water in a precise pattern (e.g., tap-tap&hellip;pause&hellip;tap-tap-tap). The taps represent your message in 0s and 1s.</p>
+<p>EM Wave: The ripples in the water are what actually carry your taps to the other side of the lake.</p>
+<p>In the real world, the digital message (your taps) often rides on EM waves to travel from one place to another, like how Wi-Fi or mobile data works.</p>
+<h3 id="how-does-cellphones-transmit-sound-and-stuff-">How does cellphones transmit sound and stuff ?<a hidden class="anchor" aria-hidden="true" href="#how-does-cellphones-transmit-sound-and-stuff-">#</a></h3>
+<p><a href="https://www.youtube.com/watch?v=1JZG9x_VOwA">mobile communication</a></p>
+<p>Your voice goes to microphone ( that is an analogue signal ) with the help of MEMS sensor and IC it gets converted to digital signal aka binary signal ( 0&rsquo;s and 1&rsquo;s)
+Then this binary signal is taken up by antenna to convert to EM wave</p>
+<p>0 is low frequency and 1 is high frequency</p>
+<p>Cellular tower, ( cell tower ) , each area is divided in hexagonal parts and each part has its own tower and frequency slot</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="http://localhost:1313/">Mohit Dulani</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

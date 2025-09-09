@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Learning Go-lang | Mohit Dulani</title>
+<meta name="keywords" content="">
+<meta name="description" content="Learning GO to get the minimum latency and get things right from start ..
+Go docs
+Go Tour
+The whole file needs to become a package and to make it whole a package we wrap that up in package main and this makes the whole code as a single package that is then converted to binary
+We create package to help us import those in other files and the importing helps in code seperation, else we would have to write the whole code in a single main.go file..">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/blog/learning-golang/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.2211ca3164be7830024f6aad2b3a2e520843a64f8f048445c3401c1249aa051d.css" integrity="sha256-IhHKMWS&#43;eDACT2qtKzouUghDpk&#43;PBIRFw0AcEkmqBR0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/blog/learning-golang/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Mohit Dulani (Alt + H)">Mohit Dulani</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/blog/" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/list_100/" title="List 100">
+                    <span>List 100</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Learning Go-lang
+    </h1>
+    <div class="post-meta"><span title='2025-07-18 00:00:00 +0000 UTC'>July 18, 2025</span>
+
+</div>
+  </header> 
+  <div class="post-content"><h2 id="learning-go-to-get-the-minimum-latency-and-get-things-right-from-start-">Learning GO to get the minimum latency and get things right from start ..<a hidden class="anchor" aria-hidden="true" href="#learning-go-to-get-the-minimum-latency-and-get-things-right-from-start-">#</a></h2>
+<p><a href="https://go.dev/doc/tutorial/getting-started">Go docs</a><br>
+<a href="https://go.dev/tour/list">Go Tour</a></p>
+<p>The whole file needs to become a package and to make it whole a package we wrap that up in <code>package main</code> and this makes the whole code as a single package that is then converted to binary</p>
+<p>We create package to help us import those in other files and the importing helps in code seperation, else we would have to write the whole code in a single main.go file..</p>
+<h3 id="imports">Imports<a hidden class="anchor" aria-hidden="true" href="#imports">#</a></h3>
+<p>The internal imports are done using:</p>
+<pre tabindex="0"><code>import (
+  &#34;fmt&#34;
+  &#34;net/http&#34;
+  &#34;github.com/gorilla/mux&#34;
+)
+</code></pre><p>so these are the imports as we made in the python and to get these imported sorted we have to take 2 steps</p>
+<pre tabindex="0"><code>
+1. `go mod init &lt;package-name&gt;` : can be named anything, we need this to make sure the module is go.mod and public and anyone can download and use the functions / classes listed in it ..
+
+2. `go mod tidy` : this is like pip install -r r.txt where in python we write the library names in r.txt here we write the libraries in code itself and we they gets installed and added as require in the mod file
+</code></pre><p><code>func main()</code> is the function that gets called by default as soon as we compile the app</p>
+<p><code>go run .</code> : runs the file</p>
+<h3 id="multiple-modules">Multiple modules<a hidden class="anchor" aria-hidden="true" href="#multiple-modules">#</a></h3>
+<p>If each module in a separate directory, you will need to basically convert that package from external link to the local one :</p>
+<pre tabindex="0"><code>~/go-dev/
+├── greetings/
+│   └── go.mod (module example.com/greetings)
+|   └── greetings.go 
+└── app/
+    └── go.mod (module example.com/app)
+    └── app.go 
+</code></pre><p>So to use greetings.go in app.go we need to import in this way in the
+<code>go mod edit --replace example.com/greeting=../greetings</code></p>
+<p>also the package name should be same as the directory name ..</p>
+<h3 id="variable-declaration">Variable declaration<a hidden class="anchor" aria-hidden="true" href="#variable-declaration">#</a></h3>
+<pre tabindex="0"><code>var name string
+name = &#34;Mohit&#34;
+--
+name := &#34;Hello&#34; //Here the type declaration is taken from the rght side of the string 
+</code></pre><p><code>list</code> declaration:</p>
+<pre tabindex="0"><code>message := [] string { 
+  &#34;Hi 1&#34;, 
+  &#34;Hi 2&#34;,
+  &#34;Hi 3&#34;,
+}
+</code></pre><h3 id="error-handling">Error Handling<a hidden class="anchor" aria-hidden="true" href="#error-handling">#</a></h3>
+<p>send the value , error with it  ..</p>
+<p>so the return is a tuple ( message , error-code ) , error return nil means no error , else send an erorr using :</p>
+<pre tabindex="0"><code>import &#34;errors&#34;
+
+if name == &#34;&#34;:
+  return &#34;&#34;, errors.New(&#34;empty name&#34;)
+</code></pre><h2 id="range-keyword">Range keyword<a hidden class="anchor" aria-hidden="true" href="#range-keyword">#</a></h2>
+<p>used to iterate over</p>
+<pre tabindex="0"><code>Array, 
+Slices, 
+Strings, 
+Maps,
+Channels
+</code></pre><h2 id="make">Make<a hidden class="anchor" aria-hidden="true" href="#make">#</a></h2>
+<p><code>map_init := make(map [string]int )</code>
+<code>slice_init := make([]int, 5)</code>
+<code>chan_init := make(chan int)</code></p>
+<h2 id="goroutines">GoRoutines<a hidden class="anchor" aria-hidden="true" href="#goroutines">#</a></h2>
+<p>goroutines are like threads, assume that they are threads and you can goroutines will work,
+new goroutines are created using the &lsquo;go&rsquo; keyword (prefix) ,
+any function can become a goroutine just add the go keyword in front and doesnt require function coloring</p>
+<h2 id="channels">Channels<a hidden class="anchor" aria-hidden="true" href="#channels">#</a></h2>
+<p>channels are way of communicating before 2 goroutines, data transfer between goroutines are done using these channels,</p>
+<p>Each channel is a has a particular type of data-structure / data-type that is called <code>Element</code> type</p>
+<pre tabindex="0"><code>// so its a integer data channel means integers can only passed through this channels 
+ch := make(chan int) 
+</code></pre><p><code>make</code> : this keyword is used to 3 datatypes (map , channel , struct)</p>
+<pre tabindex="0"><code>ch &lt;- x   ...//a send statement 
+x = &lt;-ch  ...//a receive statement is an assignment 
+&lt;-ch ...// a receive statement; result is discarded
+</code></pre><p>Channels support <code>close</code> keyword , which sets a flag indicating that no more values will ever be sent on this channel ..</p>
+<p>Example :</p>
+<pre tabindex="0"><code>// channels , pipeline
+
+package main
+
+import ( 
+	&#34;fmt&#34;
+)
+
+// go doesnt allow named functions inside the main() function .. only anon functions can be declared  
+func main(){
+	naturals := make(chan int)
+	squares := make(chan int)
+
+	// Naturals 
+	go func(){
+		for x:= 0; x&lt;100 ; x++ {
+			naturals &lt;- x
+		}
+		close(naturals)
+	}()
+
+	// Squares
+	go func(){
+		for	x := range naturals{
+			squares &lt;- x*x 
+		}
+		close(squares)
+	}()
+
+	// Printer
+	for x:= range squares {
+		fmt.Println(x)
+	}
+}
+</code></pre><h3 id="unbuffered-channel">Unbuffered Channel<a hidden class="anchor" aria-hidden="true" href="#unbuffered-channel">#</a></h3>
+<p>by default, the initialised channel is an unbuffered one , that is there is not buffer stored in the channel , once go routines sends a value , it will wait till receiver receives that value</p>
+<pre tabindex="0"><code>ch = make(chan int)     //unbuffered channel
+ch = make(chan int, 0)  //unbuffered channel
+ch = make(chan int, 3)  //buffered channel with capacity 3 
+</code></pre><p>Called as Synchronous channel</p>
+<h3 id="buffered-channel">Buffered Channel<a hidden class="anchor" aria-hidden="true" href="#buffered-channel">#</a></h3>
+<p>It has a queue of elements, send inserts at the end , receiver takes out the value from the start, and if the queue is filled the sender no longer pushes the values in .. so that is one drawback</p>
+<p>If in an unbuffered channel , goroutine is trying to enter value then it wont be able to add values to the buffer this situation is called <code>goroutine leak</code></p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="http://localhost:1313/">Mohit Dulani</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

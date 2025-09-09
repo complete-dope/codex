@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Learning basics of React | Mohit Dulani</title>
+<meta name="keywords" content="">
+<meta name="description" content="Doc link
+REPLIT
+Trying to Learn React once again
+Delta to learn react is high, you need JS, css, html
+Importing / Exporting
+Named export ( export function App )
+Default export ( export default  )
+Default import ( import App from ‘./App’ )
+Named import ( import {App} from ‘./App’ )  the { } must match the function name exactly
+Multiple Exports
+
+** File is  : app.js
+export const Test1 = (()=&gt;{
+
+})
+
+export const Test2 = function(){
+
+}
+
+export const Test3 = () =&gt; {
+
+}
+
+
+// call it as following
+
+import {Test, Test2 , Test3} from &#39;./app.js&#39;
+Components :
+Different parts
+Like parts of a motorcycle , fan .. these are components and a site is made up many such components
+Component name should always start with a Capital letter
+Inside JSX, we can write javascript also
+Can only return only one parent element">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/blog/learning-react/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.2211ca3164be7830024f6aad2b3a2e520843a64f8f048445c3401c1249aa051d.css" integrity="sha256-IhHKMWS&#43;eDACT2qtKzouUghDpk&#43;PBIRFw0AcEkmqBR0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/blog/learning-react/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Mohit Dulani (Alt + H)">Mohit Dulani</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/blog/" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/list_100/" title="List 100">
+                    <span>List 100</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Learning basics of React
+    </h1>
+    <div class="post-meta"><span title='2024-12-04 00:00:00 +0000 UTC'>December 4, 2024</span>
+
+</div>
+  </header> 
+  <div class="post-content"><p><a href="https://docs.google.com/document/d/1Bg43BoC0xSmXugYI7L27NJm4ZFUaHDYlVYsFiTiodTM/edit?usp=sharing">Doc link</a></p>
+<p><a href="https://replit.com/@mohitdulani1/eg">REPLIT</a></p>
+<p>Trying to Learn React once again
+Delta to learn react is high, you need JS, css, html</p>
+<h2 id="importing--exporting"><code>Importing / Exporting</code><a hidden class="anchor" aria-hidden="true" href="#importing--exporting">#</a></h2>
+<p>Named export ( export function App )
+Default export ( export default <!-- raw HTML omitted --> )</p>
+<p>Default import ( import App from ‘./App’ )
+Named import ( import {App} from ‘./App’ )  the { } must match the function name exactly</p>
+<p>Multiple Exports</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">**</span> <span style="color:#a6e22e">File</span> <span style="color:#a6e22e">is</span>  <span style="color:#f92672">:</span> <span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">js</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">Test1</span> <span style="color:#f92672">=</span> (()=&gt;{
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">Test2</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(){
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">Test3</span> <span style="color:#f92672">=</span> () =&gt; {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// call it as following
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> {<span style="color:#a6e22e">Test</span>, <span style="color:#a6e22e">Test2</span> , <span style="color:#a6e22e">Test3</span>} <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;./app.js&#39;</span>
+</span></span></code></pre></div><h2 id="components-">Components :<a hidden class="anchor" aria-hidden="true" href="#components-">#</a></h2>
+<p>Different parts
+Like parts of a motorcycle , fan .. these are components and a site is made up many such components<br>
+Component name should always start with a Capital letter
+Inside JSX, we can write javascript also
+Can only return only one parent element</p>
+<p>Curly braces
+Inside curly braces, we can pass string , number and also for styling we can pass inside a js object inside {} so its {{ }}</p>
+<h3 id="props">Props<a hidden class="anchor" aria-hidden="true" href="#props">#</a></h3>
+<ol>
+<li>Passing to a jsx tag: Props are the information that you pass to a JSX tag
+Passing to a component:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">Component</span> <span style="color:#a6e22e">prop1</span> <span style="color:#f92672">=</span> {<span style="color:#ae81ff">100</span>} <span style="color:#a6e22e">prop2</span> <span style="color:#f92672">=</span> {{<span style="color:#a6e22e">name</span><span style="color:#f92672">:</span><span style="color:#960050;background-color:#1e0010">’</span><span style="color:#a6e22e">mohit</span><span style="color:#960050;background-color:#1e0010">’</span>}}<span style="color:#f92672">&gt;</span>
+</span></span></code></pre></div><p>Receiving / Read props Way-1 :</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">Component</span> ({ <span style="color:#a6e22e">prop1</span> , <span style="color:#a6e22e">prop2</span> }) { <span style="color:#75715e">// prop1 and prop2  }
+</span></span></span></code></pre></div><p>Object passing needs to be wrapped in double curly braces</p>
+<ol start="2">
+<li>Reading props Way-2 : function Component (props) read as props.prop1 and props.prop2</li>
+</ol>
+<p>Child prop (passing other component as a prop, content inside a prop) : The content inside the element acts as a prop</p>
+<p>Key prop (inbuilt keyword in prop) : used to identify one object from another</p>
+<h3 id="template-literals">Template literals<a hidden class="anchor" aria-hidden="true" href="#template-literals">#</a></h3>
+<p>Passing in a combination of backticks + string + some dynamic value using $
+** <code>Hello ${Name}</code> : Similar to python&rsquo;s F-string</p>
+<h3 id="rendering">Rendering<a hidden class="anchor" aria-hidden="true" href="#rendering">#</a></h3>
+<p>Going from code to beautiful frontend  using VDOM , virtual dom
+DOM is a tree like hierarchy<br>
+State changed ? First updates virtual dom
+Then uses diffing to find changes in real dom to virtual dom
+Then updates few nodes in the real dom ( Reconciliation )</p>
+<h3 id="event-handling">Event Handling<a hidden class="anchor" aria-hidden="true" href="#event-handling">#</a></h3>
+<p><a href="https://youtu.be/wIyHSOugGGw">Event handling</a></p>
+<p>Handling user interaction
+User clicking somewhere and the desired results is rendered using the event handler
+Event handler functions:
+Are usually defined inside your components.
+Have names that start with ‘handle’, followed by the name of the event.
+Event handler props convention is to start with ‘on’</p>
+<h3 id="event-propagation">Event propagation:<a hidden class="anchor" aria-hidden="true" href="#event-propagation">#</a></h3>
+<p>Each event clicks finds its location in a tree and from there it calls all the events above it to the top node of the tree.
+Stopping propagation, Event handlers receive an event object as their only argument. By convention, it’s usually called e, which stands for “event”.
+e.stopPropagation() → to stop up the propagation of e to the parent node
+Frequently used : onClick
+onChange
+onSubmit</p>
+<p>State
+useState(initial_state)
+useReducer()</p>
+<h3 id="hooks">Hooks<a hidden class="anchor" aria-hidden="true" href="#hooks">#</a></h3>
+<p>These can be called only at the top level of the component</p>
+<ol>
+<li>
+<p>State Hooks
+useState()
+useReducer()</p>
+</li>
+<li>
+<p>Context Hooks
+useContext()</p>
+</li>
+<li>
+<p>Ref Hooks
+useRef()</p>
+</li>
+<li>
+<p>Effect Hooks
+useEffect() : Runs once a component is rendered and you tell it to look for changes by providing dependencies.</p>
+</li>
+</ol>
+<p>Setup code [ that performs something ]
+Use for everything that is non react like Calling an external API , external JS library , DOM event and we need to define when / how to call it ,</p>
+<ol start="5">
+<li>Performance Hooks ( not required in after react - 19 )
+useMemo()
+useCallback()</li>
+</ol>
+<p>Purity
+Same input should have same output and to always maintain this we can pass something called as <!-- raw HTML omitted --></p>
+<p>Effects
+Code that reaches outside react apps and calls other API’s</p>
+<p>Context and useContext
+Use context lets to read and subscribe to context created using create-Context
+useContext &raquo; is used when you dont want to pass on the data using props..
+You can wrap the component inside the context provider and then use that component.</p>
+<p>Portals</p>
+<p>Suspense</p>
+<p>Arrow function:
+data.then((data) =&gt; console.log(data))
+data.then((data) =&gt; {
+console.log(data)
+})</p>
+<p>Async arrow function
+data.then(async () =&gt; { })</p>
+<p>Normal function:
+function resolveIt(data){
+console.log(data)
+}</p>
+<p>data.then(resolveIt)</p>
+<p>Fetching Data from API
+Using the fetch library / method from javascript
+But fetch is a asynchronous function and returns a promise you need to resolve the promise using .then() and .catch()</p>
+<p>When you call a async function you gets a promise rather than the data … so you need to resolve that promise and if you need that API to be called and get resolved everytime to happen everything directly call it and resolve it ,&hellip;.</p>
+<p>UseEffect
+For declaring / defining async functions, inside hook, the async function must be declared inside the scop and also called immediately ..</p>
+<p>Do the desired roles what a function requires
+Then return a cleanup function
+Then [ ] to look for new changes</p>
+<p>====</p>
+<p>Points to remember</p>
+<p>1_ The hooks should be declared inside the component as the components can be used at multiple places so making that global makes no sense ..</p>
+<p>2_ Props are read only, take the prop declare a state and then play with that state … its like this because of pure in react</p>
+<p>3_ react strictmode sometimes causes the component to render twice to check for its correctness .. this may be the reason of multiple renders that you see</p>
+<h2 id="useref-hook">useref hook<a hidden class="anchor" aria-hidden="true" href="#useref-hook">#</a></h2>
+<p>It has a single object and doesnt causes re-render
+Its used to reference / make reference to something, to access something we bind a reference to it (that we will use it)<br>
+Its takes the DOM value directly</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">React</span>, { <span style="color:#a6e22e">useRef</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;react&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">App</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">inputRef</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">useRef</span>(<span style="color:#66d9ef">null</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">handleFocus</span> <span style="color:#f92672">=</span> () =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">inputRef</span>.<span style="color:#a6e22e">current</span>.<span style="color:#a6e22e">focus</span>();
+</span></span><span style="display:flex;"><span>  };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> (
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">div</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span> <span style="color:#a6e22e">ref</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">inputRef</span>} <span style="color:#a6e22e">placeholder</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Click the button to focus&#34;</span> <span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">button</span> <span style="color:#a6e22e">onClick</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">handleFocus</span>}<span style="color:#f92672">&gt;</span><span style="color:#a6e22e">Focus</span> <span style="color:#a6e22e">Input</span><span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/button&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/div&gt;</span>
+</span></span><span style="display:flex;"><span>  );
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#a6e22e">App</span>;
+</span></span></code></pre></div><p>The above function on clicking the button the focus will come to the input button</p>
+<h2 id="useeffect-hook">useEffect hook<a hidden class="anchor" aria-hidden="true" href="#useeffect-hook">#</a></h2>
+<p>One of the methods for calling API but adds a conditional to when to call the API ..</p>
+<p>This is used to call API&rsquo;s  / external systems ..
+The thing is the function at it scratch implementation is a synchronous function and for it to work, even with fetch API we need to use useEffect()</p>
+<p>The basic fetching wont work &hellip;
+useEffect takes in a function and a depedency array , that will call the function whenever something from the dependency array changes</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">useEffect</span>(()=&gt;{
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getData</span>(){
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">response</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">fetch</span>(<span style="color:#e6db74">&#39;https://google.com&#39;</span>)
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">data</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">json</span>()
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">data</span>) 
+</span></span><span style="display:flex;"><span>   }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>},[<span style="color:#a6e22e">dependency1</span> , <span style="color:#a6e22e">dependency2</span>])
+</span></span></code></pre></div><p>This function runs whenever some dependency changes from the array, but can we pass params to the useEffect function ?</p>
+<p>Yup, the same old trick, if the function directly is unable to take anything wrap it up in another function and pass the props from that function to the useEffect hook &hellip;</p>
+<p>Also used to call a function based on its state change, in the dependency array add all the states that need to tracked for and checked for change and useEffect hook just calls it &hellip;</p>
+<p>There is also a cleanUp function, that resets the state back to normal to avoid irrelevant re-rendering ..</p>
+<h3 id="react-function-component">React function component<a hidden class="anchor" aria-hidden="true" href="#react-function-component">#</a></h3>
+<p>For react to know that its a React function component, it must start with a capital letter.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getData</span>(()=&gt;{
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">dataFetch</span>(){
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">response</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">fetch</span>(<span style="color:#e6db74">&#39;https://localhost:3000&#39;</span>)
+</span></span><span style="display:flex;"><span>   }
+</span></span><span style="display:flex;"><span>}, [])
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// gives error like its not a react function component
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// solve it by :
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">GetData</span>(()=&gt;{
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">dataFetch</span>(){
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">response</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">fetch</span>(<span style="color:#e6db74">&#39;https://localhost:3000&#39;</span>)
+</span></span><span style="display:flex;"><span>   }
+</span></span><span style="display:flex;"><span>}, [])
+</span></span></code></pre></div><p>The onSubmit , onClick .. etc types of functions can take both sync and async functions as input !! &ndash;&gt; kinda weird</p>
+<h3 id="re-rendering">Re-rendering<a hidden class="anchor" aria-hidden="true" href="#re-rendering">#</a></h3>
+<p>Now that I added a new component ( that is just some html wrapped in JS shit for a bundler ) but its not getting compiled as react doesnt know that it got changed / it has to make changes because of some new addition ( fuck u react .. why can&rsquo;t you just listen to all the events occuring ) &hellip; like an event loop</p>
+<p>So we have to now tell it that some new component has come please interact with it / show it to the user on screen  ..</p>
+<h3 id="server-side-and-client-side-component-rendering-">Server side and client side component rendering !<a hidden class="anchor" aria-hidden="true" href="#server-side-and-client-side-component-rendering-">#</a></h3>
+<p>So anything that a server sends ( means things that happen at the server and then sent back as a compiled HTML / JS)  is a server side code / component</p>
+<p>And things that happen in client side ( like talking to an API ) is called Client side component &hellip;</p>
+<p>There is one thing , we can&rsquo;t use async - await in client side code so how do we call API from client side ?</p>
+<p>Answer is : Using <code>useEffect</code> hook we can call the API from client side in a seperate component</p>
+<p>The whole idea of components now makes sense .. without component writing things in react is just seems so impossible ..</p>
+<h3 id="using-hooks">USING HOOKS<a hidden class="anchor" aria-hidden="true" href="#using-hooks">#</a></h3>
+<p>Using hooks makes sense, as the whole react code is async and for it to read values we need to use hooks , normal declaration of variable doesnt work correctly in this case</p>
+<h3 id="component-rendering">Component Rendering<a hidden class="anchor" aria-hidden="true" href="#component-rendering">#</a></h3>
+<p>The way the component renders in React is quite interesting , at 2 times re-rendering happens, when a component&rsquo;s state or props change, the component re-renders.</p>
+<p>If any state variable get defined inside a component, and it gets updated then the component re-renders and second is if the component takes a prop and that gets prop gets updated , the component re-renders</p>
+<h3 id="passing-props-to-a-button-onclick-function">Passing props to a button onClick function<a hidden class="anchor" aria-hidden="true" href="#passing-props-to-a-button-onclick-function">#</a></h3>
+<p>To pass props (or arguments) to a function in a button&rsquo;s onClick, you can use an inline arrow function that calls your function with those props.</p>
+<h3 id="public-static">Public Static<a hidden class="anchor" aria-hidden="true" href="#public-static">#</a></h3>
+<p>Only the files in the /public/ are fetched by the initial HTTP request,  and the src/ requests are not sent .. By restricting static file serving to the public directory, Vercel ensures that sensitive source files (like configuration files, environment variables, or server-side code) are not accidentally exposed to the public internet.</p>
+<p>Your source files in src are processed (bundled, minified, etc.) by the build tool. The resulting JavaScript, CSS, and other assets are output to the build directory (like .vercel/output/static or dist).</p>
+<p>No Direct Access to src:
+You cannot fetch or access files directly from src in production. They are either bundled into your app or ignored</p>
+<h3 id="cors-error">CORS Error<a hidden class="anchor" aria-hidden="true" href="#cors-error">#</a></h3>
+<p>Client to server , server sends backs data , browser sees if the header is set for <code>/same-origin/</code> , if yes, rendered else its CORS error</p>
+<p>Cors proxy in between , client to CP , CP sends request to Server , server sends backs data to CP,  CP adds &lsquo;same-origin&rsquo; to it , CP sends its back to client , now that request comes from same origin !!</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="http://localhost:1313/">Mohit Dulani</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

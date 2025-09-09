@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Learning and Making CUDA kernels as a future skill | Mohit Dulani</title>
+<meta name="keywords" content="">
+<meta name="description" content="THIS IS A SKILL OF FUTURE
+CUDA DOCS
+How do GPU work by geohotz starts at 20:00
+Terminologies :
+Warp : grp of 32 threads scheduled and working on the same streaming multiprocessor
+SIMT : single instruction , multiple threads
+Lockstep : all threads starts in parallel / works at the same time
+SM : Streaming Multiprocessor ( CPU aka processor , single processor , useful for all tasks &hellip; whereas .. gpu only for intensive application handed over to it by cpu )
+Stream : like event loop in CPU used for cuda async operations
+PTX : parallel thread executions , has a seperate ISA used for cuda code and runs on GPU">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/blog/learning-cuda-kernels/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.2211ca3164be7830024f6aad2b3a2e520843a64f8f048445c3401c1249aa051d.css" integrity="sha256-IhHKMWS&#43;eDACT2qtKzouUghDpk&#43;PBIRFw0AcEkmqBR0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/blog/learning-cuda-kernels/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Mohit Dulani (Alt + H)">Mohit Dulani</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/blog/" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/list_100/" title="List 100">
+                    <span>List 100</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Learning and Making CUDA kernels as a future skill
+    </h1>
+    <div class="post-meta"><span title='2025-03-30 00:00:00 +0000 UTC'>March 30, 2025</span>
+
+</div>
+  </header> 
+  <div class="post-content"><h2 id="this-is-a-skill-of-future">THIS IS A SKILL OF FUTURE<a hidden class="anchor" aria-hidden="true" href="#this-is-a-skill-of-future">#</a></h2>
+<p><a href="https://docs.nvidia.com/cuda/cuda-c-programming-guide/">CUDA DOCS</a></p>
+<p><a href="https://www.youtube.com/watch?v=OUzm06YaUsI">How do GPU work by geohotz</a> starts at 20:00</p>
+<h2 id="terminologies-">Terminologies :<a hidden class="anchor" aria-hidden="true" href="#terminologies-">#</a></h2>
+<p>Warp : grp of 32 threads scheduled and working on the same streaming multiprocessor
+SIMT : single instruction , multiple threads
+Lockstep : all threads starts in parallel / works at the same time<br>
+SM : Streaming Multiprocessor ( CPU aka processor , single processor , useful for all tasks &hellip; whereas .. gpu only for intensive application handed over to it by cpu )
+Stream : like event loop in CPU used for cuda async operations<br>
+PTX : parallel thread executions , has a seperate ISA used for cuda code and runs on GPU</p>
+<h2 id="structure-of-gpu-">Structure of GPU :<a hidden class="anchor" aria-hidden="true" href="#structure-of-gpu-">#</a></h2>
+<h2 id="memory-in-gpu-">Memory in GPU :<a hidden class="anchor" aria-hidden="true" href="#memory-in-gpu-">#</a></h2>
+<ul>
+<li>Shared Memory : This is used by all threads in a block and is assesible using <code>__shared__</code> keyword</li>
+<li>Global Memory : This is the default memory accessible by all kernels <code>cudaMalloc</code> , <code>cudaMemcpy</code>  (slow)</li>
+<li>L1 cache : This is hardware managed memory, like a CDN, the most frequently used memory is placed close to the blocks ( can&rsquo;t be programmed )  (fast)</li>
+<li>L2 cache : This is hardware managed memory and cant be programmed like L1 (medium)</li>
+<li>Registers : 16 bit memory storage blocks , total 32 in count ,  only memory that are actually used by the CPU  ( fastest)</li>
+</ul>
+<p>Yes, shared memory is different from L1 and L2 cache, and you can explicitly use shared memory in your CUDA programs, but L1 and L2 caches are hardware-managed and cannot be directly controlled.</p>
+<p>Serial Code : Synchronous code , that runs sequentially on the CPU
+Parallel Code : Code that runs sequentially on the GPU</p>
+<h3 id="simt-model">SIMT Model<a hidden class="anchor" aria-hidden="true" href="#simt-model">#</a></h3>
+<p>So this model assumes that the threads have same instruction and they are working on different data .. and thread role divergence is not assumed !! as this helps in executing in parallel at the same time and a warp scheduler is used to schedule it and works in lockstep</p>
+<p>Warp divergence: If the code depends on threadIdx , then we cant do warp divergence as now we have multiple instructions and this reduces parallelism &hellip;</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># warp_divergent.cu</span>
+</span></span><span style="display:flex;"><span>__global__ void divergent(){
+</span></span><span style="display:flex;"><span>  int idx <span style="color:#f92672">=</span> threadIdx<span style="color:#f92672">.</span>x;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (idx <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>){
+</span></span><span style="display:flex;"><span>    s[idx] <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">else</span>{
+</span></span><span style="display:flex;"><span>    s[idx] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># warp_scheduled.cu</span>
+</span></span><span style="display:flex;"><span>__global__ void divergent(){
+</span></span><span style="display:flex;"><span>  int idx <span style="color:#f92672">=</span> threadIdx<span style="color:#f92672">.</span>x;
+</span></span><span style="display:flex;"><span>  int data;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (idx <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>){
+</span></span><span style="display:flex;"><span>    data <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">else</span>{
+</span></span><span style="display:flex;"><span>    data <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  s[idx] <span style="color:#f92672">=</span> data;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="async-programming">Async programming<a hidden class="anchor" aria-hidden="true" href="#async-programming">#</a></h3>
+<p>Streams are like event loop , schedules async programs and have access to stop and start them !!
+can have multiple streams (as its a multiprocessor with multicores )</p>
+<h2 id="compilation-and-low-level-stuff-in-the-api">Compilation and low level stuff in the API<a hidden class="anchor" aria-hidden="true" href="#compilation-and-low-level-stuff-in-the-api">#</a></h2>
+<p>CPU COMPILATION HAPPENS AS :</p>
+<pre tabindex="0"><code>Source code &gt; compiler &gt; asm file
+asm file &gt; assembler &gt; object file
+object file &gt; linker &gt; exe binary 
+</code></pre><p>What currently happens in software is the above steps gets followed for langs like C / C++ for high level languages like python, Java , Javascript they get converted to intermediate file format like .pyc or .class file and now that compilation to binary code happens at JIT &hellip; so they never gets to the stage of asm or obj file ..</p>
+<p><code>nvcc compiler</code> : based on backend powered by LLVM ,
+seperates device and host code ,
+converts device code to PTX (assembly code)
+converts host code to obj file</p>
+<p>JIT compilation:
+GPU driver takes in the PTX code that is generated in the compilation step by nvcc
+the conversion to binary happens by the gpu drivers which is not open-sourced proprietary software (nouveau is open sourced and does a decent job)</p>
+<p>For different GPU devices and version we can compile by passing in a <code>-code</code></p>
+<h2 id="cuda-runtime"><a href="https://docs.nvidia.com/cuda/cuda-c-programming-guide/#cuda-runtime">CUDA RUNTIME</a><a hidden class="anchor" aria-hidden="true" href="#cuda-runtime">#</a></h2>
+<h3 id="allocating-2d-and-3d-memory">Allocating 2d and 3d memory<a hidden class="anchor" aria-hidden="true" href="#allocating-2d-and-3d-memory">#</a></h3>
+<p><code>cudaMallocPitch()</code> and <code>cudaMalloc3D()</code></p>
+<p><a href="https://chatgpt.com/share/67e9b3b4-26a0-8009-a3ec-0eadc15725d3">Playing with linker TODO Whatttt</a></p>
+<p>A lot of abstraction is handled by runtime library for the driver code, when we write things like thread allocation and context destruction lot of the under the hood is handled by driver code ( which is not open sourced )</p>
+<p>Persistence : frequent memory accesses are cached in l2 cache
+Streaming : single time usage of memory is not stored in any cache</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="http://localhost:1313/">Mohit Dulani</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

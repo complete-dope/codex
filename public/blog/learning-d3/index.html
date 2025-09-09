@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Learning D3 js | Mohit Dulani</title>
+<meta name="keywords" content="">
+<meta name="description" content="Learning D3 js
+D3.js is declarative rather than imperative, meaning you describe what you want the visualization to look like, and D3 handles the details. For someone used to more imperative approaches (like traditional programming), this might feel a bit abstract or confusing at first.
+Simulation :
+Its like a mini physics engine, where instead of manually positioning every elements you let the simulation apply forces ( like gravity , repulsion , attraction ) to your nodes.
+f">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/blog/learning-d3/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.2211ca3164be7830024f6aad2b3a2e520843a64f8f048445c3401c1249aa051d.css" integrity="sha256-IhHKMWS&#43;eDACT2qtKzouUghDpk&#43;PBIRFw0AcEkmqBR0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/blog/learning-d3/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Mohit Dulani (Alt + H)">Mohit Dulani</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/blog/" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/list_100/" title="List 100">
+                    <span>List 100</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Learning D3 js
+    </h1>
+    <div class="post-meta"><span title='2025-02-15 00:00:00 +0000 UTC'>February 15, 2025</span>
+
+</div>
+  </header> 
+  <div class="post-content"><h1 id="learning-d3-js">Learning D3 js<a hidden class="anchor" aria-hidden="true" href="#learning-d3-js">#</a></h1>
+<p>D3.js is declarative rather than imperative, meaning you describe what you want the visualization to look like, and D3 handles the details. For someone used to more imperative approaches (like traditional programming), this might feel a bit abstract or confusing at first.</p>
+<h2 id="simulation-">Simulation :<a hidden class="anchor" aria-hidden="true" href="#simulation-">#</a></h2>
+<p>Its like a mini physics engine, where instead of manually positioning every elements you let the simulation apply forces ( like gravity , repulsion , attraction ) to your nodes.
+f</p>
+<p>Force Link :</p>
+<p>Force Many Body : Simulates repulsion between nodes</p>
+<h2 id="smooth-transition">Smooth Transition<a hidden class="anchor" aria-hidden="true" href="#smooth-transition">#</a></h2>
+<h2 id="register-dom-event">Register DOM event<a hidden class="anchor" aria-hidden="true" href="#register-dom-event">#</a></h2>
+<p>Registers an event on DOM</p>
+<h2 id="animation-and-tick-in-d3js">Animation and tick in d3.js<a hidden class="anchor" aria-hidden="true" href="#animation-and-tick-in-d3js">#</a></h2>
+<p>Its a part of d3-force, which uses a physics model to animate elements over time over time
+<code>tick</code> refers to each iteration of this simulation</p>
+<p>force simulation: it continously updates node positions based on forces ( like gravity , collision )
+Runs in tick until stabilization or a specified limit</p>
+<p>If you manually modify the node position in the DOM, D3 simulation will override those values in the next tick !!
+The simulation updates the values of x, y properties of each node based on forces.</p>
+<p><code>fx</code> : fixed-x
+<code>fy</code> : fixed-y</p>
+<p><code>&lt;g&gt; tag</code> : group tag
+<code>&lt;svg&gt; tag</code> : svg ( scale vector graphics )</p>
+<p>Inside the svg we have g tags that have circle and lines inside it !!</p>
+<p>Dont change to manipulate things in DOM when in simulation mode as a resimulation will cause to redo the effects</p>
+<p><code>force Simulation</code> : Simulation that acts / tells all the forces that are acting in a body,</p>
+<p>Repulsion : ( many - body forces ) prevents node from getting too close
+Attraction : ( link-force)  Acts like a spring between connected nodes, keeping related nodes together.
+Centering force: Draws nodes toward a central point.
+Collision force: Ensures that nodes maintain a certain distance from each other.</p>
+<p>D3 PROPERTIES / METHODS TO USE : <a href="https://chatgpt.com/share/67b0f299-5328-8009-a2bc-4227d92681a8">https://chatgpt.com/share/67b0f299-5328-8009-a2bc-4227d92681a8</a></p>
+<p>Adding a class:
+<code>.attr(&quot;class&quot; , &quot;node&quot;)</code> : adds a class node</p>
+<p>Access it using</p>
+<p>d3.select(&rsquo;.node&rsquo;) : pass the node name here !!</p>
+<p>D3 Code</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">node</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">svg</span>.<span style="color:#a6e22e">append</span>(<span style="color:#e6db74">&#39;g&#39;</span>)  
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">selectAll</span>(<span style="color:#e6db74">&#39;g&#39;</span>)  
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">data</span>(<span style="color:#a6e22e">nodes</span>)  
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">join</span>(<span style="color:#e6db74">&#39;g&#39;</span>)  
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#34;class&#34;</span>, <span style="color:#e6db74">&#34;node&#34;</span>)  
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">call</span>(<span style="color:#a6e22e">d3</span>.<span style="color:#a6e22e">drag</span>()  
+</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#39;start&#39;</span>, <span style="color:#a6e22e">dragstarted</span>)  
+</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#39;drag&#39;</span>, <span style="color:#a6e22e">dragged</span>)  
+</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#39;end&#39;</span>, <span style="color:#a6e22e">dragended</span>));  
+</span></span></code></pre></div><p>Line-wise explanation:</p>
+<ol>
+<li>svg.append(&lsquo;g&rsquo;)
+What it does:
+Adds a <!-- raw HTML omitted --> (group) element to the svg.
+This <!-- raw HTML omitted --> will contain all the nodes.</li>
+</ol>
+<p>Why we do it:
+Helps organize the nodes in one group (useful for transforms, scaling, etc.).</p>
+<ol start="2">
+<li>.selectAll(&lsquo;g&rsquo;)</li>
+</ol>
+<p>What it does:
+Selects all <!-- raw HTML omitted --> elements inside the newly created <!-- raw HTML omitted -->.
+Right now, there are no <!-- raw HTML omitted --> elements, so this returns an empty selection.</p>
+<ol start="3">
+<li>.data(nodes)</li>
+</ol>
+<p>What it does:
+Binds the nodes array (data) to the selection.
+Each item in nodes will be linked to a <!-- raw HTML omitted --> element.</p>
+<ol start="4">
+<li>.join(&lsquo;g&rsquo;)</li>
+</ol>
+<p>What it does:
+Checks if <!-- raw HTML omitted --> elements exist for each data item:
+If they don’t exist, it creates a new <!-- raw HTML omitted --> for each data item.
+If they do exist, it reuses them.
+Essentially, this creates <!-- raw HTML omitted --> elements for every node in nodes.</p>
+<ol start="5">
+<li>.attr(&ldquo;class&rdquo;, &ldquo;node&rdquo;)</li>
+</ol>
+<p>What it does:
+Adds the class &ldquo;node&rdquo; to each <!-- raw HTML omitted --> element.
+Now, d3.selectAll(&rsquo;.node&rsquo;) will correctly select all the node groups.</p>
+<ol start="6">
+<li>.call(d3.drag()&hellip; )</li>
+</ol>
+<p>What it does:
+Adds drag behavior to each node using d3.drag().
+The .call() function applies this behavior to each <!-- raw HTML omitted --> element.</p>
+<h2 id="add-event-listener-to-nodes-">Add event listener to nodes !!<a hidden class="anchor" aria-hidden="true" href="#add-event-listener-to-nodes-">#</a></h2>
+<p>We can add event listeners using the &lsquo;click&rsquo; functionality ,</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">d3</span>.<span style="color:#a6e22e">select</span>(<span style="color:#e6db74">&#34;node&#34;</span>).<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#39;click&#39;</span> , (<span style="color:#a6e22e">event</span> , <span style="color:#a6e22e">single_node</span>) =&gt; {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">stopPropagation</span>(); <span style="color:#75715e">// this makes that event is restricted to here only and doesnt propagates furtehr  
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>})
+</span></span></code></pre></div><p>Event listeners on elements are executed before event listeners on its parent elements.</p>
+<h2 id="add-transition-to-the-nodes-">Add transition to the nodes !!<a hidden class="anchor" aria-hidden="true" href="#add-transition-to-the-nodes-">#</a></h2>
+<h2 id="understanding-propery-of-a-d3-node">Understanding propery of a D3 Node<a hidden class="anchor" aria-hidden="true" href="#understanding-propery-of-a-d3-node">#</a></h2>
+<p><a href="https://d3js.org/d3-force/simulation#simulation_nodes">Important link</a></p>
+<p>index - the node’s zero-based index into nodes
+x - the node’s current x-position
+y - the node’s current y-position
+vx - the node’s current x-velocity
+vy - the node’s current y-velocity</p>
+<p>The position ⟨x,y⟩ and velocity ⟨vx,vy⟩ may be subsequently modified by forces and by the simulation. If either vx or vy is NaN, the velocity is initialized to ⟨0,0⟩. If either x or y is NaN, the position is initialized in a phyllotaxis arrangement, so chosen to ensure a deterministic, uniform distribution.</p>
+<p>To fix a node in a given position, you may specify two additional properties:</p>
+<p>fx - the node’s fixed x-position
+fy - the node’s fixed y-position</p>
+<p>At the end of each tick, after the application of any forces, a node with a defined node.fx has node.x reset to this value and node.vx set to zero; likewise, a node with a defined node.fy has node.y reset to this value and node.vy set to zero. To unfix a node that was previously fixed, set node.fx and node.fy to null, or delete these properties.</p>
+<h2 id="relevant-forces">Relevant forces<a hidden class="anchor" aria-hidden="true" href="#relevant-forces">#</a></h2>
+<p><code>.forceSimulation</code> : This gives few default things to the array !
+they are :
+Alpha: Starts at 1
+Alpha Decay: ~0.0228
+Alpha Minimum: 0.001
+Velocity Decay: 0.4
+Required : This is required as the first step ( that makes the simulation to work ) it initialises a simulation on the nodes specified in it as an array</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">simulation</span>  <span style="color:#f92672">=</span> <span style="color:#a6e22e">d3</span>
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">forceSimulation</span>(<span style="color:#a6e22e">reactFlowNodes</span>)
+</span></span></code></pre></div><p>Named forces : These are the named forces, that means we have to name the force that we are using then we can manipulate the properties directly from it</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span>.<span style="color:#a6e22e">force</span>(<span style="color:#e6db74">&#34;charge&#34;</span> , <span style="color:#a6e22e">d3</span>.<span style="color:#a6e22e">forceManyBody</span>().<span style="color:#a6e22e">strength</span>(<span style="color:#f92672">-</span><span style="color:#ae81ff">100</span>)) 
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">force</span>(<span style="color:#e6db74">&#34;charge&#34;</span>).<span style="color:#a6e22e">strength</span>(<span style="color:#f92672">-</span><span style="color:#ae81ff">100</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Here how we updated those forces, we name the params / properties of the force using its &#34;name&#34;  
+</span></span></span></code></pre></div><p>Minimum distance below which the forces wont interfere<br>
+Maximum distance over which the forces wont interfere
+So if we are in a range that is between the min and max distance only then forces will appear</p>
+<p><code>.forceX</code> : Directs the forces for nodes in x-direction
+So it says , hey all nodes you have a force applied in the x-direction and the coordinate is (d3.forceX(width/2)) or ( d3.forceX(50) )
+and then we can set strength to this <a href="https://d3js.org/d3-force/position">https://d3js.org/d3-force/position</a></p>
+<p><code>.forceY</code> : Directs the forces for nodes in y-direction
+So it says , hey all nodes , you have a force applied in the y-direction and the coordinate is (d3.forceY(height/2)) or (d3.forceY(50))
+so go to that force</p>
+<p>If applied in both direction we have a resultant force direction !</p>
+<p><code>.forceCenter</code> : Brings node to a center point, else if we have those unbounded ( no radius ) means they will be flowing any where onto the screen</p>
+<p><code>.forceCollide</code> : This is a collision force that acts between bodies this is how the bodies gets seperated. each nodes it considered as a circle with radius. So a node is a circle that has a center and a radius property, the radius is the radius of the node so that is very small</p>
+<p><code>.forceLink</code> : This force makes sure that if a single connected node in moved rest of the connected nodes along with it also moves in the given direction .. and we can defined teh
+Iterations are like the number of times you adjust the positions of the magnets (nodes) to make sure they are in the right place according to the forces (links) acting on them.
+Distance : This is the distance between the edges</p>
+<p><code>.forceManyBodies</code> : attractive or repulsive forces between bodies</p>
+<p><code>.tick()</code> : tick, that is , in 1 second how many times will we recalculate the x,y,vx,vy for a node !! by default we have 300 times, so that is in 1 sec we update the simulation by 300 times !!
+Iterations = we can increase of decrease it , its just a multiplication factor, (300 * iteration) this much time to do in a second</p>
+<h2 id="params">Params<a hidden class="anchor" aria-hidden="true" href="#params">#</a></h2>
+<p><code>.alphaTarget()</code> : The simulation will go on and on till we reach this alphaTarget value</p>
+<p><code>.alphaDecay()</code> : The decay in which this happens, the alpha initial value will reduce in the exponential value in the decay value mentioned !</p>
+<p><code>.velocityDecay()</code> : Its the friction between nodes, it leads to stopping of</p>
+<h2 id="using-d3-with-reactflow">Using D3 with Reactflow<a hidden class="anchor" aria-hidden="true" href="#using-d3-with-reactflow">#</a></h2>
+<p>Inside reactflow layout d3 action / params doesnt work , so we have to make a little trick here that is we have to get the nodes from original reactflow then pass them to d3 ( so that its forces can act on then )</p>
+<p>D3 being very good only returns the vx and vy , that is , it calculates all the acting forces using the logic and returns the vx and vy along with updated x and y &hellip; and that is done 300 times a second so we see it like a smooth transition as no major changes are happening !</p>
+<p>Once we get the values from the D3, we update our reactflow nodes so that they are able to better interact with the whole react ecosystem and this happens in a use state over 300+ times in a second !!</p>
+<p>So this is a way to use reactflow in react !</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="http://localhost:1313/">Mohit Dulani</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

