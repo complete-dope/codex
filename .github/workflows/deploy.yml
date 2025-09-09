@@ -45,6 +45,8 @@ jobs:
             --gc \
             --minify \
             --baseURL "${{ steps.pages.outputs.base_url }}/"
+      - name: Disable Jekyll
+        run: touch ./public/.nojekyll
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
