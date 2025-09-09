@@ -1,7 +1,9 @@
-baseURL: "https://example.com"
+baseURL: "https://complete-dope.github.io/codex/"
 languageCode: "en-us"
 title: "Mohit Dulani"
 theme: "PaperMod"
+
+
 ignoreLogs:
   - warning-goldmark-raw-html
 
