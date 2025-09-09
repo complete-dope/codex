@@ -1,28 +1,71 @@
-name: Build and Deploy Hugo
+name: Build & Deploy Hugo (PaperMod) to gh-pages
+
 on:
   push:
     branches: [ main ]
   workflow_dispatch:
 
 jobs:
-  build:
+  build-deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository (with submodules)
+        uses: actions/checkout@v4
         with:
           submodules: true
-      - name: Setup Hugo
+          fetch-depth: 0
+
+      - name: Print repo info (debug)
+        run: |
+          echo "== HEAD =="
+          git rev-parse --abbrev-ref HEAD || true
+          echo "== Files (root) =="
+          ls -la
+          echo "== themes dir =="
+          ls -la themes || true
+          echo "== config.* =="
+          ls -la | grep config || true
+          hugo version || true
+
+      - name: Setup Hugo (extended)
         uses: peaceiris/actions-hugo@v2
         with:
           hugo-version: 'latest'
           extended: true
-      - name: Build
-        run: hugo --minify
-      - name: Prevent Jekyll
-        run: touch public/.nojekyll
-      - name: Deploy
+
+      - name: Try fetch Hugo Modules (works for module-based site)
+        run: |
+          # tolerate failure to support both submodule and module setups
+          hugo mod get -u || true
+          hugo mod tidy || true
+          echo "== Modules directory (if any) =="
+          ls -la .hugo_cache || true
+          ls -la $(hugo env | awk -F\" '/HUGO_MODULES_CACHE/{print $2}') || true
+
+      - name: Print theme & config discovery (debug)
+        run: |
+          echo "== theme set in config (first 200 bytes) =="
+          grep -i "theme" -n config.* || true
+          echo "== module imports in config (if any) =="
+          grep -i "module" -n config.* || true
+          echo "== theme folders =="
+          find themes -maxdepth 2 -type d -print || true
+
+      - name: Build site
+        run: |
+          hugo --minify
+          echo "build exit code: $?"
+
+      - name: Prevent Jekyll from processing (create .nojekyll)
+        run: |
+          touch public/.nojekyll
+          echo ".nojekyll created. public contents:"
+          ls -la public | head -n 40
+
+      - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           publish_dir: ./public
           publish_branch: gh-pages
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          keep_history: true
