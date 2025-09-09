@@ -1,0 +1,208 @@
+<!doctype html><html lang=en dir=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>Learning nginx | Mohit Dulani</title><meta name=keywords content><meta name=description content="Proxy
+Something that sits in front of client is called proxy !
+HTTP and Frontend working
+So the frontend code renders on the user site (everyone knows but how does that happen ?)
+The user requests the site url https://mysite.com , the http protocol goes to the hosted server and gets code for frontend site data and then render to the user system. In the frontend code we mention in depth what we want , how we want , how to interact with the data .."><meta name=author content><link rel=canonical href=https://complete-dope.github.io/codex/blog/learning-hosting-and-nginx/><link crossorigin=anonymous href=/codex/assets/css/stylesheet.2211ca3164be7830024f6aad2b3a2e520843a64f8f048445c3401c1249aa051d.css integrity="sha256-IhHKMWS+eDACT2qtKzouUghDpk+PBIRFw0AcEkmqBR0=" rel="preload stylesheet" as=style><link rel=icon href=https://complete-dope.github.io/codex/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://complete-dope.github.io/codex/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://complete-dope.github.io/codex/favicon-32x32.png><link rel=apple-touch-icon href=https://complete-dope.github.io/codex/apple-touch-icon.png><link rel=mask-icon href=https://complete-dope.github.io/codex/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://complete-dope.github.io/codex/blog/learning-hosting-and-nginx/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style></noscript><meta property="og:url" content="https://complete-dope.github.io/codex/blog/learning-hosting-and-nginx/"><meta property="og:site_name" content="Mohit Dulani"><meta property="og:title" content="Learning nginx"><meta property="og:description" content="Proxy Something that sits in front of client is called proxy !
+HTTP and Frontend working So the frontend code renders on the user site (everyone knows but how does that happen ?)
+The user requests the site url https://mysite.com , the http protocol goes to the hosted server and gets code for frontend site data and then render to the user system. In the frontend code we mention in depth what we want , how we want , how to interact with the data .."><meta property="og:locale" content="en-us"><meta property="og:type" content="article"><meta property="article:section" content="blog"><meta property="article:published_time" content="2025-02-16T00:00:00+00:00"><meta property="article:modified_time" content="2025-02-16T00:00:00+00:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="Learning nginx"><meta name=twitter:description content="Proxy
+Something that sits in front of client is called proxy !
+HTTP and Frontend working
+So the frontend code renders on the user site (everyone knows but how does that happen ?)
+The user requests the site url https://mysite.com , the http protocol goes to the hosted server and gets code for frontend site data and then render to the user system. In the frontend code we mention in depth what we want , how we want , how to interact with the data .."><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Blogs","item":"https://complete-dope.github.io/codex/blog/"},{"@type":"ListItem","position":2,"name":"Learning nginx","item":"https://complete-dope.github.io/codex/blog/learning-hosting-and-nginx/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"Learning nginx","name":"Learning nginx","description":"Proxy Something that sits in front of client is called proxy !\nHTTP and Frontend working So the frontend code renders on the user site (everyone knows but how does that happen ?)\nThe user requests the site url https://mysite.com , the http protocol goes to the hosted server and gets code for frontend site data and then render to the user system. In the frontend code we mention in depth what we want , how we want , how to interact with the data ..\n","keywords":[],"articleBody":"Proxy Something that sits in front of client is called proxy !\nHTTP and Frontend working So the frontend code renders on the user site (everyone knows but how does that happen ?)\nThe user requests the site url https://mysite.com , the http protocol goes to the hosted server and gets code for frontend site data and then render to the user system. In the frontend code we mention in depth what we want , how we want , how to interact with the data ..\nHTTP works on TCP / IP connection flow !\nLearning Nginx Nginx is a reverse proxy , that means is sits in front of the server and then its role is to redirect the traffic ( aka acts as a load balancer ) and hides the IP of the server\nSetup and practices to perform Creates 2 directories\nmkdir -p /home/mohit/Desktop/mdesktop/reverse_proxy/sites-available mkdir -p /home/mohit/Desktop/mdesktop/reverse_proxy/sites-enabled sites-available : stores sites configurations sites-enabled : contains symbolic link to configurations in sites-enabled\nNow we need to add this in the nginx conf file as a directive..\nDirective are the key values pairs in the nginx conf files like shown below:\ninclude /home/mohit/Desktop/mdesktop/reverse_proxy/sites-enabled/*; include is the key path is the value These together are called directive Nginx configuration:\nserver { listen 80; server_name mysite.local; location / { return 200 'Hello from your custom Nginx configuration!'; add_header Content-Type text/plain; } } server : server block, that defines settings for a specific site listen 80 : tells nginx to listen on port 80 (HTTP) server_name mysite.local : domain name this conf applies to\nlocation / { … }: Begins a location block that handles requests for the root path (/) return 200 ‘Hello…’;: Returns an HTTP 200 (OK) status with the specified text add_header Content-Type text/plain;: Sets the Content-Type header to plain text\nln -s /home/mohit/Desktop/mdesktop/reverse_proxy/sites-available/mysite /home/mohit/Desktop/mdesktop/reverse_proxy/sites-enabled/ This creates a symbolic link to the configuration to the site ( CHECK : for location )\nchmod -R o+r /home/mohit/Desktop/mdesktop/reverse_proxy/ Then in the host file add the loopback IP address ( localhost ) to the domain name that we are assigning ( Sounds like DNS ?? )\nNext steps :\nserver { listen 80; server_name nodeapp.local; location / { proxy_pass http://localhost:3000; proxy_http_version 1.1; proxy_set_header Upgrade $http_upgrade; proxy_set_header Connection 'upgrade'; proxy_set_header Host $host; proxy_cache_bypass $http_upgrade; } } This sets up a reverse proxy for a node.js application running on port 3000\nIn More Depth: Directives : key value pairs\nproxy_pass http://localhost:8000 events{ } These are known as contexts, within context we have directive\nWriting a custom nginx file http{ server{ listen 8080; root /home/mohit/Desktop/mdesktop/reverse_proxy/ } } events {} Find the problem causing your nginx to not work :\nsudo journalctl -u nginx --no-pager --since \"10 minutes ago\" Most common problem is access problem, u need to give access to all the parent folders and not just the final folder.\nMime Types We need to tell nginx how to render which type of content .. that information is stored in mime types file and we just need to include it\nhttp { include mime.types server { root /home/Desktop/ listen 8080; } } events {} Location blocks http { include mime.types server { listen 8080; root /home/Desktop/; location /fruits { root /home/Desktop/; ( this auto adds /fruits at the end ) } } } events {} location /fruits : means this directory will only open when the endpoint is defined as in this case : http:localhost:8080/fruits\nusing root : it appends the location defined in it at the end using alias : it doesnt append the location at the end so u can add at the end automatically\nBy default, it looks for index.html files, so we can use try_files to try for these files also\nevents {} http { include mime.types; server { listen 8080; root /home/mohit/Desktop/mdesktop/reverse_proxy; location /vegetable { root /home/mohit/Desktop/mdesktop/reverse_proxy; try_files /vegetable/veggies.html /index.html =404; } } } nginx as a load balancer Lets say want to route it between 4 servers such that the time is saved per user .. what we can do is :\ncreate a dockerfile and expose the ports accordingly from it\nAll the exposed ports becomes as a proxy_pass for a nginx file and we perform the routing from it !!\nSo what happens in a DIY home setup :\nDNS routes the domain to IP Firewall passes that IP to the desired internal IP for which the port is exposed The nginx should be running on that machine, and listening for requests on port 80 ( http ) or 443 ( https)\nOnce the request comes to that port , nginx then forwards that request to the internal IP’s and (DOUBTFUL ON HOW?) get the data from there and sends back to the user !\nNginx\nSo we need a seperate dockerFile for frontend , a seperate docker file for backend and then nginx will need to be enabled from the frontend docker file and that will look for changes ( the init for nginx will be defined in the nginx.conf file !! )\nnginx conf start -\u003e looks for requests coming on port 80\nProd setup !! First we create a frontend and backend dockerfile , and the nginx will be just the started as we do using systemctl and it will start listening to all the http ports\nIn the nginx.conf file we will mention the port it has to redirect to which will be localhost:8000 based on the app\nThe app’s port will be exposed using port forwarding in the docker file\nThe backend will be similarly exposed using an endpoint running in the docker file !!\nSo all we need is frontend docker rendering the sites and backend docker giving the response and nginx acting as the reverse proxy !!\nHost the app on a VM Example scenario :\nPublic IP : 49.47.71.217 Private IP : 192.168.29.146\nHosted app on this private IP\nall incoming for public router for http request from users should go to this IP address = 49.47.71.217:80 or 49.47.71.217:443 ( if https )\nIn router settings, all connections coming to the machine :80 , should go to this private IP : 192.168.29.146:80 and http should route that to the Hosted App , that routing will be done using nginx\nuser will type http://publicIP:8080 , then directly it will see the app\nbut the user typing http://publicIP , then also the user should be able to see and its enabled with using nginx\nHosting multiple sites on a single server !! TESTING HTTPS ON THE LOCAL SYSTEM WE CAN USE A SELF SIGNED CERTIFICATE ,\nGET THE SELF SIGNED CERTIFICATE : sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout server.key -out server.crt\nSo the only limitation is the hardware , using a single machine we can host multiple sites from it and in the nginx itself we can mention to use which particular configuration for a single file !\nFor this we have to first simply run this:\nCONF FILE : sudo nano /etc/nginx/sites-available/your-app , This is the nginx conf file that we use\nThen we need to make a symbolic link to the sites-enabled using this :\nSYMBOLIC LINK : sudo ln -s /etc/nginx/sites-available/your-app /etc/nginx/sites-enabled/ REMOVE THE SYMBOLIC LINK : sudo rm /etc/nginx/sites-enabled/your-app\nRESTART : sudo systemctl restart nginx\nserver { listen 443 ssl; server_name 4.240.104.180; ssl_certificate /etc/nginx/ssl/server.crt; ssl_certificate_key /etc/nginx/ssl/server.key; location / { proxy_pass http://localhost:8080; proxy_set_header Host $host; proxy_set_header X-Real-IP $remote_addr; proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; proxy_set_header X-Forwarded-Proto $scheme; } # WebSocket traffic location /ws/ { proxy_pass ws://0.0.0.0:8001; proxy_http_version 1.1; proxy_set_header Upgrade $http_upgrade; proxy_set_header Connection \"upgrade\"; proxy_set_header Host $host; proxy_set_header X-Real-IP $remote_addr; proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; proxy_set_header X-Forwarded-Proto $scheme; proxy_read_timeout 300s; proxy_send_timeout 300s; } } server { listen 80; server_name 4.240.104.180; return 301 https://$host$request_uri; } UPGRADING TO HTTPS AND NGINX CONF FILE SELF SIGNED CERTIFICATE Get a self signed certificate that lives for 365 days , but the signing authority cant be validated as you urself are trying to upgrade that connection ( ideally a 3rd party needs to do this part !!) openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 : This saves the certificate at cert.pem file\nFree SSL Providers Using providers like ZeroSSL and Let’s Encrypt ONCE GENERATED WE NEED TO TELL NGINX TO USE IT :\nhere in the ssl-server we wrote the certificate name and stuff\n// binds to port 443 ( ssl / https ) server { listen 443 ssl; server_name 4.240.104.180; ssl_certificate /etc/nginx/ssl/server.crt; ssl_certificate_key /etc/nginx/ssl/server.key; location / { proxy_pass http://localhost:8080; proxy_set_header Host $host; proxy_set_header X-Real-IP $remote_addr; proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; proxy_set_header X-Forwarded-Proto $scheme; } # WebSocket traffic location /ws/ { proxy_pass http://0.0.0.0:8001/; proxy_http_version 1.1; proxy_set_header Upgrade $http_upgrade; proxy_set_header Connection \"upgrade\"; proxy_set_header Host $host; proxy_set_header X-Real-IP $remote_addr; proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; proxy_set_header X-Forwarded-Proto $scheme; proxy_read_timeout 300s; proxy_send_timeout 300s; } } // binds to port 80 ( http ) server { listen 80; server_name 4.240.104.180; return 301 https://$host$request_uri; } GET AN SSL CERTIFICATE USING NOSSL So first step is you need to host a file that the ssl provider\n(you can host the file over http or https, for http no openssl certificate is required and for https you require to get a openssl certificate and use it !! )\nthen the provider tests for that file\nOnce it verifies that this is the correct position for the file it upgrades your self signed (openssl) to the one provided by the authority !!\nUpdate the ssl certificate and the key so that you dont see that https error on it !!\nDONE FOR HTTPS !\nWe need to do the same / similar for http but only change being we dont need to update and that will be the first time creation and updation !!\ncommon pitfalls Read the vite docs throughly\nvite server HMR ( hot module reload ) This fucks up in prod cases , so rather use\nnpm run build npx serve dist -l 8080 What process happens internally ? The NGINX exposes port 443\nThe internal whole setup runs on http port\nencrypted request comes from user browser \u003e gets decrypted using nginx \u003e internal routed to http as mentioned in the nginx conf file \u003e uses this http for all the internal communication \u003e before sending back the request encryptes it \u003e sends back to user\nThis process is called SSL termination - Nginx “terminates” the SSL connection and handles all encryption/decryption, so your internal services don’t need to.\nFor WebSocket Traffic\nYour frontend establishes a WebSocket connection to wss://4.240.104.180/ws/autosuggestion Nginx identifies this as a WebSocket upgrade request based on headers Nginx handles the SSL/TLS part (the “wss” protocol) Nginx forwards the WebSocket connection to ws://0.0.0.0:8001/autosuggestion Your backend server accepts the WebSocket connection Two-way communication begins through this persistent connection\nhere is how nginx manages this magic connection part !!\nlocation /ws/ : tells nginx to match any URL that begins with /ws/ \u003e it founds this connection : wss://4.240.104.180/ws/autosuggestion proxy_pass http://0.0.0.0:8001/; Forwards the request to http://0.0.0.0:8001/ proxy_http_version 1.1; proxy_set_header Upgrade $http_upgrade; proxy_set_header Connection \"upgrade\"; This is where the upgrade to websocket happens !! we append in the http request itself that this should be upgraded as a ws request !!\nWhen your frontend code does new WebSocket(‘wss://4.240.104.180/ws/autosuggestion’):\nThe browser initiates a secure connection to your server on port 443 It sends an HTTP upgrade request with headers indicating it wants to switch to WebSocket protocol Nginx decrypts this request using your SSL certificate Nginx sees the /ws/ path and applies your WebSocket location block Nginx forwards the WebSocket handshake to your backend at http://0.0.0.0:8001/autosuggestion Your backend accepts the connection, and a full-duplex WebSocket channel is established Nginx acts as a transparent proxy, passing messages back and forth between the browser and your backend\nNGINX seamlessly handles the protocol conversion part !!\n","wordCount":"1953","inLanguage":"en","datePublished":"2025-02-16T00:00:00Z","dateModified":"2025-02-16T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://complete-dope.github.io/codex/blog/learning-hosting-and-nginx/"},"publisher":{"@type":"Organization","name":"Mohit Dulani","logo":{"@type":"ImageObject","url":"https://complete-dope.github.io/codex/favicon.ico"}}}</script></head><body id=top><script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add("dark"):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove("dark"):window.matchMedia("(prefers-color-scheme: dark)").matches&&document.body.classList.add("dark")</script><header class=header><nav class=nav><div class=logo><a href=https://complete-dope.github.io/codex/ accesskey=h title="Mohit Dulani (Alt + H)">Mohit Dulani</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=https://complete-dope.github.io/codex/blog/ title=Blog><span>Blog</span></a></li><li><a href=https://complete-dope.github.io/codex/list_100/ title="List 100"><span>List 100</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><h1 class="post-title entry-hint-parent">Learning nginx</h1><div class=post-meta><span title='2025-02-16 00:00:00 +0000 UTC'>February 16, 2025</span></div></header><div class=post-content><p><code>Proxy</code>
+Something that sits in front of client is called proxy !</p><h1 id=http-and-frontend-working>HTTP and Frontend working<a hidden class=anchor aria-hidden=true href=#http-and-frontend-working>#</a></h1><p>So the frontend code renders on the user site (everyone knows but how does that happen ?)</p><p>The user requests the site url <code>https://mysite.com</code> , the http protocol goes to the hosted server and gets code for frontend site data and then render to the user system. In the frontend code we mention in depth what we want , how we want , how to interact with the data ..</p><p>HTTP works on TCP / IP connection flow !</p><h1 id=learning-nginx>Learning Nginx<a hidden class=anchor aria-hidden=true href=#learning-nginx>#</a></h1><p>Nginx is a reverse proxy , that means is sits in front of the server and then its role is to redirect the traffic ( aka acts as a load balancer ) and hides the IP of the server</p><h2 id=setup-and-practices-to-perform>Setup and practices to perform<a hidden class=anchor aria-hidden=true href=#setup-and-practices-to-perform>#</a></h2><p>Creates 2 directories</p><pre tabindex=0><code>mkdir -p /home/mohit/Desktop/mdesktop/reverse_proxy/sites-available
+mkdir -p /home/mohit/Desktop/mdesktop/reverse_proxy/sites-enabled
+</code></pre><p>sites-available : stores sites configurations
+sites-enabled : contains symbolic link to configurations in sites-enabled</p><p>Now we need to add this in the nginx conf file as a directive..</p><p>Directive are the key values pairs in the nginx conf files like shown below:</p><pre tabindex=0><code>include /home/mohit/Desktop/mdesktop/reverse_proxy/sites-enabled/*; 
+
+include is the key
+path is the value
+These together are called directive 
+</code></pre><p>Nginx configuration:</p><pre tabindex=0><code>server {
+    listen 80;
+    server_name mysite.local;
+
+    location / {
+        return 200 &#39;Hello from your custom Nginx configuration!&#39;;
+        add_header Content-Type text/plain;
+    }
+}
+</code></pre><p>server : server block, that defines settings for a specific site
+listen 80 : tells nginx to listen on port 80 (HTTP)
+server_name mysite.local : domain name this conf applies to<br>location / { &mldr; }: Begins a location block that handles requests for the root path (/)
+return 200 &lsquo;Hello&mldr;&rsquo;;: Returns an HTTP 200 (OK) status with the specified text
+add_header Content-Type text/plain;: Sets the Content-Type header to plain text</p><pre tabindex=0><code>ln -s /home/mohit/Desktop/mdesktop/reverse_proxy/sites-available/mysite /home/mohit/Desktop/mdesktop/reverse_proxy/sites-enabled/
+</code></pre><p>This creates a symbolic link to the configuration to the site ( CHECK : for location )</p><pre tabindex=0><code>chmod -R o+r /home/mohit/Desktop/mdesktop/reverse_proxy/
+</code></pre><p>Then in the host file add the loopback IP address ( localhost ) to the domain name that we are assigning ( Sounds like DNS ?? )</p><p>Next steps :</p><pre tabindex=0><code>server {
+    listen 80;
+    server_name nodeapp.local;
+
+    location / {
+        proxy_pass http://localhost:3000;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection &#39;upgrade&#39;;
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+}
+</code></pre><p>This sets up a reverse proxy for a node.js application running on port 3000</p><h2 id=in-more-depth>In More Depth:<a hidden class=anchor aria-hidden=true href=#in-more-depth>#</a></h2><p>Directives : key value pairs</p><pre tabindex=0><code>proxy_pass  http://localhost:8000
+</code></pre><pre tabindex=0><code>events{
+
+}
+</code></pre><p>These are known as contexts, within context we have directive</p><h2 id=writing-a-custom-nginx-file>Writing a custom nginx file<a hidden class=anchor aria-hidden=true href=#writing-a-custom-nginx-file>#</a></h2><pre tabindex=0><code>http{
+  server{
+    listen 8080;
+    root /home/mohit/Desktop/mdesktop/reverse_proxy/
+  }
+}
+
+events {}
+</code></pre><p>Find the problem causing your nginx to not work :</p><pre tabindex=0><code>sudo journalctl -u nginx --no-pager --since &#34;10 minutes ago&#34;
+</code></pre><p>Most common problem is access problem, u need to give access to all the parent folders and not just the final folder.</p><h2 id=mime-types>Mime Types<a hidden class=anchor aria-hidden=true href=#mime-types>#</a></h2><p>We need to tell nginx how to render which type of content .. that information is stored in mime types file and we just need to include it</p><pre tabindex=0><code>http  {
+    include mime.types
+
+    server {
+        root /home/Desktop/&lt;file-path&gt;
+        listen 8080;
+    }
+
+}
+
+events {}
+</code></pre><h2 id=location-blocks>Location blocks<a hidden class=anchor aria-hidden=true href=#location-blocks>#</a></h2><pre tabindex=0><code>http  {
+    include mime.types
+
+    server {
+        listen 8080;
+        root /home/Desktop/&lt;file-path&gt;;
+
+        location /fruits {
+            root /home/Desktop/&lt;file-path&gt;; ( this auto adds /fruits at the end ) 
+
+        }
+    }
+
+}
+
+events {}
+</code></pre><p>location /fruits : means this directory will only open when the endpoint is defined as in this case : http:localhost:8080/fruits</p><p>using root : it appends the location defined in it at the end
+using alias : it doesnt append the location at the end so u can add at the end automatically</p><p>By default, it looks for <code>index.html</code> files, so we can use try_files to try for these files also</p><pre tabindex=0><code>events {}
+
+http { 
+
+    include mime.types;
+    
+    server {
+        listen 8080;
+        root /home/mohit/Desktop/mdesktop/reverse_proxy;
+
+        location /vegetable { 
+            root /home/mohit/Desktop/mdesktop/reverse_proxy;
+            try_files /vegetable/veggies.html /index.html =404; 
+
+        }
+    }
+}
+</code></pre><h2 id=nginx-as-a-load-balancer>nginx as a load balancer<a hidden class=anchor aria-hidden=true href=#nginx-as-a-load-balancer>#</a></h2><p>Lets say want to route it between 4 servers such that the time is saved per user ..
+what we can do is :</p><p>create a dockerfile and expose the ports accordingly from it</p><p>All the exposed ports becomes as a proxy_pass for a nginx file and we perform the routing from it !!</p><p>So what happens in a DIY home setup :</p><p>DNS routes the domain to IP
+Firewall passes that IP to the desired internal IP for which the port is exposed
+The nginx should be running on that machine, and listening for requests on port 80 ( http ) or 443 ( https)</p><p>Once the request comes to that port , nginx then forwards that request to the internal IP&rsquo;s and (DOUBTFUL ON HOW?) get the data from there and sends back to the user !</p><p><a href=https://www.xda-developers.com/how-to-set-up-nginx-reverse-proxies-in-your-home-lab/>Nginx</a></p><p>So we need a seperate dockerFile for frontend , a seperate docker file for backend and then nginx will need to be enabled from the frontend docker file and that will look for changes ( the init for nginx will be defined in the nginx.conf file !! )</p><p>nginx conf start -> looks for requests coming on port 80</p><h2 id=prod-setup->Prod setup !!<a hidden class=anchor aria-hidden=true href=#prod-setup->#</a></h2><p>First we create a frontend and backend dockerfile , and the nginx will be just the started as we do using systemctl and it will start listening to all the http ports</p><p>In the nginx.conf file we will mention the port it has to redirect to which will be localhost:8000 based on the app</p><p>The app&rsquo;s port will be exposed using port forwarding in the docker file</p><p>The backend will be similarly exposed using an endpoint running in the docker file !!</p><p>So all we need is frontend docker rendering the sites and backend docker giving the response and nginx acting as the reverse proxy !!</p><h2 id=host-the-app-on-a-vm>Host the app on a VM<a hidden class=anchor aria-hidden=true href=#host-the-app-on-a-vm>#</a></h2><p>Example scenario :</p><p>Public IP : 49.47.71.217
+Private IP : 192.168.29.146</p><p>Hosted app on this private IP</p><p>all incoming for public router for http request from users should go to this IP address = 49.47.71.217:80 or 49.47.71.217:443 ( if https )</p><p>In router settings, all connections coming to the machine :80 , should go to this private IP : 192.168.29.146:80 and http should route that to the Hosted App , that routing will be done using nginx</p><p>user will type http://publicIP:8080 , then directly it will see the app</p><p>but the user typing http://publicIP , then also the user should be able to see and its enabled with using nginx</p><h2 id=hosting-multiple-sites-on-a-single-server->Hosting multiple sites on a single server !!<a hidden class=anchor aria-hidden=true href=#hosting-multiple-sites-on-a-single-server->#</a></h2><p>TESTING HTTPS ON THE LOCAL SYSTEM WE CAN USE A SELF SIGNED CERTIFICATE ,</p><p>GET THE SELF SIGNED CERTIFICATE : <code>sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout server.key -out server.crt</code></p><p>So the only limitation is the hardware , using a single machine we can host multiple sites from it and in the nginx itself we can mention to use which particular configuration for a single file !</p><p>For this we have to first simply run this:</p><p>CONF FILE : <code>sudo nano /etc/nginx/sites-available/your-app</code> , This is the nginx conf file that we use</p><p>Then we need to make a symbolic link to the sites-enabled using this :</p><p>SYMBOLIC LINK : <code>sudo ln -s /etc/nginx/sites-available/your-app /etc/nginx/sites-enabled/</code>
+REMOVE THE SYMBOLIC LINK : <code>sudo rm /etc/nginx/sites-enabled/your-app</code></p><p>RESTART : <code>sudo systemctl restart nginx</code></p><pre tabindex=0><code>server {
+    listen 443 ssl;
+    server_name 4.240.104.180;
+
+    ssl_certificate /etc/nginx/ssl/server.crt;
+    ssl_certificate_key /etc/nginx/ssl/server.key;
+
+    location / {
+        proxy_pass http://localhost:8080;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+    
+    # WebSocket traffic
+    location /ws/ {
+        proxy_pass ws://0.0.0.0:8001;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection &#34;upgrade&#34;;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_read_timeout 300s;
+        proxy_send_timeout 300s;
+    }
+
+}
+
+server {
+    listen 80;
+    server_name 4.240.104.180;
+    return 301 https://$host$request_uri;
+}
+</code></pre><h2 id=upgrading-to-https-and-nginx-conf-file>UPGRADING TO HTTPS AND NGINX CONF FILE<a hidden class=anchor aria-hidden=true href=#upgrading-to-https-and-nginx-conf-file>#</a></h2><ol><li>SELF SIGNED CERTIFICATE
+Get a self signed certificate that lives for 365 days , but the signing authority cant be validated as you urself are trying to upgrade that connection ( ideally a 3rd party needs to do this part !!)</li></ol><p><code>openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365</code> : This saves the certificate at cert.pem file</p><ol start=2><li>Free SSL Providers
+Using providers like ZeroSSL and Let&rsquo;s Encrypt</li></ol><p>ONCE GENERATED WE NEED TO TELL NGINX TO USE IT :</p><p>here in the ssl-server we wrote the certificate name and stuff</p><pre tabindex=0><code>// binds to port 443 ( ssl / https )
+server {
+    listen 443 ssl;
+    server_name 4.240.104.180;
+
+    ssl_certificate /etc/nginx/ssl/server.crt;
+    ssl_certificate_key /etc/nginx/ssl/server.key;
+
+    location / {
+        proxy_pass http://localhost:8080;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+
+    # WebSocket traffic 
+    location /ws/ {
+        proxy_pass http://0.0.0.0:8001/;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection &#34;upgrade&#34;;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_read_timeout 300s;
+        proxy_send_timeout 300s;
+    }
+}
+
+// binds to port 80 ( http )  
+server {
+    listen 80;
+    server_name 4.240.104.180;
+    return 301 https://$host$request_uri;
+}
+</code></pre><h3 id=get-an-ssl-certificate-using-nossl>GET AN SSL CERTIFICATE USING <code>NOSSL</code><a hidden class=anchor aria-hidden=true href=#get-an-ssl-certificate-using-nossl>#</a></h3><p>So first step is you need to host a file that the ssl provider</p><p>(you can host the file over http or https, for http no openssl certificate is required and for https you require to get a openssl certificate and use it !! )</p><p>then the provider tests for that file</p><p>Once it verifies that this is the correct position for the file it upgrades your self signed (openssl) to the one provided by the authority !!</p><p>Update the ssl certificate and the key so that you dont see that https error on it !!</p><p>DONE FOR HTTPS !</p><p>We need to do the same / similar for http but only change being we dont need to update and that will be the first time creation and updation !!</p><h2 id=common-pitfalls>common pitfalls<a hidden class=anchor aria-hidden=true href=#common-pitfalls>#</a></h2><p>Read the <a href=https://vite.dev/config/server-options.html#server-hmr>vite docs throughly</a><br>vite server HMR ( hot module reload )
+This fucks up in prod cases , so rather use</p><pre tabindex=0><code>npm run build
+npx serve dist -l 8080
+</code></pre><h2 id=what-process-happens-internally->What process happens internally ?<a hidden class=anchor aria-hidden=true href=#what-process-happens-internally->#</a></h2><p>The NGINX exposes port 443</p><p>The internal whole setup runs on http port</p><p>encrypted request comes from user browser > gets decrypted using nginx > internal routed to <code>http</code> as mentioned in the nginx conf file > uses this http for all the internal communication > before sending back the request encryptes it > sends back to user</p><p>This process is called SSL termination - Nginx &ldquo;terminates&rdquo; the SSL connection and handles all encryption/decryption, so your internal services don&rsquo;t need to.</p><p>For WebSocket Traffic</p><p>Your frontend establishes a WebSocket connection to wss://4.240.104.180/ws/autosuggestion
+Nginx identifies this as a WebSocket upgrade request based on headers
+Nginx handles the SSL/TLS part (the &ldquo;wss&rdquo; protocol)
+Nginx forwards the WebSocket connection to ws://0.0.0.0:8001/autosuggestion
+Your backend server accepts the WebSocket connection
+Two-way communication begins through this persistent connection</p><p>here is how nginx manages this magic connection part !!</p><p><code>location /ws/ </code>: tells nginx to match any URL that begins with /ws/ > it founds this connection : <code>wss://4.240.104.180/ws/autosuggestion</code>
+<code>proxy_pass http://0.0.0.0:8001/;</code> Forwards the request to http://0.0.0.0:8001/
+<code>proxy_http_version 1.1; proxy_set_header Upgrade $http_upgrade; proxy_set_header Connection "upgrade";</code> This is where the upgrade to websocket happens !! we append in the http request itself that this should be upgraded as a ws request !!</p><p>When your frontend code does new WebSocket(&lsquo;wss://4.240.104.180/ws/autosuggestion&rsquo;):</p><p>The browser initiates a secure connection to your server on port 443
+It sends an HTTP upgrade request with headers indicating it wants to switch to WebSocket protocol
+Nginx decrypts this request using your SSL certificate
+Nginx sees the /ws/ path and applies your WebSocket location block
+Nginx forwards the WebSocket handshake to your backend at http://0.0.0.0:8001/autosuggestion
+Your backend accepts the connection, and a full-duplex WebSocket channel is established
+Nginx acts as a transparent proxy, passing messages back and forth between the browser and your backend</p><p>NGINX seamlessly handles the protocol conversion part !!</p></div><footer class=post-footer><ul class=post-tags></ul></footer></article></main><footer class=footer><span>&copy; 2025 <a href=https://complete-dope.github.io/codex/>Mohit Dulani</a></span> ·
+<span>Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg viewBox="0 0 12 6" fill="currentColor"><path d="M12 6H0l6-6z"/></svg>
+</a><script>let menu=document.getElementById("menu");menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove("dark"),localStorage.setItem("pref-theme","light")):(document.body.classList.add("dark"),localStorage.setItem("pref-theme","dark"))})</script></body></html>
