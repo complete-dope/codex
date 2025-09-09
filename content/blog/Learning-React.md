@@ -52,14 +52,14 @@ Inside JSX, we can write javascript also
 Can only return only one parent element 
 
 Curly braces 
-Inside curly braces, we can pass string , number and also for styling we can pass inside a js object inside {} so its { }
+Inside curly braces, we can pass string , number and also for styling we can pass inside a js object inside `{}` so its `{}`
 
 ### Props
 1. Passing to a jsx tag: Props are the information that you pass to a JSX tag
 Passing to a component:
 
 ```javascript
-<Component prop1 = {100} prop2 = {name:’mohit’}>
+<Component prop1 = {100} prop2 = {name:'mohit'}>
 ```
 
 Receiving / Read props Way-1 :
