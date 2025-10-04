@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Series on Mohit Dulani</title>
+    <link>http://localhost:1313/series/</link>
+    <description>Recent content in Series on Mohit Dulani</description>
+    <image>
+      <title>Mohit Dulani</title>
+      <url>http://localhost:1313/images/papermod-cover.png</url>
+      <link>http://localhost:1313/images/papermod-cover.png</link>
+    </image>
+    <generator>Hugo -- 0.150.0</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 22 Jul 2024 12:00:00 +0530</lastBuildDate>
+    <atom:link href="http://localhost:1313/series/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hugo Guides</title>
+      <link>http://localhost:1313/series/hugo-guides/</link>
+      <pubDate>Mon, 22 Jul 2024 12:00:00 +0530</pubDate>
+      <guid>http://localhost:1313/series/hugo-guides/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>
