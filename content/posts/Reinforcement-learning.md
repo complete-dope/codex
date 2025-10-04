@@ -1,11 +1,12 @@
 ---
 layout : post
 date : 2025-08-23
+draft : false
 title : Post training methods in LLM using RL 
+tags : ["Reinforcement Learning", "RL ", "Machine learning", "deep learning ", "ML ", "DL  ", "Post training"]
 ---
 
-Tags : Reinforcement Learning, RL , Machine learning , deep learning , ML , DL  , Post traning
-
+Tags : 
 [PPO](https://www.youtube.com/watch?v=TjHH_--7l8g)  
 [RLHF](https://yugeten.github.io/posts/2025/01/ppogrpo/)  
 

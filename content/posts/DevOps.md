@@ -2,10 +2,9 @@
 date: 2025-08-31
 title: Home Lab
 layout : post
+tags : ["Home lab", "k8s ", "k9s", "k3s ", "kubernetes", "jenkins", "docker", "helm", "kind", "kubectl"]
+draft : false
 ---
-
-Tags : Home lab, k8s , k9s, k3s , kubernetes, jenkins, docker, helm, kind, kubectl
-
 
 ## Kubernetes 
 This is a manager of docker containers 
@@ -152,23 +151,6 @@ Create multiple clusters and configure each individaully and then use a lb at fr
 
 get clusters : `kubectl config get-clusters`
 delete cluster : `kubectl config delete-cluster <cluster-name>`
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -2,10 +2,8 @@
 draft: false 
 date: 2025-07-20
 title: Building Backend Architecture from scratch 
+tags : ["django", "Django ", "Backend", "microservices"]
 ---
-
-Tags : django, Django , Backend, microservices
-
 
 # Building a scalable backend arch
 

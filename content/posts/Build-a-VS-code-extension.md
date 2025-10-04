@@ -42,7 +42,7 @@ In the webview initialise a react / typescript project and code it, the director
 
 
 ## Interacting with webview 
-For the webview to interact with the backend code, the vscode.postMessage with a type {"<>"} (posting the event), the event needs to be posted so that means we need to use switch-case for that to work ...
+For the webview to interact with the backend code, the `vscode.postMessage` with a type `{"<>"}` (posting the event), the event needs to be posted so that means we need to use switch-case for that to work ...
 
 This way the webview / frontend posted a message : 
 
