@@ -1,4 +1,4 @@
-baseURL: https://example.org/
+baseURL: https://complete-dope.github.io/codex/
 languageCode: en-us
 title: Mohit Dulani
 theme: ["PaperMod"]
@@ -98,13 +98,13 @@ params:
   socialIcons:
     - name: github
       title: View Source on Github
-      url: "https://github.com/complete-dope"
+      url: "https://github.com/complete-dope/codex"
     - name: X
       title: Connect on X 
       url: "https://x.com/0xhashqueu"
 
   editPost:
-    URL: "https://github.com/complete-dope/codex/tree/main/content"
+    URL: "https://github.com/complete-dope/codex/tree/main/"
     Text: "Suggest Changes" # edit text
     appendFilePath: true # to append file path to Edit link
 
