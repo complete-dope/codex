@@ -95,4 +95,10 @@ Here the 22000 is for wpa2 , the last one is the mask and a : ascii , d: number-
 `hashcat -m 22000 -a 3 correct_wpa2.hash '?a?a?a?a?a?a?a?a?a'`
 
 
+# Hashing 
+So hashing is a one way process where no matter what amount of data you have it gets converted to a fixed size length(128 bits) and then that is matched with the other side and if both hashes matches then its a success !!
+
+
+So its a nice way to check if everything was downloaded correctly from internet also rather than transferring more bits through the internet we can just share the hash and retrieve value so lower down the bandwidth ! 
+
 
