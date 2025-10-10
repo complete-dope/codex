@@ -1,6 +1,6 @@
 --- 
 title: Adding JSON mode to any model and that too without prompts  
-date: 10-10-2025
+date: 2025-10-10
 draft: false
 tags: ["json-mode" ,"bnf" , "cfg" , "context-free-grammar"]
 summary: "Learning about how to add JSON mode to any model and dont just solely on prompts"
