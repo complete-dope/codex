@@ -9,8 +9,8 @@ summary: "Learning about how to add JSON mode to any model and dont just solely 
 ## Grammar 
 So as in english grammar tell whether the sentence is correct or not ..  
 
-`I am eating` => <subject> <conj> <verb>
-`eating am I` => this is incorrect as the grammar is not met 
+`I am eating` = <subject> <conj> <verb>
+`eating am I` = this is incorrect as the grammar is not met 
 
 Similarly all coding languages have a grammar that they use to check syntax errors / parsing .. 
 like python : https://docs.python.org/3/reference/grammar.html 
@@ -18,7 +18,9 @@ like python : https://docs.python.org/3/reference/grammar.html
 
 ## BNF 
 Its a form of writting that grammar
+```
 <expr> ::= <term> | <expr> "+" <term>
+```
 
 `:=` means 'is defined as'  
 
