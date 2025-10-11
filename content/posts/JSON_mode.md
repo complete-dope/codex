@@ -51,6 +51,57 @@ So we this format called as GBNF ( is a grammar format only that's required by g
 
 More details in this page : https://til.simonwillison.net/llms/llama-cpp-python-grammars
 
+## Learning to write GBNF (as no LLM / online editor is helping) 
 
+So everything start with `root::=` that is defines the root architecture and in this we can define all variables that will help in this 
+and every expression begins with a inverted-commas  `"<single-expression>"` , and each expression is in itself a wrapped in inverted commas 
+### 1st example
+
+
+```
+root ::= "{ \"status\" : " string "}"
+
+so these are 3 expressions break-down as
+
+term-1 : "{ \"status\" : " --> this tells model to begin with this {"status" : 
+
+term-2 : string --> string as defined
+
+term 3 : "}" --> to end with } 
+```
+
+String is defined as: 
+
+So lets do this step wise: 
+
+First I am defining the string variable name and initializing it empty with inverted commas
+```
+string ::= ""
+```
+
+Second, add internal value to it 
+```
+string ::= "\"active\" | \"inactive\""
+```
+
+this means it can be only a literal value
+Its comparison in pydantic class is
+
+```python
+class JSONSchema(BaseModel):
+  status : Literal['active', 'passive']
+```
+
+
+### 2nd Example
+rather than literal it can be any string
+```
+string ::= "\"" ([ˆ"]*) "\""
+```
+
+so this is also made up of 3 things
+part-1 : "\"" --> should start with single inverted comma " 
+part-2 : ([ˆ"]*) --> here we can write any string value
+part-3 : "\"" --> should end with single inverted comma "
 
 
