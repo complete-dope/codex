@@ -2,9 +2,13 @@
 title: Adding JSON mode to any model and that too without prompts  
 date: 2025-10-10
 draft: false
-tags: ["json-mode" ,"bnf" , "cfg" , "context-free-grammar"]
+tags: ["json-mode" ,"bnf" , "cfg" , "context-free-grammar", "GGUF", "llama.cpp"]
 summary: "Learning about how to add JSON mode to any model and dont just solely on prompts"
 --- 
+
+Colab notebook : https://colab.research.google.com/drive/1ptASBrEgGXJPjBrZHd040qsWXFnPYYoC?usp=sharing 
+
+This we are doing in the GGUF model 
 
 ## Grammar 
 So as in english grammar tell whether the sentence is correct or not ..  
@@ -93,7 +97,7 @@ class JSONSchema(BaseModel):
 ```
 
 
-### 2nd Example
+### 2nd Example (
 rather than literal it can be any string
 ```
 string ::= "\"" ([ˆ"]*) "\""
@@ -103,5 +107,21 @@ so this is also made up of 3 things
 part-1 : "\"" --> should start with single inverted comma " 
 part-2 : ([ˆ"]*) --> here we can write any string value
 part-3 : "\"" --> should end with single inverted comma "
+
+
+### 3rd example (list)
+
+```
+string-list ::= string ("," string)*
+
+* --> this means we can repeat this bundle of (,"value") 0 or multiple times 
+```
+
+
+# Possible solutions for errors :
+1. You are running into segmentation fault, cause the buffer-size for parser stack is reached and you are now accessing out of allocated memory (increase the parser buffer size) 
+2. You are not using raw-text string , always use raw string when passing   
+
+Best is to use vLLM as it also has support for grammar 
 
 
