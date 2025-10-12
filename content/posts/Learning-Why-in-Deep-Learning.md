@@ -175,6 +175,11 @@ Adding Q caching increases code complexity for a relatively modest gain. The mos
 
 We dont emphasis enough on the fact that KV cache is the most paining point in inference time .. and we need to reduce it as soon as possible !!    
 
+## Solution to continous memeory block in KV cache
+So currently the kv cache memory is stored in a continous memory block , but visting the fundamentals in the OS class also we can find that RAM also uses paging to offload / onload memory pieces and similar technique we can apply to the kv cache here rather than storing them all in a single contigous memory block we can offload them to CPU / GPU mix and then use in an effective way as the size increases and we dont need to give an upfront memory storage for this .. 
+
+So this really benefits / helps in memory management. Sound cool ? This all has been done in `vLLM` library and they are using paged attention, where the KV cache is stored in Pages and then called at compile time this has some overhead but is solved using custom kernels as they are picking this up from the right place .. and multiplying in the correct manner.
+
 
 
 
