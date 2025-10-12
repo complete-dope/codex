@@ -97,6 +97,9 @@ This injects fresh diversity and helps explore new regions of weight‑space.
 Ensure Quantization Consistency
 Since weights are 4‑bit log values, any mutation simply toggles one of those bits—no out‑of‑range values.
 
+#### Quantization :
+Nice post on quantization : https://www.maartengrootendorst.com/blog/quantization/
+
 #### Crossover : 
 
 Pair Up Parents
