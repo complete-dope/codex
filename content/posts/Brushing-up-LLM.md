@@ -23,6 +23,9 @@ Using sentence-transformers (and models like Word2Vec , BERT model)
 
 
 ## Vector Search 
+
+Terminologies : IndexPQ ( product quantizers ) , IndexIVFPQ ( Inverted File with Product Quantization ) 
+
 Given a query vector and multiple value vectors, we need to search a relevant query that is called as a `nearest neighbors search`
 
 Popular methods to use these are: 
@@ -49,5 +52,8 @@ So lets say we have 50k images each embedded in 1024 dims and we divided it to 8
 Then we replace those vectors assigned to there custer vector so we reduced from 50k to 256 and each subvector ( 128 size ) is assigned a cluster id from (0-255) and we have 8 subvectors created from a single vector ( 1024 / 128 ) so now a vector of size 1024 is represented in size 8  
  
    
+### Inverted Index
+https://mccormickml.com/2017/10/22/product-quantizer-tutorial-part-2/
 
+An “inverted index” refers to a text search index which maps every word in the vocabulary to all of its locations in all of the documents in the database
 
