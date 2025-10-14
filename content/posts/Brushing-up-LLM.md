@@ -51,9 +51,26 @@ So lets say we have 50k images each embedded in 1024 dims and we divided it to 8
 
 Then we replace those vectors assigned to there custer vector so we reduced from 50k to 256 and each subvector ( 128 size ) is assigned a cluster id from (0-255) and we have 8 subvectors created from a single vector ( 1024 / 128 ) so now a vector of size 1024 is represented in size 8  
  
-   
-### Inverted Index
+
+### Things used in current VectorDB for RAG
+#### Inverted File Index ( IVF )  
 https://mccormickml.com/2017/10/22/product-quantizer-tutorial-part-2/
 
-An “inverted index” refers to a text search index which maps every word in the vocabulary to all of its locations in all of the documents in the database
+In this we first cluster all the vector using k-mean-clustering into k clusters , so each cluster has a centroid , so at query time we match with all the centroids and take few clusters ( lets say - 10 ) and search from vectors within those 
+
+Goal: Reduce the number of vectors to compare → faster search.
+Problem : Still the vectors inside are high dimensional so memory explodes 
+
+#### Product Quantizer 
+Then for each vector get `residual (r = x-c)` out from its centroid so everything is now centered around zero ( for all the vectors ) then create subvectors and codebook as done in the compression stage for ANN use it to create a `global codebook` so each vector inside the cluster is now represented in the codebook codes and its a common dictionary made for all the codes this part helps to reduce `memory footprints`      
+
+
+so once a cluster is selected, we calculate the residual value from it, then create a codebook id for that particular query's residual vector, so this way converted the vector to codebook.
+
+A similar process is done for all the datapoints also that is we convert them to code book and then 8bit codebook search is done in that cluster compared to 32 bit search so that reduces memory time    
+
+
+
+
+
 
