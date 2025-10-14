@@ -4,6 +4,7 @@ author : Mohit
 title : Brushing up LLM for Interview
 description : End to end notes for revision for interview
 date : 2025-10-13
+tags: ['interview', 'preparation']
 ---
 
 
@@ -68,6 +69,80 @@ Then for each vector get `residual (r = x-c)` out from its centroid so everythin
 so once a cluster is selected, we calculate the residual value from it, then create a codebook id for that particular query's residual vector, so this way converted the vector to codebook.
 
 A similar process is done for all the datapoints also that is we convert them to code book and then 8bit codebook search is done in that cluster compared to 32 bit search so that reduces memory time    
+## Loss Function 
+
+
+## Optimization Functions
+
+
+## Post training 
+
+### SFT 
+https://huggingface.co/docs/trl/en/sft_trainer 
+SFT is supervised finetuning , we do to adapt a language model to a target dataset aka make model aware on our dataset, here the model learns about chat-template,  
+
+* SFT dataset creation 
+We create QA pairs where input is question and output is answer. This is passed on to model as 
+We usually train using the `sft` library by hugging face, and we compute loss on the assistant output and compute loss on it 
+
+<img width="1988" height="462" alt="image" src="https://github.com/user-attachments/assets/7f799aca-72d7-4b5d-9558-839bb1bc9352" />
+
+For daily chat application, we dont want the model to calculate loss on what the user would have sad next in there input so we mask that out, (similar to what we have done above we do the same for the user's questions .. remove labels from those, attention will still be calculated , loss also will be taken out but not added to the loss value)
+
+* SFT Implementation
+Using peft (parameter efficient fine tuning like LoRA) that helps in training the adapters 
+
+<details>
+  <summary>LoRA adapter</summary>
+  Low Rank adaptation, so authors found that finetuned models have low rank weight matrices so they hypothesised that there update matrices will also be low rank and based on that they experimented with this low rank weight update matrix. so we will freeze the current weight matrix , create 2 random matrices of size `(Row x rank) (rank x col)` such that while finetuning we do : `y = W_q * X + alpha(A(B(x)))` so the W_q remains fix we update only the delta matrix and these are called low rank adapters, alpha is the scale value , rank is the low rank value , rank is the hyperparam , more the value of r more expressive
+</details>
+
+<details>
+  <summary>QLora</summary>
+  Quantized lora, so not all weights of the LLM should be quantized you have to leave some weights in original dtype only like layernorm , normalizations layers , bias terms and output logits / final projection layers and we quantize these embedding layers, MLP , Embedding layers
+</details>
+
+<details>
+  <summary>Loss Value</summary>
+  The scalar loss value in itself means nothing, loss came out to be 100 or 1000 that just means that model is performing worse and it has no relevance in the weight updation using any optimizer. 
+</details>
+
+
+Instruction tuning : 
+Teaches a base language model to follow user instructions and engage in conversations (wasnt this the purpose of post-training ?) requires chat template ( role definition , special tokens ) and a conversational dataset 
+
+* SFT in Production challenges 
+
+* SFT metrics
+LLM based evaluation , Accuracy, BLEU(n-gram overlap matching between model output and reference), Perplexity , preference alignment 
+
+--- 
+### RLHF
+Reinforcement learning with human feedback, here we train a reward model ( who's role is to output / rank the answer) , the dataset for this training is created by humans preference judgements then we train a reward model to predict the score then freeze that model and     
+
+RLHF is used to make text `good` and as `good` itself is hard to define and is subjective and context dependent and to compensate for the shortcomings of the loss itself people define metrics as `BLEU` or `ROUGE`  (Bilingual Evaluation Understudy)
+
+But BLEU is also rule based and doesnt work well so we use human feedback as a measure of performance and use it as a loss to optimize the model. 
+
+Metrics used : 
+
+RLHF dataset creation : 
+So we train a reward model that is the same architecture with a linear layer at end, the backbone is freezed and we just train the output that too basde on teh 
+
+
+RLHF Implementation
+
+RLHF in production challenges 
+
+
+<img width="2640" height="1572" alt="image" src="https://github.com/user-attachments/assets/9a08b5f2-789b-4c56-82d2-0740c9d39f4a" />
+
+
+
+
+
+
+
 
 
 
