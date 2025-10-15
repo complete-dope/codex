@@ -1,6 +1,6 @@
 ---
 title: Learning Design Patterns
-date: 15-10-2025
+date: 2025-10-15
 draft: false
 tags: ['design-pattern', 'python-learning', 'human-preferences', 'oops', 'interview']
 ---
