@@ -70,6 +70,9 @@ so once a cluster is selected, we calculate the residual value from it, then cre
 
 A similar process is done for all the datapoints also that is we convert them to code book and then 8bit codebook search is done in that cluster compared to 32 bit search so that reduces memory time    
 ## Loss Function 
+best video out there to understand Entropy , CE , KLD : https://youtu.be/ErfnhcEV1O8 
+
+Loss functions and likelihood explained : https://complete-dope.github.io/codex/posts/statistics/
 
 
 ## Optimization Functions
