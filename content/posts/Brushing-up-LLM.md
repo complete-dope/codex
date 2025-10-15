@@ -75,6 +75,10 @@ A similar process is done for all the datapoints also that is we convert them to
 ## Optimization Functions
 
 
+# Facts 
+We run on batches to do gradient accumulations and then update in a single step so that we dont end up with jittery code-base
+
+
 ## Post training 
 
 ### SFT 
@@ -127,8 +131,14 @@ But BLEU is also rule based and doesnt work well so we use human feedback as a m
 Metrics used : 
 
 RLHF dataset creation : 
-So we train a reward model that is the same architecture with a linear layer at end, the backbone is freezed and we just train the output that too basde on teh 
+So we train a reward model that is the same architecture with a linear layer at end, the backbone is freezed and we just train the output that too basde on the
 
+
+<details>
+  <summary>Terms in RL</summary>
+  * Rejection sampling : whatever output we got from the RM that is rejected out from prob distribution based on score   
+  * Empirical calculation : the one that is done by doing actual experiments 
+</details>
 
 RLHF Implementation
 
