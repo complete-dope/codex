@@ -2,6 +2,8 @@
 draft: false
 title: "Statistics for ML"
 date: 2024-09-08
+draft : False
+tags : ['probability' ,'likelihood' , 'marginal', 'distruibutions', 'entropy' , 'cross-entropy' ,'kld']
 ---
 
 Deep dive into the whole required stastistics , that would be a required to learn stable diffusion from the very scratch
@@ -83,6 +85,9 @@ This is the reason why trying to calculate it, makes the solution intractable
 
 Its just an extension of the likelihood .. where dont limit ourself to a set of likely distributions rather consider all the possible distributions and average over it 
 
+<img width="1554" height="1030" alt="image" src="https://github.com/user-attachments/assets/a8ea31cf-e5c6-4399-ad12-ee3aa558f720" />
+
+
 For each possible combination of μ and σ:  
 a) We calculate the likelihood of our data given those specific values.  
 b) We *multiply* this by the prior probability we assign to those parameter values.  
@@ -114,7 +119,9 @@ The reason is this is theoretical calculations and doing these on hand leads to 
 We start with this crazy maths and end at the loss function, so our model can learn what we want it to learn. 
 
 
-#### Entropy [Link](https://www.youtube.com/watch?v=2s3aJfRr9gE)
+# Loss Function
+
+## Entropy [Link](https://www.youtube.com/watch?v=2s3aJfRr9gE)
 
 This is best understood using examples
 Assume 2 machines A and B , that produces coins ( A,B,C,D ) with some probability distribution.
@@ -234,7 +241,7 @@ whenever the outcomes are equally probable entropy is high and if the outcomes a
 ( not that much intuitive but just the math works !)
 
 
-#### Cross-Entropy ( not yet intutive , need to research more on it )
+## Cross-Entropy ( not yet intutive , need to research more on it )
 
 Imagine we're trying to predict the weather for the next day in a certain city. For simplicity, let's say there are only three possible weather conditions: Sunny, Rainy, or Cloudy.
 
@@ -292,7 +299,7 @@ P(x) = 0.125, Q(x) = 0.500, P(not-x) = 0.875, Q(not-x) = 0.500
 Cross-entropy = -[0.125 * log₂(0.500) + 0.875 * log₂(0.500)] = 1.000
 
 
-#### KL-Divergence ( once you understand the above two concepts , this is very easy ) 
+## KL-Divergence ( once you understand the above two concepts , this is very easy ) 
 
 KL-Divergence = Cross entropy - Entropy 
 
