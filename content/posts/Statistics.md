@@ -7,18 +7,14 @@ date: 2024-09-08
 Deep dive into the whole required stastistics , that would be a required to learn stable diffusion from the very scratch
 
 
-#### Probability and Distributions 
-
-
-
-
-
+# Probability and Distributions 
 
 `Probability` : It tells the chances of an event to happen. And is calculated as the ratio of no. of outcomes of a particular event to the total no. of outcomes.
 
 `Likelihood` : It measures how well a statistical model fits the observed data. 
 
 
+### QUESTION ? 
 Q) What is a statistical model and observed data ?
 
 A) Asssume by tossing a coin 100 times we got 90 heads and 10 tails.
@@ -29,7 +25,9 @@ For each model we calculate the likelihood, how probable the observed data (coin
 
 Take it like this : we flipped a fair coin 100 times and it gives heads 90 times and tails 10 times so the likelihood the coin is fair is quite low 
 
-When we say maximise the likelihood … we mean to say, we want the best parameters that are accurately predicting the data
+
+### Likelihood maximisation 
+`When we say maximise the likelihood … we mean to say, we want the best parameters that are accurately predicting the data`
 
 Probability goes from model to data (What data do we expect given this model?)
 Likelihood goes from data to model (What model best explains this data?)
@@ -39,17 +37,17 @@ In `genAI`:
 The model whose params are most likely to produce the observed data is selected. Means the one with maximum likelihood is selected.
 The architecture that work on this principle is called `Likelihood based Models`
 
-
+## MLE
 `Maximum Likelihood Estimation` : 
 We have the intialised parameters of the model and we try to maximise the likelihood by updating the parameters.
 so our cost function looks like : 
 Theta = argmax(P(X|Theta)) , thetas are the parameters of the model
 
-
+### Normal Distribution 
 `Normal / gaussian Distribution`:
 The bell shaped curve, having mean-mu and the variance-sigma^2 as parameters.
 
-
+### Joint Distribution 
 `Joint Distributions`: 
 The joint distribution of two random variables X and Y is the probability distribution of the pair (X, Y). It describes the probability of all possible combinations of X and Y.
 
@@ -61,7 +59,7 @@ P(x=smoker, y=no-disease) = 0.01
 P(x=non-smoker, y=disease) = 0.03
 P(x=non-smoker, y=no-disease) = 0.91
 
-
+### Marginal Distribution
 `Marginal Distributions` [link](https://www.youtube.com/watch?v=FWrEaSaW2mc): 
 Given a known joint distribution of two discrete random variables, say, X and Y, the marginal distribution of either variable – X for example – is the probability distribution of X when the values of Y are not taken into consideration
 
@@ -77,22 +75,19 @@ Given a known joint distribution of two discrete random variables, say, X and Y,
 *P(y=no-disease)[Marginal distribution of Y] = P(x=smoker, y=no-disease) + P(x=non-smoker, y=no-    disease) = 0.01 + 0.91 = 0.92
 
 
-
+### Marginal Likelihood
 `Marginal Likelihood` : 
-Called as model evidence
-is the probability of observing the data under a given model, averaged over all possible parameter values for that model.
-Marginalizing out all the o ther variables, that means integrating over all the possible values ( *all* the possible values of the other variables)
+The Marginal Likelihood, also known as Model Evidence, is the probability of observing the data given a model, averaged across all possible settings of that model's parameters. In simpler terms, it answers the question: "Overall, how well does this model architecture explain my data?"
+Marginal likelihood is indeed an extension of ()regular likelihood where we consider a range of possible parameter values rather than just a single set ( *all* the possible values of the other variables) 
 This is the reason why trying to calculate it, makes the solution intractable 
-
-Marginal likelihood is indeed an extension of regular likelihood where we consider a range of possible parameter values rather than just a single set
 
 Its just an extension of the likelihood .. where dont limit ourself to a set of likely distributions rather consider all the possible distributions and average over it 
 
-For each possible combination of μ and σ:
-a) We calculate the likelihood of our data given those specific values.
-b) We *multiply* this by the prior probability we assign to those parameter values.
-We integrate this product over all possible values of μ and σ.
-The result is a single number representing how well our model explains the data, considering all possible parameter values.
+For each possible combination of μ and σ:  
+a) We calculate the likelihood of our data given those specific values.  
+b) We *multiply* this by the prior probability we assign to those parameter values.  
+We integrate this product over all possible values of μ and σ.  
+The result is a single number representing how well our model explains the data, considering all possible parameter values.  
 
 `TODO`: *multiply* is used in *cross-entropy* as well, ( I still don't know the reason behind it )  
 
