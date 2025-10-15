@@ -118,6 +118,7 @@ In deep learning, we're doing the same with the latent space – integrating out
 The reason is this is theoretical calculations and doing these on hand leads to a final loss function, that the researchers lead .. (finding out a loss function is not that simple ) The loss function (ELBO) encourages the model to learn a good latent space that, when marginalized over, explains the data well.
 We start with this crazy maths and end at the loss function, so our model can learn what we want it to learn. 
 
+---
 
 # Loss Function
 
@@ -140,18 +141,18 @@ Q(C) = 0.250
 Q(D) = 0.500
 
 And we are now playing with this machines A and B, 
-we will push a button and machine will produce a coin and we have to guess that by asking minimum no of yes / no questions to the machine.
+> we will push a button and machine will produce a coin and we have to guess that by asking minimum no of yes / no questions to the machine.
 
 Lets play with Machine A
 
-Machine A : 
-shrrr ( coin produced is A )
+Machine A :   
+shrrr ( coin produced is A )  
 
-The most efficient way to guess the coin produced is to ask questions based on the probability distribution of the machine A, ask questiosn whihc divide the probability distribution into two equal parts.
-Q1) Is the coin produced is CD ?
+The most efficient way to guess the coin produced is to ask questions based on the probability distribution of the machine A, ask questions which divide the probability distribution into two equal parts.
+1. Is the coin produced is CD ?  
 No
 
-Q2) Is the coin produced is B ?
+2.  Is the coin produced is B ?  
 No
 
 *Means the coin produced is A*
@@ -159,21 +160,21 @@ At min. we asked 2 questions to the machine A to guess the coin produced.
 On average we asked 2 questions to the machine A to guess the coin produced.
 
 
-Lets play with Machine B
+Lets play with Machine B:   
 
-Machine B : 
-shrrr ( coin produced is A )
+Machine B :   
+shrrr ( coin produced is A )  
 
-*** Why are we not asking questions in pairs here? We could have asked questions like Is the coin produced is AB ? or Is the coin produced is CD ? ***  
+* Why are we not asking questions in pairs here? We could have asked questions like : Is the coin produced is AB ? or Is the coin produced is CD ? *
 This is asking question like is the coin produced CD will increase the no. of questions by more ... as we know half of the time the coin produced is D ... ( This is the only efficient way to ask questions )
 
-Q1) Is the coin produced is D ?
+1. Is the coin produced is D ?  
 No
 
-Q2) Is the coin produced is C ?
+2. Is the coin produced is C ?  
 No
 
-Q3) Is the coin produced is B ?
+3. Is the coin produced is B ?  
 No
 
 *Means the coin produced is A*
@@ -268,35 +269,34 @@ This is our predicted distribution Q.
 
 Now, cross entropy tells us, If we use meterologist guesses to make predictions, how surprised will we be on average when we see the actual weather?
 
-If the meterologist guesses are close to the actual distribution, cross entropy will be low because we'll be surprised less when we see the actual weather.
-If the meterologist guesses are far from the actual distribution, cross entropy will be high because we'll be surprised more when we see the actual weather.
+If the meterologist guesses are close to the actual distribution, cross entropy will be low because we'll be surprised less when we see the actual weather.  
+If the meterologist guesses are far from the actual distribution, cross entropy will be high because we'll be surprised more when we see the actual weather.  
 
-High suprise means more entropy and more no. of bits
+> High suprise means more entropy and more no. of bits
 As the units of suprise / entropy is bits 
 
 If the event is more probable, then we require less information about it and vice versa  
 so information of event = -log(px) 
 
-Assume a case like this 
+Assume a case like this  :
 
-Q_ The true prob for a event x = 0.125 , the q(x) = 0.125 
-then px * logqx = 0.125 ** 3 = 0.375
+>  The true prob for a event x = 0.125 , the q(x) = 0.125 then px * log_qx = 0.125 ** 3 = 0.375
 
 whereas 
 px = 0.125 and qx = 0.500
-then px * logqx = 0.125 * *1 = > 0.125
+then px * logqx = 0.125 * log(0.5) = 0.125
 
 which means I am getting more surprised when the actual and predicted distribution are same compared to actaul and predicted are different ? 
 
 A_ When the event with such low probability actually occurs, it gives more surprise and more no. of bits. When a more probable event occurs it gives less surprise hence less no. of bits.. but in the `summation` makes things even and the different prob. distributions gives more suprise 
 
-*Case 1*: P matches Q  
-P(x) = Q(x) = 0.125, P(not-x) = Q(not-x) = 0.875
-Cross-entropy = -[0.125 * log₂(0.125) + 0.875 * log₂(0.875)] ≈ 0.544
+*Case 1*: P matches Q    
+P(x) = Q(x) = 0.125, P(not-x) = Q(not-x) = 0.875 \
+Cross-entropy = -[0.125 * log₂(0.125) + 0.875 * log₂(0.875)] ≈ 0.544 \
 
-*Case 2*: P differs from Q   
-P(x) = 0.125, Q(x) = 0.500, P(not-x) = 0.875, Q(not-x) = 0.500
-Cross-entropy = -[0.125 * log₂(0.500) + 0.875 * log₂(0.500)] = 1.000
+*Case 2*: P differs from Q \
+P(x) = 0.125, Q(x) = 0.500, P(not-x) = 0.875, Q(not-x) = 0.500 \
+Cross-entropy = -[0.125 * log₂(0.500) + 0.875 * log₂(0.500)] = 1.000 \
 
 
 ## KL-Divergence ( once you understand the above two concepts , this is very easy ) 
@@ -309,9 +309,7 @@ Cross-entropy: How surprised you are by the actual weather, based on your predic
 
 KL Divergence: The extra surprise you experience because your predictions aren't perfect. It's how much more often you're caught without an umbrella (or with an unnecessary umbrella) compared to if you had perfect knowledge of the weather patterns.
 
-
-
 Closed form solution for KLD [LINK](https://johfischer.com/2022/05/21/closed-form-solution-of-kullback-leibler-divergence-between-two-gaussians/)
 
-True    : data-distribution ( unknown aka multi-variate gaussian distribution i.e. assumption so that we can use closed form solution)
-Trying to make it  : Normal distribution / gaussian distribution    
+True : data-distribution ( unknown aka multi-variate gaussian distribution i.e. assumption so that we can use closed form solution) \
+Trying to make it  : Normal distribution / gaussian distribution \
