@@ -111,7 +111,7 @@ SFT is supervised finetuning , we do to adapt a language model to a target datas
 We create QA pairs where input is question and output is answer. This is passed on to model as 
 We usually train using the `sft` library by hugging face, and we compute loss on the assistant output and compute loss on it 
 
-<img width="1988" height="462" alt="image" src="https://github.com/user-attachments/assets/7f799aca-72d7-4b5d-9558-839bb1bc9352" />
+<img width="1988" height="350" alt="image" src="https://github.com/user-attachments/assets/7f799aca-72d7-4b5d-9558-839bb1bc9352" />
 
 For daily chat application, we dont want the model to calculate loss on what the user would have sad next in there input so we mask that out, (similar to what we have done above we do the same for the user's questions .. remove labels from those, attention will still be calculated , loss also will be taken out but not added to the loss value)
 
@@ -144,6 +144,8 @@ LLM based evaluation , Accuracy, BLEU(n-gram overlap matching between model outp
 
 --- 
 ### RLHF
+So its a combination of SFT , then Reward Modelling and then using policy to improve the SFT model . So its a 3 step process 
+
 Reinforcement learning with human feedback, here we train a reward model ( who's role is to output / rank the answer) , the dataset for this training is created by humans preference judgements then we train a reward model to predict the score then freeze that model and     
 
 RLHF is used to make text `good` and as `good` itself is hard to define and is subjective and context dependent and to compensate for the shortcomings of the loss itself people define metrics as `BLEU` or `ROUGE`  (Bilingual Evaluation Understudy)
@@ -163,7 +165,6 @@ So we train a reward model that is the same architecture with a linear layer at 
 </details>
 
 RLHF Implementation
-So its a combination of SFT , then Reward Modelling and then using policy to improve the SFT model . So its a 3 step process 
 
 
 
