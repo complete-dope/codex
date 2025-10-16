@@ -93,6 +93,8 @@ best video out there to understand Entropy , CE , KLD : https://youtu.be/ErfnhcE
 
 Loss functions and likelihood explained : https://complete-dope.github.io/codex/posts/statistics/
 
+Quantifying a loss function means nothing, its just that if its less we sense that its going in the right direction and if its more than the prev one, then we sense that its not going in right direction and something is wrong 
+
 
 ## Optimization Functions
 
@@ -165,17 +167,35 @@ So we train a reward model that is the same architecture with a linear layer at 
 </details>
 
 RLHF Implementation
+<img width="472" height="350" alt="image" src="https://github.com/user-attachments/assets/15a04aab-8db2-414b-8fe1-f6e238bf8e5d" />
+
+<img width="472" height="350" alt="image" src="https://github.com/user-attachments/assets/a4a141f6-e9b4-40e5-a07a-8f8484d3d77e" />
 
 
 
 RLHF in production challenges 
-To find the model's accuracy we used `LLM as Judge`
+To find the model's accuracy we used `LLM as a Judge` , a recurrent pipeline to send data to pipeline and sent to our red-team for HITL  
 
 <img width="640" height="350" alt="image" src="https://github.com/user-attachments/assets/9a08b5f2-789b-4c56-82d2-0740c9d39f4a" />
 
 --- 
 
 # SYSTEM DESIGN 
+Words to use :  
+
+Data ingestion : High Throughput , Streaming , Kafka  
+Data parsing : Apache Tika,  Unstructured.io  
+Data storage : Object storage ( blob ) S3  
+Feature store , Low Latency : repeatedly used Redis  
+Model serving speed : Quantization , Pruning , triton inference , kubernetes   
+Model serving efficiency : GPU utilization , P99  
+Model serving hardware : Inference Optimized GPU's  
+Agent Reliability : Stateful , stateless , fault tolerance  
+Security : Injection attacks  
+MLops tracking : wandb  
+monitoring : grafana , elastic-search , kibana (logs)  
+
+
 ## 1. Design an efficient RAG system   
 PS : Design a secure, low-latency RAG system that allows financial analysts to ask complex, natural language questions over 50,000 internal, unstructured PDF documents.
 
@@ -226,10 +246,11 @@ Service-3 report generation
 
 * Search : 
 Text to SQL , sanitize SQL using deny-list to reject any SQL that contain desctructive keyword
-Scheme Validation : 
+Scheme Validation : allowed sql queries / keywords only
 
 
-* Analyse
+* Analyse :  
+
 
 
 * Synthesize 
@@ -237,6 +258,59 @@ Scheme Validation :
 
 ## 3. Design a robust, scalable, and secure pipeline to manage the continuous refinement of a large production LLM using the Reinforcement Learning with Human Feedback (RLHF) process.
 
+Data ingestion : high quality human pre
+Model Training : 
+Security and Privacy : 
+
+CLARIFYING QUESTIONS : Pick up the single most important thing in the problem statement / most important thing in the whole P.S. 
+
+HIGH LEVEL : 
+
+Step-1 : Clarifying questions for scale and sensitivity ? 
+1. Total time / Frequency of the pipeline job ? is it once a week or everyday ? 
+2. Do we need to filter out the data as per some rules as dataset would be very important case for this . Are we dealing with some private data ?
+3. Initial source of the High quality preference data ? (Training the reward model is the hardest part)
+ 
+Step-2 : High level concepts 
+Data collection method : whose role will be to actually collect out the data 
+Data filtering process : To filter out the junk and only keep the valuable The quality, the shiny data 
+Human annotators / Reward model Training : That would actually do the ranking of whether this is a good output or a bad output 
+Policy Model Training and Deployment services : PPO guided by reward model to fine-tune final LLM   
+ 
+Step-3 : Deep-Dive    
+1. 
+> DON'T DO THIS : For Data collection, we will storing in a MongoDB with the question and answer , so we will use a cron job to query the DB when the load is decreased so that we dont scale up mongodb and increase our cost . We will store that in a jsonl file once collected we can pass that to the filtering pipeline that will look for any forbidden word or match for any dates we can use both a rules based or a SLM to classify it better (THIS IS A POOR CHOICE, ITS SLOW AND INTRODUCES LATENCY)    
+
+> DO THIS : we need a high throughput , real-time streaming architectures , anything real-time needs kafka , producer sends messages to a topic , topic is the named log and consumers read those messages from the topic. so kafka logs it rather than queue , multiple consumers can read a topic from there,  
+
+
+2. 
+> DON'T DO THIS : For Human annotators : The input structure will be <Q, A , R> , R is the reward that they gave and then we can create our policy like `Reward = reward_from_policy - beta(KLD(pie, rho))`
+> DO THIS : RLHF structure is wrong needs <Prompt , response A, response B> for policy model to align it to a particular weight 
+
+3.
+> DONT DO THIS : For Policy training we can use : transformers trl library to run the pipeline 
+> DO THIS : Using a Distributed Training Framework, and running the pipeline in cloud 
+
+## Your company is launching the LLM agent product to a large enterprise client, resulting in a sudden 10x spike in hourly API requests. Design the model serving architecture to handle the sudden load while keeping the P95 latency under 500ms and reducing cloud compute costs by 30% month-over-month (MoM).
+
+Step-1 : Clarifying question ( here the most important thing is the input-output size)
+
+1. What is the average and maximum token length ? 
+2. P95 Model latency
+3. Is the Model sparse?
+
+<details>
+  <summary>Sparsity of model</summary>
+  Sparsity of model means to avoid unnecessary computation and it's more of writing efficient kernels that makes fewer multiplies and makes the model faster if kernel supports it. 
+</details>
+
+To reduce latency we can use 8-bit or 4-bit integer quantization basically reducing the model size and bandwidth that leads to speeding up token generation 
+Dynamic batching, processes one request at a time, system uses queue to group requests and executes them 
+Horizontal model spliting : To split the layers across multiple GPU's or even across machines , splitting matmuls like splitting in multiple heads. 
+Flash attention for fused kernels 
+
+Using KV cache to cache the key-value tensors for latency optimization  
 
 # DSA
 
