@@ -73,7 +73,7 @@ A similar process is done for all the datapoints also that is we convert them to
 
 ## GraphRAG  
 Implemented this paper :  https://arxiv.org/pdf/2404.16130
-<img width="826" height="606" alt="image" src="https://github.com/user-attachments/assets/b30b87c2-dc3f-4c46-81bc-8100553d264b" />
+<img width="526" height="346" alt="image" src="https://github.com/user-attachments/assets/b30b87c2-dc3f-4c46-81bc-8100553d264b" />
 
 
 ### Questions to ask ? 
@@ -169,9 +169,93 @@ RLHF Implementation
 
 
 RLHF in production challenges 
+To find the model's accuracy we used `LLM as Judge`
+
+<img width="640" height="350" alt="image" src="https://github.com/user-attachments/assets/9a08b5f2-789b-4c56-82d2-0740c9d39f4a" />
+
+--- 
+
+# SYSTEM DESIGN 
+## 1. Design an efficient RAG system   
+PS : Design a secure, low-latency RAG system that allows financial analysts to ask complex, natural language questions over 50,000 internal, unstructured PDF documents.
+
+* Data collection : Document Pre-processing & Recursive Chunking - So if the documents contains both text and images and both are relevant , so will use pdf / ocr tools ( like apache tika ) to extract out the text and for images (images in pdf are stored in a binary xobjects ) so the parser can find that out and use an VLM to understand Charts / text documents from it
+  
+* As its a complex data and requires reasoning we will be using nodes and entities to create a KG and perform a triplet generation this is called Knowledge Graph Augmentation that explains the graph store relationships which are better for multi-hop reasoning
+
+* Dual-Indexing : Using both the graph and the embedding vectors to query in an hierarchical manner. (we can avoid this vectorDB if we keep it in text and do keyword scoring, works on sparsed domain sets) 
+
+* VectorDB use a cloud solution livke Pinecone , Milvus ... so we need to store metadata like citations / pdf-name ... etc so that if a PDF gets updated or removed that smae effect can be shown in the DB also   
+
+* Most important point, how will you evaluate this whole model ?
+Creating an evaluation set , basically QA pairs from the ingested context , made by human or an LLM then we can match the outputs using content overlap / LLM as a judge / human in the loop
+
+Post-deployment :  
+For internal metrics, we can check citation overlap so we can track what all chunks it retrieved from the chunk metadata and then use a citation retrieval rate and content overall.
+
+We can use HITL to check for accuracy and add guardrails if a confidence-score is low ..   
 
 
-<img width="1340" height="772" alt="image" src="https://github.com/user-attachments/assets/9a08b5f2-789b-4c56-82d2-0740c9d39f4a" />
+## 2. Multi-step AI agent orchestration
+Design a highly reliable and scalable platform for a multi-step AI Agent that performs a complex, high-value business task, such as automatically generating a financial risk assessment report.  
+
+Step 1 : Clarifying question ?   
+
+1. Noob 1. What is the nature of data and how will it be structured in ? does it contain only text or something else ?
+Pro 1. what are the key non-text data types ? Are we analyzing real time market data / high freq logs or static quarterly filings ? Does the data contain PII or proprietary secrets ?
+
+2. What is the expected latency p95 and accuracy and if a tradeoff which should be preffered?
+
+3. How do we handle multi-agent state and rollback ? If agent fails on one step, do we retry, rollback , pass it to human ?
+ 
+ 
+Step 2 : High Level Components ?   
+> Stateful system : Remembers information from one request to the next 
+> Stateless system : Request based only on the information provided in a single request. Doesnt need to remember the previous state
+
+LLM (text to sql) -> Data-warehouse -> retrieved data passed to financial LLM -> output  -> retrieved data also passed on to the general purpose LLM   
+
+Agent state store -> redis / DB to save intermediate output
+Logging -> pipeline to capture every single step of the agent's execution
+
+All Agents needs an Orchestrator, that kickstarts this service 
+
+Service-1 Data retrieval ( text to sql, sql sanitization , query to data-warehouse ) 
+Service-2 Financial LLM (raw to structured output) 
+Service-3 report generation 
+
+* Search : 
+Text to SQL , sanitize SQL using deny-list to reject any SQL that contain desctructive keyword
+Scheme Validation : 
+
+
+* Analyse
+
+
+* Synthesize 
+
+
+## 3. Design a robust, scalable, and secure pipeline to manage the continuous refinement of a large production LLM using the Reinforcement Learning with Human Feedback (RLHF) process.
+
+
+# DSA
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
