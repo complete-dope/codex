@@ -188,7 +188,7 @@ Hashing : if the search query is too long to search or too long to cache we can 
 Data ingestion : High Throughput , Streaming , Kafka  
 Data parsing : Apache Tika,  Unstructured.io  
 Data storage : Object storage ( blob ) S3  
-Feature store , Low Latency : repeatedly used Redis  
+Feature store , Low Latency : repeatedly used Redis (uses an hash-map for O(1) time retrieval )
 Model serving speed : Quantization , Pruning , triton inference , kubernetes   
 Model serving efficiency : GPU utilization , P99  
 Model serving hardware : Inference Optimized GPU's  
