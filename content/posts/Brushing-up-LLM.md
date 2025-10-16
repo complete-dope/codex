@@ -183,6 +183,8 @@ To find the model's accuracy we used `LLM as a Judge` , a recurrent pipeline to 
 # SYSTEM DESIGN 
 Words to use :  
 
+Hashing : if the search query is too long to search or too long to cache we can hash it and store to reduce the bits stored / transferred
+
 Data ingestion : High Throughput , Streaming , Kafka  
 Data parsing : Apache Tika,  Unstructured.io  
 Data storage : Object storage ( blob ) S3  
