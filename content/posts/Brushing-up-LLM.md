@@ -179,6 +179,25 @@ To find the model's accuracy we used `LLM as a Judge` , a recurrent pipeline to 
 <img width="640" height="350" alt="image" src="https://github.com/user-attachments/assets/9a08b5f2-789b-4c56-82d2-0740c9d39f4a" />
 
 --- 
+## Productionizing system 
+Serving a production model and fixing it  
+1. Data collection  
+2. Data filtering  
+3. Feature engineering  
+4. Architectural descisions   
+5. Model training   
+6. Model validation / Eval / Testing   
+7. Model packaging and serving
+8. Deployments  
+9. Live metrics
+
+Challenges in deployment : 
+- deploy an optimized TensorRT model for faster inferencing and use  
+  
+1. Data drift in online training -> can be solved in 2 ways , one is passing it throught a cleaning before training the model on it and other is to use KLD to prevent drift     
+2. Spiky load / load burst during campaign : so using elasticity to handle this (horizontally scaling LLM pods), we use queue for buffering and pass the requests in batch mode   
+
+--- 
 
 # SYSTEM DESIGN 
 Words to use :  
@@ -190,13 +209,14 @@ Data parsing : Apache Tika,  Unstructured.io
 Data storage : Object storage ( blob ) S3  
 Feature store , Low Latency : repeatedly used Redis (uses an hash-map for O(1) time retrieval )
 Model serving speed : Quantization , Pruning , triton inference , kubernetes   
-Model serving efficiency : GPU utilization , P99  
-Model serving hardware : Inference Optimized GPU's  
-Agent Reliability : Stateful , stateless , fault tolerance  
-Security : Injection attacks  
-MLops tracking : wandb  
-monitoring : grafana , elastic-search , kibana (logs)  
-
+Model serving efficiency : GPU utilization , P99   
+Model serving hardware : Inference Optimized GPU's   
+Agent Reliability : Stateful , stateless , fault tolerance    
+Security : Injection attacks    
+MLops tracking : wandb    
+monitoring : grafana , elastic-search , kibana (logs)   
+Spiky load / sudden load : load balancer , Elasticity ()   
+Batching : Batching, it helps to reduce inference speed in models and cost also  
 
 ## 1. Design an efficient RAG system   
 PS : Design a secure, low-latency RAG system that allows financial analysts to ask complex, natural language questions over 50,000 internal, unstructured PDF documents.
@@ -294,7 +314,7 @@ Step-3 : Deep-Dive
 > DONT DO THIS : For Policy training we can use : transformers trl library to run the pipeline 
 > DO THIS : Using a Distributed Training Framework, and running the pipeline in cloud 
 
-## Your company is launching the LLM agent product to a large enterprise client, resulting in a sudden 10x spike in hourly API requests. Design the model serving architecture to handle the sudden load while keeping the P95 latency under 500ms and reducing cloud compute costs by 30% month-over-month (MoM).
+## 4. Your company is launching the LLM agent product to a large enterprise client, resulting in a sudden 10x spike in hourly API requests. Design the model serving architecture to handle the sudden load while keeping the P95 latency under 500ms and reducing cloud compute costs by 30% month-over-month (MoM).
 
 Step-1 : Clarifying question ( here the most important thing is the input-output size)
 
@@ -311,6 +331,14 @@ To reduce latency we can use 8-bit or 4-bit integer quantization basically reduc
 Dynamic batching, processes one request at a time, system uses queue to group requests and executes them 
 Horizontal model spliting : To split the layers across multiple GPU's or even across machines , splitting matmuls like splitting in multiple heads. 
 Flash attention for fused kernels 
+
+## 5. Handling load spikes / Designing for elasticity 
+
+Frontend layer : Load balancing and throttling / Rate limiting to prevent a single bad actor from crashing the system 
+Queueing (Buffering): After the API  gateway dont ping the server automatically , use a Message queue to prioritise request (if required ) else put them in buffer  
+
+Model serving layer : Auto scaling using horizontal pod autoscaler ( HPA ) , resource reprioritization (if spinning up a resource takes time) , Using dynamic batching 
+
 
 Using KV cache to cache the key-value tensors for latency optimization  
 
