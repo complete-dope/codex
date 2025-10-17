@@ -16,6 +16,8 @@ date : 2024-09-07
 `CMD ["/app/start.sh"]` :  This CMD command runs as soon as you run the container ( not at the build time ) , only at the run time this command works and easily gets overwritten by something like this `docker run -it <image_name> ./bin/bash` now bin/bash will run as the entry point !! 
 `` : 
 
+Daemon start : ``
+
 
 ## Building Image from a Dockerfile
 Once you have created the Dockerfile, now you need to  
@@ -30,12 +32,12 @@ Once done, now check for
 ### Docker in interactive mode
 
 Here this `-i` is the interactive mode but this looks like shit !! 
-```
+```bash
 docker run -i image_name /bin/bash
 ```
 
 So we need to attach the -t ( tty ) to it to look good and usable
-```
+```bash
 docker run -it image_name -p <host_port>:<container_port> /bin/bash 
 ```
 
