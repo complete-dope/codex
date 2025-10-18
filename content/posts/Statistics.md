@@ -45,6 +45,28 @@ Likelihood is : `L(theta) = P(X|theta) = Product (P(x_i | theta))`
 So in this multiplication so many small terms ultimately lead to a small term only so to avoid that we use `log` instead of this
 `L(theta) = P(X|theta) = log (P(x_i | theta))`
 
+so this translates as given the parameters of the model what is the probability I get this `x_i` token as next ?  
+P(X) : the prob. of output next token layer  
+P(x_i) : the prob. of taking this x_i token 
+
+## Cross entropy (in-depth explanation below)
+This tells how 2 distributions are closer / interchangable with each other  
+
+### Using these in action  
+
+`vocab-size = 3 = {cat, dog, bird} `
+Model output probs are : `{0.7, 0.1 , 0.2}`
+
+* CASE-1 : The case with one-hot encoded vectors  
+<img width="800" height="400" alt="image" src="https://github.com/user-attachments/assets/1d94648a-2d98-4451-9626-e0a26d498d5b" />
+
+
+* CASE-2 : The one with label smoothing 
+<img width="800" height="400" alt="image" src="https://github.com/user-attachments/assets/94bec512-73c0-4b3c-b7d7-1a3155fc4801" />
+
+> Q) So how are SOTA models trained ? using One-hot or smoothing ?
+> A) With enough data you can used one-hot but with limited data and preventing overfitting go with smoothing ( aka regularizing to prevent overfit )
+
 
 ## MLE
 `Maximum Likelihood Estimation` : 
