@@ -28,7 +28,7 @@ For each model we calculate the likelihood, how probable the observed data (coin
 Take it like this : we flipped a fair coin 100 times and it gives heads 90 times and tails 10 times so the likelihood the coin is fair is quite low 
 
 
-### Likelihood maximisation 
+## Likelihood maximisation 
 `When we say maximise the likelihood … we mean to say, we want the best parameters that are accurately predicting the data`
 
 Probability goes from model to data (What data do we expect given this model?)
@@ -39,11 +39,18 @@ In `genAI`:
 The model whose params are most likely to produce the observed data is selected. Means the one with maximum likelihood is selected.
 The architecture that work on this principle is called `Likelihood based Models`
 
+## Log likelihood 
+Likelihood is : `L(theta) = P(X|theta) = Product (P(x_i | theta))`
+
+So in this multiplication so many small terms ultimately lead to a small term only so to avoid that we use `log` instead of this
+`L(theta) = P(X|theta) = log (P(x_i | theta))`
+
+
 ## MLE
 `Maximum Likelihood Estimation` : 
 We have the intialised parameters of the model and we try to maximise the likelihood by updating the parameters.
 so our cost function looks like : 
-Theta = argmax(P(X|Theta)) , thetas are the parameters of the model
+Theta = argmax log (P(X|Theta)) , thetas are the parameters of the model
 
 ### Normal Distribution 
 `Normal / gaussian Distribution`:
@@ -313,7 +320,7 @@ Entropy of distribution-2 : `0.5 * log(2) + 0.25 * log(4) + 0.25 * log(4) => 0.5
 
 Entropy of both are same , that means they are saying that to send this info on avergae it will take 1.5 bits  , but what if I encode it like this , `bit 0` for moderate , `bit-1` for rainy , `bit-10` for sunny ... this sounds good but is wrong as it doesnt follow `Kraft inequality`  
 
-<img width="1872" height="450" alt="image" src="https://github.com/user-attachments/assets/1b77c1c3-1413-4a67-b05b-6d99255c37b9" />
+<img width="800" height="450" alt="image" src="https://github.com/user-attachments/assets/1b77c1c3-1413-4a67-b05b-6d99255c37b9" />
 
 so that's to get min. bits we use this Entropy and cross entropy is just a way to see how these  distributions are apart from each other ( by using ones probability values with the log of other ) and that difference between changing - original is called KLD  
 
