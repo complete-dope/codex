@@ -299,6 +299,25 @@ P(x) = 0.125, Q(x) = 0.500, P(not-x) = 0.875, Q(not-x) = 0.500 \
 Cross-entropy = -[0.125 * log₂(0.500) + 0.875 * log₂(0.500)] = 1.000 \
 
 
+## Finding Cross entropy between 2 distributions and understanding why its the only way to find min bits 
+So shannon in his information theory , told us a way to find min. useful bits required to share an information  
+and he used this waether station example   
+
+weather possibles : Sunny , Rainy , Moderate  
+Probability of Station-1 : 0.25 , 0.25 , 0.5     
+Probability of Station-2 : 0.5 , 0.25 , 0.25   
+
+Entropy of distribution-1 : `0.25 * log(4) + 0.25 * log(4) + 0.5 * log(2) => 0.5 + 0.5 + 0.5 => 1.5` 
+Entropy of distribution-2 : `0.5 * log(2) + 0.25 * log(4) + 0.25 * log(4) => 0.5 + 0.5 + 0.5 => 1.5`
+
+
+Entropy of both are same , that means they are saying that to send this info on avergae it will take 1.5 bits  , but what if I encode it like this , `bit 0` for moderate , `bit-1` for rainy , `bit-10` for sunny ... this sounds good but is wrong as it doesnt follow `Kraft inequality`  
+
+<img width="1872" height="450" alt="image" src="https://github.com/user-attachments/assets/1b77c1c3-1413-4a67-b05b-6d99255c37b9" />
+
+so that's to get min. bits we use this Entropy and cross entropy is just a way to see how these  distributions are apart from each other ( by using ones probability values with the log of other ) and that difference between changing - original is called KLD  
+
+
 ## KL-Divergence ( once you understand the above two concepts , this is very easy ) 
 
 KL-Divergence = Cross entropy - Entropy 
@@ -313,3 +332,28 @@ Closed form solution for KLD [LINK](https://johfischer.com/2022/05/21/closed-for
 
 True : data-distribution ( unknown aka multi-variate gaussian distribution i.e. assumption so that we can use closed form solution) \
 Trying to make it  : Normal distribution / gaussian distribution \
+
+
+## Making this sense in ML / DL
+
+This was all in respect to Information theory as explained by shannon but we can use this formula for ML also where we want to see how far are 2 distributions from each other or how well is the prediction from the actual distribution so that can be used as `Loss value`   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
