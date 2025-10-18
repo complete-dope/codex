@@ -28,13 +28,13 @@ In higher dim , The rate of change depends on location as well as  direction (bi
 
 Take this image and a point on it , and see how each direction has different gradient here so we need to find directional gradients here 
 
-<img width="687" height="583" alt="image" src="https://github.com/user-attachments/assets/10fd3e9e-7891-490a-b651-4492c27ad4c0" />
+<img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/10fd3e9e-7891-490a-b651-4492c27ad4c0" />
 
 But how to find it ? 
 
 For any point on the curve , we can draw a plane along that cross section and then make it 1d and find its derivative   
 See this image :   
-<img width="759" height="425" alt="image" src="https://github.com/user-attachments/assets/9fbf9bcb-fa62-41cf-9d8d-63ddef80d047" />
+<img width="550" height="270" alt="image" src="https://github.com/user-attachments/assets/9fbf9bcb-fa62-41cf-9d8d-63ddef80d047" />
 
 But why cant we use our basic : 
 `Dv​f(x)=h→0lim​hf(x+hv)−f(x)​`  
@@ -264,6 +264,40 @@ How the maths work out that involved taking covariance ( that leads to higher co
 
 The code for the same is 
 <img width="2310" height="2171" alt="image" src="https://github.com/user-attachments/assets/5bcfc69b-98c4-433f-8bb6-1b728d2d1fe0" />
+
+--- 
+# Visualising the computation graph for a simpler model
+
+<img width="1744" height="350" alt="image" src="https://github.com/user-attachments/assets/5b837dfb-b814-4c9f-a69b-7d0341581cf2" />
+
+So the first layers are the one that actually see the input and encode it to weights ( W1 ), having a wide enough initial layers that tell what the actual content is and then as the model propagates ahead it learn to build on top of what the initial layers built out !   
+
+> So one important check to see if model is working fine is to see its initial layers and not to use dropout in those initial layer you never know which part of flow you disconnected with it   
+
+Also loss value doesnt make any sense for gradient optimisation, its for the users to see how well is the model performing , the lower value means that weights are going in a good direction and a higher value means weights are going in wrong direction. 
+
+and the choice of loss function is `convex functions` but activation ensure us that its not convex anymore and still we do in the -ve direction of gradient because it works for both the curve no matter what you have going down always leads to lower loss ! 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
