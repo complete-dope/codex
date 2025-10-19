@@ -7,12 +7,19 @@ date: 2024-09-08
 
 #  Activation / Non-linear function
 
+A non-linear function is one in which cannot be expressed from  `y = mx + c` 
+
+lets suppose a function with y = x * W1 * W2 .. Wl
+
+Linearity with respect to x, this means rest of the variable are constant and only x is changing , so linearity with respect to `x` is linear    
+Linearity with respect to Wi, this means rest of the variable (`x here`) is constant and only weights are changing , so linearity with respect to `W` is non-linear   
+
 ## Tanh 
 
 <img width="646" height="400" alt="image" src="https://github.com/user-attachments/assets/116ad60a-a021-4ec6-9e53-adcddb294a3b" />
 The formula goes as : `e^x - e^(-x) / e^x + e^(-x)` and the derivate is : `1 - tanh^2`
 
-So its a squishing function, that means, any amount of input that you will pass will lead out a value between `-1 to 1`  
+So activations are just squishing function, that means, any amount of input that you will pass will lead out a value between `-1 to 1`  
 
 This same thing also brings in non-linearity , rather than it being a hyperplane in high-dimension we need our functions to learn a complex dependent distribution   
 
@@ -23,40 +30,28 @@ This does it between 0 to 1 so no negative values
 This gives a probability range : `1 / (1+e^(-x))`  
 
 ## Softmax
+This maps it from 0 to 1 probability range, and simply is shown as `e^x / SUM(e^x)`   
+<img width="306" height="165" alt="image" src="https://github.com/user-attachments/assets/186eaad7-4a52-441e-9965-128e746e6b99" />
+
 
 ## ReLU
+ReLU ( rectified linear unit ) the names itself says that its linear unit but the non linearity comes from the kink at `x = 0`  
 
-In activation function, you might have seen we are kinda trying to avoid the negative values / trying to keep only a positive values or only negative values ..
+Its like linear lego blocks added and given non linearity (like for predicting x^2 distribution)   
+<img width="640" height="480" alt="image" src="https://github.com/user-attachments/assets/96bdd3e0-f75f-481e-bc9a-02e934d2c122" />
 
-Ex: ReLU    
+But if you stack many small, straight LEGO blocks at slight angles, you can build a perfect-looking circle or curve.
 
-What's the reason behind this and why are we ditching them?
-Earlier the most common activation function used to be sigmoid and tanh but now most common ones are ReLU and its derivatives
+## Problem with existing activation functions and how ReLU solves it  
+So biggest problem is vanishing grads for actvation function and they quickly get vanished,   
+`0.8 * 0.8 * 0.8 *0.8 * 0.8 => 0.3276 ( multiple's of these would lead to vanishing grads )`   
 
-The shift is because of the derivatives for these functions in the computation graph 
+So even the scaling wont help as the problem is with the gradient calculation itself, so relu seems a promising approach   
 
 ![Computation Graph](https://www.researchgate.net/profile/Yuqing-Chen-3/publication/344260274/figure/fig3/AS:936580785139716@1600309668673/A-a-neural-network-and-b-its-computational-graph-The-c-forward-and-backward.png)
 
-  
-The range of d(tanh) lies between 0 and 1, the multiplication of too many of these values lead to way less gradient values and the weights don't get updated properly 
 
-`0.8 * 0.8 * 0.8 *0.8 * 0.8 => 0.3276 ( multiple's of these would lead to vanishing grads )`
-
-1) Can linear layer output more than the input that it took ?
-* No that is not possible, as the weight initialisation are in rnage (-1 -- 1)
-
-2) Why squishing/removing the negative values of the weights using the activation functions is important ?
-* reason is vanishing gradients   
-
-
-input -> linear -> tanh(x) -> linear -> tanh -> output 
-
-Forward pass  
-(x) -> ( wx + b ) -> (0.8) -> (wx + b) -> (0.8) -> output 
-
-initial x=10: (10) -> (0.3*10 + 0.3 = 3.3) -> (0.8) -> (0.3 * 0.8 + 0.3 = 0.54) -> (0.4)
-initial x=0.5: (0.5) -> (0.3*0.5 + 0.3           = 0.45) -> (0.3) -> (0.3 * 0.3 + 0.3 = 0.39) -> (0.25)
-
+# Loss function and calculation 
 
 In the backward pass,   
 
@@ -143,9 +138,22 @@ Assume it like a hash function, computer stores the hashed value in float32 ..
 so before any operation performed on float values we need to decompose it to the actual value ( to its computational-value which can take more space for the moment ) , once calculation is done , then it again gives answer back in float so its this .. and in this to and fro conversions they are prone to errors in the accuracy  
 
 
-## Batchnorm , layernorm , rmsnorm , l1 norm , l2 norm 
-These techniques are used to speed up the training part / increase model training 
+# Normalization layers (Batchnorm , layernorm , RMSnorm , l1 norm , l2 norm)
+
+This is applied before passing to the activation so that the inputs to activations are all centered around and we get the best benefits from it   
+
+Deep Learning book : https://aikosh.indiaai.gov.in/static/Deep+Learning+Ian+Goodfellow.pdf 
+read section : `8.7.1`
+
+* Normalization layer :  
+
+These techniques are used to speed up the training part / increase model training   
 The reason to bring these in action is because, each time the layer (l-1)th increases the layer l also has to change the weights to actually converge before the whole model can reach convergence state and these lead to in internal covariate shift .. so to avoid this delay in convergence we apply these batchnorms for inputs where batches make more sense ( like image related stuff ) , other is , language input where the batches dont make much sense so we go with layernorm ( requires 2 passes through data) , but they also have some overhead to over come these overhead we use rmsnorm (norm that is done in a single pass ) 
+
+These normalizations are used to reparameterize the weights, the problem is the update of weights of one layer depend so much on the other layers that we simply just cant change one without thinking about other one and this makes using dfferent adaptable learning rate for each layer as an impossible problem to solve 
+
+So for this we use normalization ,
+
 
 
 
