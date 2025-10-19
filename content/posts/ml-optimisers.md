@@ -270,11 +270,9 @@ The code for the same is
 
 <img width="1744" height="350" alt="image" src="https://github.com/user-attachments/assets/5b837dfb-b814-4c9f-a69b-7d0341581cf2" />
 
-So the first layers are the one that actually see the input and encode it to weights ( W1 ), having a wide enough initial layers that tell what the actual content is and then as the model propagates ahead it learn to build on top of what the initial layers built out !   
+Each layer will see the input / so each weight will have an effect from the input and will be updated by the input   
 
-> So one important check to see if model is working fine is to see its initial layers and not to use dropout in those initial layer you never know which part of flow you disconnected with it   
-
-Also loss value doesnt make any sense for gradient optimisation, its for the users to see how well is the model performing , the lower value means that weights are going in a good direction and a higher value means weights are going in wrong direction. 
+Also loss value doesnt make any sense for gradient optimisation (we have a representational term in gradient calculation for it like : `(y-y^) ** 2 => 2(y-y^)`), its for the users to see how well is the model performing , the lower value means that weights are going in a good direction and a higher value means weights are going in wrong direction. 
 
 and the choice of loss function is `convex functions` but activation ensure us that its not convex anymore and still we do in the -ve direction of gradient because it works for both the curve no matter what you have going down always leads to lower loss ! 
 
