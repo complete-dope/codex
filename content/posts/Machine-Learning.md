@@ -1,12 +1,30 @@
 ---
 draft: false
-title: "Machine Learning"
+title: "Activation and Norms"
+tags: ['layernorm' , 'norm' , 'activation']
 date: 2024-09-08
 ---
 
-#### A medium level ML concepts 
+#  Activation / Non-linear function
 
-Activations : 
+## Tanh 
+
+<img width="646" height="400" alt="image" src="https://github.com/user-attachments/assets/116ad60a-a021-4ec6-9e53-adcddb294a3b" />
+The formula goes as : `e^x - e^(-x) / e^x + e^(-x)` and the derivate is : `1 - tanh^2`
+
+So its a squishing function, that means, any amount of input that you will pass will lead out a value between `-1 to 1`  
+
+This same thing also brings in non-linearity , rather than it being a hyperplane in high-dimension we need our functions to learn a complex dependent distribution   
+
+## Sigmoid
+
+<img width="160" height="183" alt="image" src="https://github.com/user-attachments/assets/0d171d8f-c2e5-423a-93d5-1da081e6477d" />
+This does it between 0 to 1 so no negative values  
+This gives a probability range : `1 / (1+e^(-x))`  
+
+## Softmax
+
+## ReLU
 
 In activation function, you might have seen we are kinda trying to avoid the negative values / trying to keep only a positive values or only negative values ..
 
@@ -17,12 +35,12 @@ Earlier the most common activation function used to be sigmoid and tanh but now 
 
 The shift is because of the derivatives for these functions in the computation graph 
 
-[Computation Graph](https://www.researchgate.net/profile/Yuqing-Chen-3/publication/344260274/figure/fig3/AS:936580785139716@1600309668673/A-a-neural-network-and-b-its-computational-graph-The-c-forward-and-backward.png)
+![Computation Graph](https://www.researchgate.net/profile/Yuqing-Chen-3/publication/344260274/figure/fig3/AS:936580785139716@1600309668673/A-a-neural-network-and-b-its-computational-graph-The-c-forward-and-backward.png)
 
   
 The range of d(tanh) lies between 0 and 1, the multiplication of too many of these values lead to way less gradient values and the weights don't get updated properly 
 
-0.8 * 0.8 * 0.8 *0.8 * 0.8 => 0.32 ( multiple's of these would lead to vanishing grads )
+`0.8 * 0.8 * 0.8 *0.8 * 0.8 => 0.3276 ( multiple's of these would lead to vanishing grads )`
 
 1) Can linear layer output more than the input that it took ?
 * No that is not possible, as the weight initialisation are in rnage (-1 -- 1)
@@ -48,14 +66,6 @@ Derivate: quantifies how sensitive a function is with respect to the change in i
 
 dL / dWs -> dL / d(wx+b) * d(wx+b) /        dx  
 (Ws : all the parameters in the model) -> and is done using the chain rule  
-
-Optimizer:  
-
-Changes the weights of the model (according to the policy defined ) to minimize the loss function 
-
-W_i+1 = W_i - lr * dL / dW_i 
-
-(The sgd is not well explained in the pytorch docs , the loop they represent is teh whole training loop , not the sgd loop)
 
 
 ## Revision / paper reading 
