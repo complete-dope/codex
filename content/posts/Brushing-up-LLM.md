@@ -352,8 +352,6 @@ Model serving layer : Auto scaling using horizontal pod autoscaler ( HPA ) , res
 
 Using KV cache to cache the key-value tensors for latency optimization  
 
-# DSA
-
 
 
 
