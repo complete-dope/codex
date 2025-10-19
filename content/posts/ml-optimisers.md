@@ -57,19 +57,19 @@ similarly partial derivative in y-direcion : means x=0 along curve ( all other v
 
 Partial derivative in x-direction mean its same as the cross-section / plane drawn that intercepts all others at origin ( zero value ) , draw that cross section adnd take derivative along that curve
 
-<img width="1066" height="693" alt="image" src="https://github.com/user-attachments/assets/1111a677-66aa-4877-9683-6ad77726d2f6" />
+<img width="1066" height="493" alt="image" src="https://github.com/user-attachments/assets/1111a677-66aa-4877-9683-6ad77726d2f6" />
 
 
 And now assume we want to approximate a point close to the origin the direction of partial derivative that is, f_pde(x,0) is a curve , now f_pde'(x,0) is a line / tangent to that curve at that point , we can easily find that point using the equation of a line `y = mx + c`
 
-<img width="937" height="639" alt="image" src="https://github.com/user-attachments/assets/64650841-ac3d-4eb5-b95e-fcada4c57f2e" />
+<img width="937" height="493" alt="image" src="https://github.com/user-attachments/assets/64650841-ac3d-4eb5-b95e-fcada4c57f2e" />
 
 Now lets say we want to find derivative in a direction, that direction is some arbitrary , not regular direction (x,y,z) direction, then its 
 <img width="902" height="464" alt="image" src="https://github.com/user-attachments/assets/451cd1a7-d855-4041-b23e-504b21ba17e9" />
 
 
 Here the derivative of the curve is a line , and we get that by taking first derivative, that is,  And the calculations for the same go as this 
-<img width="1518" height="459" alt="image" src="https://github.com/user-attachments/assets/7dc71902-b495-4159-a33d-e98795b84d68" />
+<img width="1518" height="259" alt="image" src="https://github.com/user-attachments/assets/7dc71902-b495-4159-a33d-e98795b84d68" />
 
 So to get derivative , first derivative in higher dimensions we used the above formula 
 
@@ -78,25 +78,25 @@ So to get derivative , first derivative in higher dimensions we used the above f
 1st derivative is already a line , we just need to find its slope to get the 2nd derivative 
 So find the 
 
-<img width="3952" height="1884" alt="image" src="https://github.com/user-attachments/assets/4e127533-d08c-43a7-93af-d96423d46028" />
+<img width="1200" height="384" alt="image" src="https://github.com/user-attachments/assets/4e127533-d08c-43a7-93af-d96423d46028" />
 
 
 Okay what if we need that in a direction , that is also sorted we know how to do directional derivative right ? 
 
 `f(h,2h) - f(0,0) / root(5 * h^2)` 
 
-<img width="1332" height="719" alt="image" src="https://github.com/user-attachments/assets/777c8790-a5db-4107-92e5-8ae9c0756a35" />
+<img width="1332" height="419" alt="image" src="https://github.com/user-attachments/assets/777c8790-a5db-4107-92e5-8ae9c0756a35" />
 
 The calculation is very simple same as we did for the first one , we already now know how to take points on the line , that is, so same using directional derivativees for the second derivative that is done ! 
  
 
-<img width="970" height="709" alt="image" src="https://github.com/user-attachments/assets/3b97ff30-8605-450e-8b7e-63fa758100bb" />
+<img width="970" height="509" alt="image" src="https://github.com/user-attachments/assets/3b97ff30-8605-450e-8b7e-63fa758100bb" />
 
 ### Taylor series 
 It presenta a beautiful way of approximating functions, for any complex function for which you dont know its expansion we can approximate that function for some value to help us solve it .. 
 
 Take for example cos(theta) , its taylor approximation comes out as : ( 1 - (theta**theta)/2 ) 
-<img width="1000" height="669" alt="image" src="https://github.com/user-attachments/assets/4b1b2240-c05c-42c0-aa72-49dd28764991" />
+<img width="1000" height="569" alt="image" src="https://github.com/user-attachments/assets/4b1b2240-c05c-42c0-aa72-49dd28764991" />
 
 Take this example e^x : 
 
@@ -109,11 +109,11 @@ Take this example e^x :
 
 But magically keeping x = 0 , we can approximate this whole series 
 
-<img width="1353" height="683" alt="image" src="https://github.com/user-attachments/assets/05d202c8-af77-41ee-8226-f32d5a216ef2" />
+<img width="1353" height="483" alt="image" src="https://github.com/user-attachments/assets/05d202c8-af77-41ee-8226-f32d5a216ef2" />
 
 The generalised form for the taylor series is this : and its completely correct you can do the proof very simply taking only first 2 terms  
 
-```
+```bash
 f(x) = c1 + c2*x
 
 at x=a,
@@ -133,7 +133,7 @@ To refine our approximations, we use [taylor series](https://www.youtube.com/wat
 
 Taylor series to approximate loss function and minimizing that loss function to ultimately reach the minimal / minima point
 see here the blue curve is the original curve that we dont know in real life , and so we start out by approximating the functions that could lead to at-least instantaneous optimisation at some particular value of x  
-<img width="2716" height="1528" alt="image" src="https://github.com/user-attachments/assets/d847d55c-8ef6-40f1-8560-ab779963d262" />
+<img width="2716" height="428" alt="image" src="https://github.com/user-attachments/assets/d847d55c-8ef6-40f1-8560-ab779963d262" />
 
 
 
@@ -188,7 +188,7 @@ If the Sum( g_t @ g_t.T ) is lower, that means this parameter was seeing lower g
 So its an inverse relation, 
 `learning_rate_new = learning_rate_old / Sq_root(Sum(G_T))`
 
-<img width="1200" height="385" alt="image" src="https://github.com/user-attachments/assets/e1b42718-4391-455e-ab8e-a54e0ecadedb" />
+<img width="1200" height="285" alt="image" src="https://github.com/user-attachments/assets/e1b42718-4391-455e-ab8e-a54e0ecadedb" />
 
 Disadvantages: 
 
@@ -234,7 +234,7 @@ Its requires only first order gradients wghere memory requirement is too little,
 
 The concept is very simple, the (G_t ^ 2) tells the its magnitude of the gradient, that is, how large the gradient was at first place and we take EMA that is taking some parts from prev.  calculation and some from the current one and we take 2 moments first one is for the momentum calculation and second one for regularising the learning rate ( learning_rate / Square_root(v_t)), and the first moment so that tells us the vector, the direction (g_t) of the step and (v_t) tells us the magnitude of the Grads  
 
-<img width="2648" height="1546" alt="image" src="https://github.com/user-attachments/assets/28b3b9a8-613c-45ea-bd2c-2b891ec1640e" />
+<img width="1248" height="490" alt="image" src="https://github.com/user-attachments/assets/28b3b9a8-613c-45ea-bd2c-2b891ec1640e" />
 
 The formula is same for momentum + adagrad and that works just great !! 
 
@@ -246,7 +246,7 @@ Adam with L2 regularisation :
 <img width="887" height="479" alt="image" src="https://github.com/user-attachments/assets/66b35f05-8d79-4872-bbfd-ba3ce404cc3f" />
 
 The same term is now added at the last just with the full learning rate rather than normalised  
-<img width="1058" height="619" alt="image" src="https://github.com/user-attachments/assets/7b3a3fc6-4170-420f-b3a9-c13036534511" />
+<img width="1058" height="420" alt="image" src="https://github.com/user-attachments/assets/7b3a3fc6-4170-420f-b3a9-c13036534511" />
 
 ## LARS / LAMB 
 [LARS PAPER](https://arxiv.org/pdf/1904.00962) 
@@ -258,12 +258,12 @@ Uses 2nd order derivatives so to get more information about the function they ar
 
 The main idea to convert the elliptical , low ranked gradient update matrix to a circular , high ranked matrix  
 
-<img width="508" height="595" alt="image" src="https://github.com/user-attachments/assets/244fdbfe-3add-4d24-91ea-e4b1d54f74da" />
+<img width="708" height="495" alt="image" src="https://github.com/user-attachments/assets/244fdbfe-3add-4d24-91ea-e4b1d54f74da" />
 
 How the maths work out that involved taking covariance ( that leads to higher cost, then taking out eigen values to get inverse ) rather to do these computationally expensive things we approximate the inverse square root using `newton schuulz` 
 
 The code for the same is 
-<img width="2310" height="2171" alt="image" src="https://github.com/user-attachments/assets/5bcfc69b-98c4-433f-8bb6-1b728d2d1fe0" />
+<img width="550" height="450" alt="image" src="https://github.com/user-attachments/assets/5bcfc69b-98c4-433f-8bb6-1b728d2d1fe0" />
 
 --- 
 # Visualising the computation graph for a simpler model
