@@ -85,7 +85,14 @@ On the other hand , GraphRAG is good for extracting relations between documents 
 
 <img width="830" height="470" alt="image" src="https://github.com/user-attachments/assets/1a47b24f-2bc7-4ee0-bad3-72f8d803e016" />
 
+--- 
+# DL Specifics
 
+## Activation and Norms   
+
+Read : https://complete-dope.github.io/codex/posts/activation_normalisation/  
+
+---
 
 
 ## Loss Function 
@@ -93,10 +100,13 @@ best video out there to understand Entropy , CE , KLD : https://youtu.be/ErfnhcE
 
 Loss functions and likelihood explained : https://complete-dope.github.io/codex/posts/statistics/
 
-Quantifying a loss function means nothing, its just that if its less we sense that its going in the right direction and if its more than the prev one, then we sense that its not going in right direction and something is wrong 
-
+---
 
 ## Optimization Functions
+
+Read : https://complete-dope.github.io/codex/posts/ml-optimisers/
+
+---
 
 
 # Facts 
