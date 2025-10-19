@@ -46,4 +46,23 @@ OOPS has 4 main pillars:
   1. staticmethod : methods that doesnt access instance (self) or class data (cls) 
   2. classmethod : method that takes class 'cls' as first argument 
   3. functools : these are tools defined over class methods 
+  4. dataclass : classes whose primary role is to store data those are dataclasses, and the variables defined here are still instance variables
 </details>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
