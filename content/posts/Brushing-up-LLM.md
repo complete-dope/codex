@@ -100,11 +100,47 @@ best video out there to understand Entropy , CE , KLD : https://youtu.be/ErfnhcE
 
 Loss functions and likelihood explained : https://complete-dope.github.io/codex/posts/statistics/
 
+Higher weight values means the model has become more sensitive to a small change in the input data i.e. model has now overfitted to the training data 
+
 ---
 
 ## Optimization Functions
 
 Read : https://complete-dope.github.io/codex/posts/ml-optimisers/
+
+Transformers architecture in forward pass learns what gradient update would have learned in backprop so its a kind of mesa-optimizer way : https://arxiv.org/pdf/2212.07677   
+
+The whole idea is take this 
+
+```bash
+y = mx
+
+L  = 1/n  * (y^ - wx) ** 2 
+
+then dl/dw is :
+
+1/n * SUM 2 * (y^ - wx) (-x)
+
+then,
+
+2/n * SUM (y^ * x - w * x^2)
+
+and is w_init = 0 , then
+=> 2/n * SUM (y^ * x)
+```
+
+And for the other one, 
+
+```bash
+h = Q*W.T / (D) *  V
+
+breaking that gives
+
+h = SUM _tokens 0 to i_ Alpha(j) * V
+
+```
+
+<img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/8eb7b71f-1fc9-4e43-9c41-047d462c6077" />
 
 ---
 
