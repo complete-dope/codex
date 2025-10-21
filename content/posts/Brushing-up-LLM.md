@@ -143,7 +143,40 @@ h = SUM _tokens 0 to i_ Alpha(j) * V
 <img width="500" height="350" alt="image" src="https://github.com/user-attachments/assets/8eb7b71f-1fc9-4e43-9c41-047d462c6077" />
 
 ---
+## Additional / ignored parts
 
+* RMSNorm : works on each dimension independently rather than batch or a layer norm and is fast / easy to use
+
+* Rotary Embedding (RoPE) : This is a nice interesting topic, without positional embedding its hard for model to make sense of what is the word sequence so `I bought a apple watch` and `watch I buy an apple` these 2 are embedded as same only so this clearly makes no sense so first method is to avoid this and add absolute postional embeddings(APE) that is explicitly tell which position them token is at something like `I am token #5` so the same token at different position would mean something else and this was also a flawed approach.
+
+So now we use this RoPE the idea is to encode positional embeddings as rotational vectors using `sin and cosine` such that we encode only the difference between tokens positions and not the Absolute position of the token.   
+so the idea is to transform the query and keys vectors in different frequencies to they capture local and global patterns   
+
+> all this intuition is coming from signal processing in electronics where signal at different frequency capture these patterns
+
+so here we have taken a large value ( `N = 10000 ` to capture the local and global features and then distribute d) 
+
+<img width="576" height="350" alt="image" src="https://github.com/user-attachments/assets/0ea7da44-3f26-4f33-b409-e00dfe519993" />
+
+```bash
+def apply_rotary_emb(x, cos, sin):
+    assert x.ndim == 4  # multihead attention
+    d = x.shape[3] // 2
+    x1, x2 = x[..., :d], x[..., d:] # split up last time into two halves  ( this is done in half like this to make it faster we could have taken as (x1,x2) (x3,x4) but no, for making this operation faster in contiguous memory we are doing this  
+    # (x1,x2,x3,x4,x5,x6,x7,x8) ==> (x1,x2,x3,x4) & (x5,x6,x7,x8)
+    y1 = x1 * cos + x2 * sin # rotate pairs of dims 
+    y2 = x1 * (-sin) + x2 * cos
+    out = torch.cat([y1, y2], 3) # re-assemble
+    out = out.to(x.dtype) # ensure input/output dtypes match
+    return out
+```
+
+<img width="525" height="350" alt="image" src="https://github.com/user-attachments/assets/74af3251-0d51-40bb-a921-f13c35e2be97" />
+
+
+> When a thing makes no possible sense, there might be computation benefit involved in that !! 
+
+--- 
 
 # Facts 
 We run on batches to do gradient accumulations and then update in a single step so that we dont end up with jittery gradient updates 
