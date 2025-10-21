@@ -145,7 +145,7 @@ h = SUM _tokens 0 to i_ Alpha(j) * V
 ---
 ## Additional / ignored parts
 
-* RMSNorm : works on each dimension independently rather than batch or a layer norm and is fast / easy to use
+* RMSNorm : works on each dimension independently rather than batch or a layer norm and is fast / easy to use. The role of norm is to just scale down that dimension , not to change its direction or meaning
 
 * Rotary Embedding (RoPE) : This is a nice interesting topic, without positional embedding its hard for model to make sense of what is the word sequence so `I bought a apple watch` and `watch I buy an apple` these 2 are embedded as same only so this clearly makes no sense so first method is to avoid this and add absolute postional embeddings(APE) that is explicitly tell which position them token is at something like `I am token #5` so the same token at different position would mean something else and this was also a flawed approach.
 
