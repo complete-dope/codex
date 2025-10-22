@@ -178,15 +178,19 @@ def apply_rotary_emb(x, cos, sin):
 
 --- 
 # Inference time optimisations
+Inferencing an LLM is a seperate engineering disciple
 
-* KV-cache : Inference will be done for a single input, that is, one input at a time and only the last token need to attend the keys and values over the rest     
-  
-* Multi query Attention :  
+* KV-cache : Inference will be done for a single input, that is, one input at a time and only the last token need to attend the keys and values over the rest      
+   
+* Multi query Attention :   
 
-* Forward pass as a gradient descent operation in it : https://arxiv.org/pdf/2212.07677  
+* Forward pass as a gradient descent operation in it : https://arxiv.org/pdf/2212.07677    
 
-* Chunked Inference : The latest LLM's dont produce autoregressively anymore they do that in chunked manner that is 4-5 tokens or more produced at a time
- 
+* Chunked Inference (blockwise parallel decoding with masking) : The latest LLM's dont produce autoregressively anymore they do that in chunked manner that is 4-5 tokens or more produced at a time. So here we pass in the same query and now want model to complete it with next tokens and instead of inferencing through all the `16 transformers blocks` one-by-one we do it in a chunked manner that is apply mask to next tokens that the model will produce so that it depend on prev tokens only and even if the internal representation of the token changes rather than being static we are okay with it .. this saves time and makes efficient compute . The forward pass is done for multiple tokens at once (in parallel). No recent model uses this afaik but its interesting way to decrease the inference time  
+
+<img width="560" height="350" alt="image" src="https://github.com/user-attachments/assets/b88dc758-5616-4e8e-8406-0487fa85b6e8" />
+
+
 --- 
 
 
