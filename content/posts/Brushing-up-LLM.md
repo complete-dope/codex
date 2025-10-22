@@ -177,6 +177,16 @@ def apply_rotary_emb(x, cos, sin):
 > When a thing makes no possible sense, there might be computation benefit involved in that !! 
 
 --- 
+# Inference time optimisations
+
+* KV-cache : Inference will be done for a single input, that is, one input at a time and only the last token need to attend the keys and values over the rest     
+  
+* Multi query Attention :  
+
+* Forward pass as a gradient descent operation in it : https://arxiv.org/pdf/2212.07677  
+
+--- 
+
 
 # Facts 
 We run on batches to do gradient accumulations and then update in a single step so that we dont end up with jittery gradient updates 
