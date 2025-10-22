@@ -185,6 +185,8 @@ def apply_rotary_emb(x, cos, sin):
 
 * Forward pass as a gradient descent operation in it : https://arxiv.org/pdf/2212.07677  
 
+* Chunked Inference : The latest LLM's dont produce autoregressively anymore they do that in chunked manner that is 4-5 tokens or more produced at a time
+ 
 --- 
 
 
