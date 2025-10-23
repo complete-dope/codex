@@ -18,8 +18,11 @@ Second derivative : `f''(x) = 2`
 To find the Minima in single variable the f'(x) = 0 , and f''(x) >= 0 , these 2 conditions are enough to find minima 
 
 ## Multivariable /Multivariate 
-First Derivative : This becomes a vector and is no longer a number 
-Second Derivative : This becomes a matrix that is called Hessian  
+2x + 3y = 10 (multivariable eq)  
+x2 + y2 = 16 (multivariable eq)  
+
+First Derivative : This becomes a vector and is no longer a number   
+Second Derivative : This becomes a matrix that is called Hessian    
 
 So we cant just take sign of second derivative and tell maxima and minima ( what does sign of a matrix means ? nothing )
 
@@ -254,13 +257,21 @@ The same term is now added at the last just with the full learning rate rather t
 Uses 2nd order derivatives so to get more information about the function they are predicting the loss for .. as the loss function is very complex we try to approximate a simpler function that satisfies it at instantaneous points, and that is done using 1st derivate to approximate it further more ( rather than estimating it as a line ) more than a line we use take the curve information using double derivative and to approximate double derivative we use taylor series and its a bit complex as its requires hessian calculation and then taking the inverse ( which is also known as newton method) , this leads to faster convergence of the loss     
 
 ## Moun Optimizer 
+Moun : MomentUm Orthogonalized by Newton-Schulz.
+
 [moun optim](https://kellerjordan.github.io/posts/muon/)
+[moun-video](https://www.youtube.com/watch?v=bO5nvE289ec)
 
 The main idea to convert the elliptical , low ranked gradient update matrix to a circular , high ranked matrix  
 
 <img width="708" height="495" alt="image" src="https://github.com/user-attachments/assets/244fdbfe-3add-4d24-91ea-e4b1d54f74da" />
 
-How the maths work out that involved taking covariance ( that leads to higher cost, then taking out eigen values to get inverse ) rather to do these computationally expensive things we approximate the inverse square root using `newton schuulz` 
+So the intuition for moun comes from the momentum matrix of adam optimizer is low-rank so most of the updates are made in a single direction only (because if you plot a low rank matrix if expands over a single direction only and from there we get that elliptical curve for low rank matrix) and to spread that out in all directions we have to orthogonalise it (means every vector is perpendicular to each other) and we use SVD to achieve that orthogonal matrix and this is used to make u   
+
+<img width="1050" height="350" alt="image" src="https://github.com/user-attachments/assets/d8a8b0b3-a195-4bef-8150-439a782672d1" />
+
+
+How the maths work out that involved taking covariance ( that leads to higher cost, then taking out eigen values to get inverse ) rather to do these computationally expensive things we approximate the inverse square root using `newton schulz optimizer` 
 
 The code for the same is 
 <img width="550" height="450" alt="image" src="https://github.com/user-attachments/assets/5bcfc69b-98c4-433f-8bb6-1b728d2d1fe0" />
