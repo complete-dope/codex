@@ -194,8 +194,14 @@ Inferencing an LLM is a seperate engineering disciple
 --- 
 
 
-# Facts 
+# Basic facts to revise 
 We run on batches to do gradient accumulations and then update in a single step so that we dont end up with jittery gradient updates 
+* temperature : this is the value that scales down the logits before calculating the final probabilities `logits = logits / temperature`  
+
+So, Temp = 0.99 , this retains the logits value almost as it is   
+Temp = 0.50 , this scales down the probability values and makes space for more tokens to be accumated 
+
+<img width="546" height="350" alt="image" src="https://github.com/user-attachments/assets/87cf4d4f-3595-470d-848a-1ea4af598e3f" />
 
 
 ## Post training 
