@@ -29,6 +29,13 @@ OOPS has 4 main pillars:
 4. Polymorphism ( many-forms) : so more like an abstract class , where define @abstractmethod and the class inheriting it has to use it   
 
 
+# Python programming ( missing links) 
+
+1. lambda functions
+2. python-map function
+3. sorted function 
+
+
 # Design patterns 
 
 1. `Strategy Pattern` : Think of this as a game strategy , the underlying input that is the game that is same for all strategies it's just that the implementation is changed so liek that the design pattern that we can use for all sorting functions
