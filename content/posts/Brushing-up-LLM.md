@@ -182,7 +182,7 @@ Inferencing an LLM is a seperate engineering disciple
 
 * KV-cache : Inference will be done for a single input, that is, one input at a time and only the last token need to attend the keys and values over the rest      
    
-* Multi query Attention :   
+* Multi query Attention (MQA inference technique):  So this paper https://arxiv.org/pdf/1911.02150 says that instead of using multiple individual KV per head keep a single KV only as its the data extraction source ( more like a database ) and let query learn itself how to ask it from this KV. So for each head we have the same KV this helps in the memory reduction and faster inference       
 
 * Forward pass as a gradient descent operation in it : https://arxiv.org/pdf/2212.07677    
 
