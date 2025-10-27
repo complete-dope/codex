@@ -14,12 +14,13 @@ tags: ['interview', 'preparation']
 
 https://www.pinecone.io/learn/what-is-similarity-search/ 
 
-Searching over structured data that is easy we can use Data structures for it like Binary tress / arrays (sorted order) and also things like hashset. This was done in internet 2.0 , sql , mysql , mongodb these leveraged it so well
+Searching over structured data that is easy we can use Data structures for it like Binary tress / arrays (sorted order). This was done in internet 2.0 , sql , mysql , mongodb these leveraged it so well
 
 Now for unstructured data we need something that represents more deeper concept / representation of the data 
 
 Using sentence-transformers (and models like Word2Vec , BERT model)
-* So in the bert model we train it using the `[CLS]` token / prefix, we take the trained model and then extract this token embedding.
+* So in the bert model we train it using the `[CLS]` token / prefix, we take the trained model and then extract this token embedding. 
+Encoder only architecture : This is used in models like BERT ( that is bidirectional ) and its useful for NLU tasks ( that is natural language understanding ) and to generate more tokens out from this we use `[MASK]` as a token header.  
 * And in word2vec model, we use cbow and skip-gram that depend on the proximity of similar words
 
 
