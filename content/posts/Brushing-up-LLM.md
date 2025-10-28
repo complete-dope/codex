@@ -208,6 +208,8 @@ Temp = 0.50 , this scales down the probability values and makes space for more t
 ## Post training 
 
 ### SFT 
+Pure Imitation learning , model is learning out what the input data was and often reproduces the same thing back with minor modifications if any (here the model also learns special tokens , chat-templates)   
+
 https://huggingface.co/docs/trl/en/sft_trainer 
 SFT is supervised finetuning , we do to adapt a language model to a target dataset aka make model aware on our dataset, here the model learns about chat-template,  
 
@@ -248,6 +250,8 @@ LLM based evaluation , Accuracy, BLEU(n-gram overlap matching between model outp
 
 --- 
 ### RLHF
+So in RL, model learns reward modelling 
+
 So its a combination of SFT , then Reward Modelling and then using policy to improve the SFT model . So its a 3 step process 
 
 Reinforcement learning with human feedback, here we train a reward model ( who's role is to output / rank the answer) , the dataset for this training is created by humans preference judgements then we train a reward model to predict the score then freeze that model and     
@@ -260,6 +264,11 @@ Metrics used :
 
 RLHF dataset creation : 
 So we train a reward model that is the same architecture with a linear layer at end, the backbone is freezed and we just train the output that too basde on the
+
+<details>
+  <summary>Policies in RL</summary>
+  * REINFORCE : these are just a way to model your RL , the loss function for it , first generate few outputs( o1,o2 .. oN ) in eval mode and then in train mode pass these output ids find the loss (surprise) model gets for these same tokens (learning by reinforcing or penalizing the movements you actually performed)   
+</details>
 
 
 <details>
