@@ -89,6 +89,14 @@ On the other hand , GraphRAG is good for extracting relations between documents 
 --- 
 # DL Specifics
 
+## Transformers: 
+These are like a small programmable machines that have actually learned out how to do muliple thing (like its a small calculator in itself) 
+These ideas arrived from the ICL ( in context learning ) and how even in the forward pass model is learning to adapt newer things [ICL](https://www.youtube.com/watch?v=UNVl64G3BzA)
+
+* Looped transformers : https://arxiv.org/pdf/2301.13196 
+* 
+
+
 ## Activation and Norms   
 
 Read : https://complete-dope.github.io/codex/posts/activation_normalisation/  
