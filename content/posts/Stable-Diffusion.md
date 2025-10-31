@@ -77,15 +77,17 @@ It all starts with the real images that people have created , we now want to cre
 
 So these assumptions are still true but are all unknown, neither we know the underlying distribution nor the sampling method 
 
-```
+```bash
 Few learnings: 
 
 * Discrete random variable : so probability of getting a 3 on a dice roll is 1/6
 
-* Continuous random variable :  The chance of hitting exactly 2.00000… is zero in an infinite line of possibilities is zero, so here we calculate probability density, The density function 𝑝(𝑥) tells you “how thick the probability is around this point"
+* Continuous random variable :  The chance of hitting exactly 2.00000…8 is zero in an infinite line of possibilities is zero, so here we calculate probability density, The density function 𝑝(𝑥) tells you “how thick the probability is around this point"
 So the actual prob. is : P(x belongs to [a,b]) = a_integral_b [p(x)*dx]
 
-* Point : In a data field, if data is numerical then this can be [1,2,3,..] if the data is images then its R_d ( 64 x 64 x 3 ) = 12288 dim these many dimensions , where each dimension represent a pixel value. The axis 1 represent value of red channel in (0,0) place ... till axis 12287 .. .
+* Probability density : probability per unit length aka area under the curve, so P(A <= x <= B) its the area under the curve !  
+
+* Point : In a data field, if data is numerical then this can be [1,2,3,..] if the data is images then its R_d ( 64 x 64 x 3 ) = 12288 dim these many dimensions , where each dimension represent a pixel value. The axis 1 represent value of red channel in (0,0) place ... till axis 12287 ... and the max we can vizualise is till 3 dims
 
 Q) Here this is a discrete random variable right ? the pixel value in an image ?
 > Yes, if in 0-255 channel space this would have been discrete but treating them as continous allows us to add gaussing noise, compute grads, use nice maths .. so we convert from 0-255 (discrete space) to 0-1 ( continous space ) -- (1)
@@ -104,7 +106,7 @@ Q) But for this gaussian distribution do we know the mean , variance?
 
 The equation for the forward process is : `x_t = [root(alpha_t)] * x_0 + [root(1-alpha_t)] * epsilon`
 
-q(x_t | x_0) : what possible distribution of x_t would have led to this particular x_0
+q(x_t | x_0) : what possible distribution of x_0 would have led to this particular x_t
 
 So instead of relying on all the intermediates steps we use reparameterization trick which is essentially, using closed form solution for gaussian maths and we just sample in one shot this is done for training not in the inference part 
 
@@ -120,11 +122,11 @@ log(p(x_t)) :  tells you the direction in the data space where the probability i
 
 <img width="609" height="254" alt="image" src="https://github.com/user-attachments/assets/5bdc1fd8-9ff3-4fed-b99b-f0755fb9fc40" />
 
-```
+```bash
 Derivation of the above image :
 
 The equation of gaussian distribution is: 
-, 
+
 ```
 
 Diffusion is stochastic ,the value of noise (e) also depends on the timestamp   
@@ -149,6 +151,7 @@ The forward path is deterministic, so there we can use velocity field
 ### Connection to VLA models
 
 this same approach is used in the VLA models to predict the action tokens in robotics . Here we have continous action space in flow matching in tokens we had discrete tokens / space. its predicts velocity in continous space
+
 
 
 
