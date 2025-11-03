@@ -235,6 +235,7 @@ Using peft (parameter efficient fine tuning like LoRA) that helps in training th
 <details>
   <summary>LoRA adapter</summary>
   Low Rank adaptation, so authors found that finetuned models have low rank weight matrices so they hypothesised that there update matrices will also be low rank and based on that they experimented with this low rank weight update matrix. so we will freeze the current weight matrix , create 2 random matrices of size `(Row x rank) (rank x col)` such that while finetuning we do : `y = W_q * X + alpha(A(B(x)))` so the W_q remains fix we update only the delta matrix and these are called low rank adapters, alpha is the scale value , rank is the low rank value , rank is the hyperparam , more the value of r more expressive
+  A nice paper that reviews all these techniques and how they work  : https://arxiv.org/pdf/2312.12148
 </details>
 
 <details>
