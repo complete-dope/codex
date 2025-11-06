@@ -257,6 +257,10 @@ Teaches a base language model to follow user instructions and engage in conversa
 * SFT metrics
 LLM based evaluation , Accuracy, BLEU(n-gram overlap matching between model output and reference), Perplexity , preference alignment 
 
+Perplexity : This calculates how accurately model performs the sampling, that is, its just a average of log probs of the next most probable token .. (lower is better ) 
+
+BLEU : This is based on n-grams , the n-gram model already knows calculates the occurence of a word surronding its closest ones .. the more the better ( that means more overlap between the model's generation and actual answer value )
+
 --- 
 ### RLHF
 So in RL, model learns reward modelling 
