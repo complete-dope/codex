@@ -8,9 +8,49 @@ title: Learning and Making CUDA kernels as a future skill
 [CUDA DOCS](https://docs.nvidia.com/cuda/cuda-c-programming-guide/)
 
 [How do GPU work by geohotz](https://www.youtube.com/watch?v=OUzm06YaUsI) starts at 20:00 
+[Amazing CS336 Stanford](https://www.youtube.com/watch?v=6OBtO9niT00&list=PLoROMvodv4rOY23Y0BoGoBGgQ1zmU_MT_&index=5)
 
 
-## Terminologies : 
+## Stanford lecture
+
+
+cpu does something called as branch prediction that allows to flow its operations without waiting for operations to get completed first, so this looks like, its gets many wrong also sometime but eventually stores the pattern ( Branch-1 was taken recently , branch-2 was not taken recently like this … )
+
+memory placements : 
+
+L1 : fastest / closest lives on chip
+L2 : a bit far away (7x L1)
+global DRAM : this is external memory allocation, we need to connect a bus to this this is (10x slower than L1)   
+
+
+gpu programming 3 player:
+threads , blocks , warp 
+
+GPU : all they do is single instruction multiple data / threads ( SIMT)
+
+So every thread in a WARP has to execute the same instruction, and conditionals are very-very damaging ! 
+
+
+Quantization for matmuls
+1. Reducing the no. of bits ( from fp32 to fp16) that helps in decreasing the no. of moving bits, from host to memory ! 
+
+2. most of the training in ML is mixed precision 
+
+> Operator fusion : this is how we write most common cuda kernels 
+fused vs non-fused kernels … this fused kernel is done by torch compile !
+
+> Trick 3 : recomputation, this is that gradient-checkpointing that ignores the storage of residual values and increases the computational efficiency ! 
+
+> Trick 4 : dram works in burst mode, if you will ask it for 1 value.. it will give you output of 4 values (memory colaseing)
+
+>Trick  5: tiling, this is very-very important when doing any sort of computation with cuda, this comes in picture everytime, and this is the reason that things take a lot of time also karpathy focused on this .. the tiling size is mulitples of 128 so 256 x 128 that is the tile size . To increase the efficiency of tiling I want to do all operations that are required in a single block to be completed in the same block itself , but an example like softmax there we first take the max of the row then do the operation and its not efficient, so we do Online Softmax. 
+ 
+
+>   memory and data movement that both needs to be improved ! 
+
+## Terminologies :
+Threads  
+Block: this is a group of 1024 threads 
 Warp : grp of 32 threads scheduled and working on the same streaming multiprocessor 
 SIMT : single instruction , multiple threads
 Lockstep : all threads starts in parallel / works at the same time  
@@ -19,7 +59,10 @@ Stream : like event loop in CPU used for cuda async operations
 PTX : parallel thread executions , has a seperate ISA used for cuda code and runs on GPU 
 
 ## Structure of GPU :
+<img width="2376" height="400" alt="image" src="https://github.com/user-attachments/assets/6715cb5a-702a-40f2-b980-5cf8cc6fe5cf" />
+So each thread in a warp has to follow the same instruction, so conditionals are a real overhead cause when instruction-1 is working, then half of the threads are sleeping and when instruction-2 is working then other half is kinda sleeping as show in the diagram above ! 
 
+So conditional statements inside a single warp is very-very damaging as they are just doing the same thing 
 
 
 ## Memory in GPU : 
