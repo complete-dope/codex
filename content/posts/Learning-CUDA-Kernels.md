@@ -48,6 +48,8 @@ fused vs non-fused kernels … this fused kernel is done by torch compile !
 
 >   memory and data movement that both needs to be improved ! 
 
+Most of the time we are memory bound and recomputation is more efficient for storing this and transferring it  
+
 ## Terminologies :
 Threads  
 Block: this is a group of 1024 threads 
