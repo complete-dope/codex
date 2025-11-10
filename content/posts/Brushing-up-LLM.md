@@ -4,7 +4,7 @@ author : Mohit
 title : Brushing up LLM for Interview
 description : End to end notes for revision for interview
 date : 2025-10-13
-tags: ['interview', 'preparation']
+tags: ['interview', 'preparation', 'llm']
 ---
 
 
@@ -301,6 +301,48 @@ RLHF in production challenges
 To find the model's accuracy we used `LLM as a Judge` , a recurrent pipeline to send data to pipeline and sent to our red-team for HITL  
 
 <img width="640" height="350" alt="image" src="https://github.com/user-attachments/assets/9a08b5f2-789b-4c56-82d2-0740c9d39f4a" />
+
+# Training ( refine it )
+[CS336](https://www.youtube.com/watch?v=LHpr5ytssLo&list=PLoROMvodv4rOY23Y0BoGoBGgQ1zmU_MT_&index=8 )
+
+
+*Single GPU* : Some SOTA models dont fit in a single GPU so for those we need to get multiple GPU's as the output ! 
+
+So memory usage is really a big issue for models, therefore we need to reduce that 
+
+Assume a model of size : 7.5 Billion and using adam optimizer and is divided over 64 machines/accelerators
+
+so these in total are:
+
+Machine distributed across = 64
+optimizer bytes = 12
+Size = 7.5 Billion
+
+
+so I need to transfer over : 64 * 12 * 7.5 Billion => 5760 Billion bytes 
+
+
+9 gb per machine / weights used up by the model 
+
+(12 + 2 + 2 ) * 7.5B => 16 * 7.5B => 120GB per machine are the bytes required for traninig a model in fp16 ... all trainable ! and here we are not considering any activation state or anything in between :)
+
+ZeRO : zero redundancy optimizer 
+
+ZeRO-1 : this way the gpu is calculating all the backprops but is only responsible to update a single set of parameter and is calculating all the grads but is only updating a single one that is because of the 
+
+ZeRO-2 : here all the grads are still stored in the gpu only, but here we do reduce scatter that means , the weighs are first reduces, that means, combined / averaged out , then we do the scatter operation, that is distribute back only the required portion to the gpu back 
+
+Peak in this case is still same as the prev case, but the average is reduced 
+
+
+ZeRO-3 : params are distributed over machines these are very
+
+
+reduce, all : 
+gather all : 
+reduce scatter : 
+ 
+
 
 --- 
 ## Productionizing system 
