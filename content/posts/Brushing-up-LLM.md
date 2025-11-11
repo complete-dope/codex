@@ -305,6 +305,7 @@ To find the model's accuracy we used `LLM as a Judge` , a recurrent pipeline to 
 # Training ( refine it )
 [CS336](https://www.youtube.com/watch?v=LHpr5ytssLo&list=PLoROMvodv4rOY23Y0BoGoBGgQ1zmU_MT_&index=8 )
 
+## BASICS
 
 *Single GPU* : Some SOTA models dont fit in a single GPU so for those we need to get multiple GPU's as the output ! 
 
@@ -337,12 +338,35 @@ Peak in this case is still same as the prev case, but the average is reduced
 
 ZeRO-3 : params are distributed over machines these are very
 
+Rank : aka GPU  
+All : multiple GPU's  
+Reduce : means taking average / sum over all the values   
+Scatter : opposite of gather   
+Gather : ??
 
-reduce, all : 
-gather all : 
-reduce scatter : 
- 
+Broadcast : Broadcast / copy that part to all machines   
+Scatter : Muliple Tensors are on single GPU and are distributing then in each rank( GPUs)  
+Gather : each rank has a value and we are gathering it   
+Reduce : In this rather than concatenating we add them   
 
+All-Gather : each rank has different values and we gather all those to all the ranks  
+Reduce Scatter: each rank has a keep only a part of value and no-one keeps all 
+
+## ADVANCED CONCEPTS
+
+Hardware operations 
+Modern GPUs connect multiple GPUs together using NVlink, these are 100's of GPU connected together 
+NCCL ( pron. nickel ) : This does all the collective translations between GPU and low level CPU packets and modernly we use `torch.distributed` as it abstracts these low level things
+
+So this is all built on top of python multi-processing, 
+
+
+# Scaling Laws 
+These help in predicting , how will the model look like before even training it !
+
+This is also known as : Data vs Test-Accuracy curve !  
+
+The one where data doesnt follow any pattern , there we see inverse scaling law ( that is model accuracy decreasing over time ) 
 
 --- 
 ## Productionizing system 
