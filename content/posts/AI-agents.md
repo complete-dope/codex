@@ -9,7 +9,7 @@ TocOpen: false
 summary: "Learning about AI agents and how they are built in real world"
 ---
 
-![AI agents by andrew ng](https://www.youtube.com/watch?v=KrRD7r7y7NY)
+[AI agents by andrew ng](https://www.youtube.com/watch?v=KrRD7r7y7NY)
 
 
 ======================
