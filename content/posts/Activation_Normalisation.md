@@ -50,6 +50,10 @@ So even the scaling wont help as the problem is with the gradient calculation it
 
 ![Computation Graph](https://www.researchgate.net/profile/Yuqing-Chen-3/publication/344260274/figure/fig3/AS:936580785139716@1600309668673/A-a-neural-network-and-b-its-computational-graph-The-c-forward-and-backward.png)
 
+## GELU ( Gaussian error linear units)
+This uses a CDF of standard normal CDF that tells what is the output of getting this value multiplied by the input x so the formula is `x * PHI(x)` , where PHI is the probability distribution of this function
+CDF is the cumulative distribution function that tells P( X<= x)  so for a normal distribution , P(X <= 0) is 0.5 , P(X<=1) is 0.84 ... like this !  
+
 
 # Loss function and calculation 
 
