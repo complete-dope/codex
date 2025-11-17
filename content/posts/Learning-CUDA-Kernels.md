@@ -6,53 +6,51 @@ title: Learning and Making CUDA kernels as a future skill
 
 ## THIS IS A SKILL OF FUTURE 
 [CUDA DOCS](https://docs.nvidia.com/cuda/cuda-c-programming-guide/)
-
+[Beginners introduction to CUDA](https://developer.nvidia.com/blog/even-easier-introduction-cuda/)
 [How do GPU work by geohotz](https://www.youtube.com/watch?v=OUzm06YaUsI) starts at 20:00 
 [Amazing CS336 Stanford](https://www.youtube.com/watch?v=6OBtO9niT00&list=PLoROMvodv4rOY23Y0BoGoBGgQ1zmU_MT_&index=5)
 
 
 ## Stanford lecture
 
+Cpu does something called as branch prediction that allows to flow its operations without waiting for operations to get completed first, so this looks like, its gets many wrong also sometime but eventually stores the pattern ( Branch-1 was taken recently , branch-2 was not taken recently like this … )
 
-cpu does something called as branch prediction that allows to flow its operations without waiting for operations to get completed first, so this looks like, its gets many wrong also sometime but eventually stores the pattern ( Branch-1 was taken recently , branch-2 was not taken recently like this … )
+### Memory Allocation 
+* Shared Memory : This is used by all threads in a block and is assesible using `__shared__` keyword  
+* Global Memory : This is the default memory accessible by all kernels `cudaMalloc` , `cudaMemcpy`  (slow)
+* L1 cache : This is hardware managed memory, like a CDN, the most frequently used memory is placed close to the blocks ( can't be programmed )  (fast)
+* L2 cache : This is hardware managed memory and cant be programmed like L1 (medium)
+* Registers : 16 bit memory storage blocks , total 32 in count ,  only memory that are actually used by the CPU  ( fastest)
+ 
+Shared memory is different from L1 and L2 cache, and you can explicitly use shared memory in your CUDA programs, but L1 and L2 caches are hardware-managed and cannot be directly controlled.
 
-memory placements : 
 
-L1 : fastest / closest lives on chip
-L2 : a bit far away (7x L1)
-global DRAM : this is external memory allocation, we need to connect a bus to this this is (10x slower than L1)   
+GPU layout is as defined :   
+1. Threads : These are the one that work on a SM ( streaming multiprocessor )  
+2. Blocks : No. of threads in a blocks (usually a collection of 256 threads)  
+3. Warps : These are group of 32 threads that work using the shared memory in a block  
+4. Grid : These are no. of blocks arranged in a x-y grid   
 
-
-gpu programming 3 player:
-threads , blocks , warp 
-
-GPU : all they do is single instruction multiple data / threads ( SIMT)
+GPU : all they do is Single Instruction, Multiple Threads (SIMT)
 
 So every thread in a WARP has to execute the same instruction, and conditionals are very-very damaging ! 
 
-
 Quantization for matmuls
-1. Reducing the no. of bits ( from fp32 to fp16) that helps in decreasing the no. of moving bits, from host to memory ! 
+* Trick 1: Quantisation , Reducing the no. of bits (from fp32 to fp16) that helps in decreasing the no. of moving bits, from host to memory ! 
 
-2. most of the training in ML is mixed precision 
-
-> Operator fusion : this is how we write most common cuda kernels 
+* Trick 2: Operator Fusion  
+Operator fusion : this is how we write most common cuda kernels 
 fused vs non-fused kernels … this fused kernel is done by torch compile !
 
-> Trick 3 : recomputation, this is that gradient-checkpointing that ignores the storage of residual values and increases the computational efficiency ! 
+* Trick 3 : recomputation, this is that gradient-checkpointing that ignores the storage of residual values and increases the computational efficiency ! 
 
-> Trick 4 : dram works in burst mode, if you will ask it for 1 value.. it will give you output of 4 values (memory colaseing)
+* Trick 4 : dram works in burst mode, if you will ask it for 1 value.. it will give you output of 4 values (memory colaseing)
 
->Trick  5: tiling, this is very-very important when doing any sort of computation with cuda, this comes in picture everytime, and this is the reason that things take a lot of time also karpathy focused on this .. the tiling size is mulitples of 128 so 256 x 128 that is the tile size . To increase the efficiency of tiling I want to do all operations that are required in a single block to be completed in the same block itself , but an example like softmax there we first take the max of the row then do the operation and its not efficient, so we do Online Softmax. 
- 
-
->   memory and data movement that both needs to be improved ! 
+* Trick  5: tiling, this is very-very important when doing any sort of computation with cuda, this comes in picture everytime, and this is the reason that things take a lot of time also karpathy focused on this .. the tiling size is mulitples of 128 so 256 x 128 that is the tile size . To increase the efficiency of tiling I want to do all operations that are required in a single block to be completed in the same block itself , but an example like softmax there we first take the max of the row then do the operation and its not efficient, so we do Online Softmax. 
 
 Most of the time we are memory bound and recomputation is more efficient for storing this and transferring it  
 
 ## Terminologies :
-Threads  
-Block: this is a group of 1024 threads 
 Warp : grp of 32 threads scheduled and working on the same streaming multiprocessor 
 SIMT : single instruction , multiple threads
 Lockstep : all threads starts in parallel / works at the same time  
@@ -60,25 +58,17 @@ SM : Streaming Multiprocessor ( CPU aka processor , single processor , useful fo
 Stream : like event loop in CPU used for cuda async operations  
 PTX : parallel thread executions , has a seperate ISA used for cuda code and runs on GPU 
 
+Defining Threads with blocks : So the layout is all in 3d , ignoring the last 2 dims gives the y,z dimension as (1,1), so layout is like this, we have grids , grids have blocks ,blocks have warps, warps has thread .. we can refer grid using `gridDim.x` , can refer block as `blockIdx.x & blockDim.x` , can refer to thread as `threadIdx.x`   
+
+So to get global value of the thread we do : `blockIdx.x + blockDim.x + threadIdx.x` 
+For stride value we do : `thread`
+
 ## Structure of GPU :
 <img width="2376" height="400" alt="image" src="https://github.com/user-attachments/assets/6715cb5a-702a-40f2-b980-5cf8cc6fe5cf" />
 So each thread in a warp has to follow the same instruction, so conditionals are a real overhead cause when instruction-1 is working, then half of the threads are sleeping and when instruction-2 is working then other half is kinda sleeping as show in the diagram above ! 
 
 So conditional statements inside a single warp is very-very damaging as they are just doing the same thing 
 
-
-## Memory in GPU : 
-
-* Shared Memory : This is used by all threads in a block and is assesible using `__shared__` keyword  
-* Global Memory : This is the default memory accessible by all kernels `cudaMalloc` , `cudaMemcpy`  (slow)
-* L1 cache : This is hardware managed memory, like a CDN, the most frequently used memory is placed close to the blocks ( can't be programmed )  (fast)
-* L2 cache : This is hardware managed memory and cant be programmed like L1 (medium)
-* Registers : 16 bit memory storage blocks , total 32 in count ,  only memory that are actually used by the CPU  ( fastest)
- 
-Yes, shared memory is different from L1 and L2 cache, and you can explicitly use shared memory in your CUDA programs, but L1 and L2 caches are hardware-managed and cannot be directly controlled.
-
-Serial Code : Synchronous code , that runs sequentially on the CPU 
-Parallel Code : Code that runs sequentially on the GPU
 
 ### SIMT Model 
 So this model assumes that the threads have same instruction and they are working on different data .. and thread role divergence is not assumed !! as this helps in executing in parallel at the same time and a warp scheduler is used to schedule it and works in lockstep 
@@ -110,12 +100,11 @@ __global__ void divergent(){
   }
   s[idx] = data;
 }
-
 ```
+
 ### Async programming
 Streams are like event loop , schedules async programs and have access to stop and start them !!
-can have multiple streams (as its a multiprocessor with multicores )  
-
+can have multiple streams (as its a multiprocessor with multiple-cores )  
 
 
 ## Compilation and low level stuff in the API 
@@ -131,10 +120,7 @@ What currently happens in software is the above steps gets followed for langs li
 
 
 
-`nvcc compiler` : based on backend powered by LLVM , 
-seperates device and host code , 
-converts device code to PTX (assembly code) 
-converts host code to obj file 
+`nvcc compiler` : Compiler built on top of g++ that compiled cuda code to object file + other formats, based on backend powered by LLVM  
 
 JIT compilation: 
 GPU driver takes in the PTX code that is generated in the compilation step by nvcc 
