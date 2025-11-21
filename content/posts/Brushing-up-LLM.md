@@ -156,10 +156,28 @@ h = SUM _tokens 0 to i_ Alpha(j) * V
 
 * RMSNorm : works on each dimension independently rather than batch or a layer norm and is fast / easy to use. The role of norm is to just scale down that dimension , not to change its direction or meaning
 
-* Rotary Embedding (RoPE) : This is a nice interesting topic, without positional embedding its hard for model to make sense of what is the word sequence so `I bought a apple watch` and `watch I buy an apple` these 2 are embedded as same only so this clearly makes no sense so first method is to avoid this and add absolute postional embeddings(APE) that is explicitly tell which position them token is at something like `I am token #5` so the same token at different position would mean something else and this was also a flawed approach.
+* Rotary Embedding [RoPE](https://www.youtube.com/watch?v=SMBkImDWOyQ) : This is a nice interesting topic, without positional embedding its hard for model to make sense of what is the word sequence so `I bought a apple watch` and `watch I buy an apple` these 2 are embedded as same only so this clearly makes no sense so first method is to avoid this and add absolute postional embeddings(APE) that is explicitly tell which position them token is at something like `I am token #5` so the same token at different position would mean something else and this was also a flawed approach.
 
 So now we use this RoPE the idea is to encode positional embeddings as rotational vectors using `sin and cosine` such that we encode only the difference between tokens positions and not the Absolute position of the token.   
 so the idea is to transform the query and keys vectors in different frequencies to they capture local and global patterns   
+
+Hm, but how is this done? 
+Assuming we have 2d embeddings, we rotate the embedding by position*Theta , so it becomes, (position_i * theta) and (position_j * theta) , j-i is the relative difference between it, amount of rotation for a token depends only on its absolute position in the sentence  
+suppose you have 2 statements , 'I walk my dog' other is 'Every day I walk my dog' , the relationship between 'I' and 'Dog' is same in both the statements and its irrespective of how many tokens come before 'I' or after 'Dog' ,those tokens are independent from the positional relationship these 2 define ( see the maths below )
+
+```bash 
+sentence-1 : I walk my dog
+
+rotation matrix for 'I' : m =1 , [[cos 1T, -sin 1T] ,[sin 1T , cos 1T]] , and for 'dog' (m=4) : [[cos 4T , -sin 4T], [sin 4T cos 4T]]
+
+now doing Q.K.transpose()
+
+RM_I is the key : RM transpose is just -(RM_I)
+RM_dog * RM_I 
+that becomes, [[cos 3T, -sin 3T], [sin 3T , cos 3T]]
+
+so the difference between this is still 3T only , that is also the relative difference between this 
+```
 
 > all this intuition is coming from signal processing in electronics where signal at different frequency capture these patterns
 
@@ -182,6 +200,7 @@ def apply_rotary_emb(x, cos, sin):
 
 <img width="525" height="350" alt="image" src="https://github.com/user-attachments/assets/74af3251-0d51-40bb-a921-f13c35e2be97" />
 
+The rotation in any dimension (4d ,3d, 8d) is only done by breaking that into 2d rotations, (spectral theorem of orthogonal representation) so the best way it to break that into dims of 2 only !
 
 > When a thing makes no possible sense, there might be computation benefit involved in that !! 
 
