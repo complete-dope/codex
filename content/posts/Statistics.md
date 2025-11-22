@@ -15,6 +15,7 @@ Deep dive into the whole required stastistics , that would be a required to lear
 
 `Likelihood` : It measures how well a statistical model fits the observed data. 
 
+`Expectation` : so E(x) is states what is the average value of x , now let say we have `E(tau ~ P(Theta))  = {R(tau)}`,  this means what is the average reward value,given my tau comes from the distribution P(theta) so its expanded as `SUM P(tau | theta) * R(tau) = Expectation {R(tau}`, this is how this all plays out !   
 
 ### QUESTION ? 
 Q) What is a statistical model and observed data ?
