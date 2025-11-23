@@ -110,7 +110,7 @@ In SFT, model never learns from its own state, it mimics the correct truth label
 
 But in RL, model learn from its mistake and that is corrected with reward model, a reasoning could go wrong in 1000 ways and only one way to correct it that's why we need RL here ! 
 
-### Deep seek R1 zero 
+### Deepseek R1  
 
 They used the base model ( the one that is pretrained ), then added reward function for 2 things that are format reward + correctness / accuracy rewards and they got nice accuracy to openai-o1 model. 
 
@@ -119,8 +119,6 @@ They just did RL no CoT SFT, so there is this paper called Dr. grpo, there it's 
 Learnings from this settings: the base model already has a lot of sense about thinking and its just that its not using it and a small thinking dataset of 1000 examples really increases all the benchmarks and makes it a nice model.  
 
 this was trained on maths and physics dataset to make sure that it is giving some nice verifiable rewards in its cot thinking ... once that is done
-
-### DeepSeek R1 (successor to the r1 zero paper)
 
 This starts where the r1 zero ends, 
 so SFT on this thinking text, aka sft-2 , so model knows where to start from 
@@ -133,6 +131,7 @@ then train it on verifiable rewards like maths, physics (that is called as RLVR)
 
 They tried with process based rewarding but they achieved nothing from that ... :(
 
+The reward model was avoided in initial training cause of `reward hacking` (learn more on it)  
 
 ### Kimi 1.5 paper 
 
