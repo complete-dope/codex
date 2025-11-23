@@ -92,8 +92,11 @@ PPO , GRPO : these are techniques to find out that advantage value , and as we s
 DPO : that is preference optimization and the loss function is more like  , its loss function is more like , Increases it over a correct prediction , substract from the wrong prediction .. 
 
 —
-MOTIVATION BEHIND THIS RL : 
+## MOTIVATION BEHIND THIS RL : 
+
 Thinking models are one way of improving models as we now have step wise critics for the thinking process and this helps in finding where the model went wrong (as the reward function also looks at it step wise, similar to how we find a solution is wrong.. going step by step) and how can we improve it using a better trained reward model.. so this is a reason to bring thinking models into action 
+
+but more of a motivation is to be able for a model to learn from its own negative samples also, that this is something bad and this is something right .. 
 
 ## Reward modelling 
 Process rewarding : that is each reasoning step is given a reward score to tell how good that reasoning was !  
