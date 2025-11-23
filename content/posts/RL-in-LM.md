@@ -94,4 +94,43 @@ DPO : that is preference optimization and the loss function is more like  , its 
 —
 MOTIVATION BEHIND THIS RL : 
 Thinking models are one way of improving models as we now have step wise critics for the thinking process and this helps in finding where the model went wrong (as the reward function also looks at it step wise, similar to how we find a solution is wrong.. going step by step) and how can we improve it using a better trained reward model.. so this is a reason to bring thinking models into action 
- 
+
+## Reward modelling 
+Process rewarding : that is each reasoning step is given a reward score to tell how good that reasoning was !  
+Outcome rewarding : this gives a single score at the end that tells how good the model generation was !  
+
+
+## Why to even do RL ? 
+
+To make models better as a whole, we need to add reasoning behaviour in it, and so we need to do RL on it
+
+So first collect some sample data for cot reasoning, then sft (supervised finetune) to make model understand to use `<think>` these tokens and once the model learn to do that, collect samples from model , pass that to human that does step wise rewarding (process rewarding) over that thinking tokens and then use RL to train the model to become close to that recipe / rewards ..
+
+In SFT, model never learns from its own state, it mimics the correct truth label out and never knows what is being wrong means and its ripple effects .., sft is positive reinforcement but model never knows what not to do , sft gradient treats every sample as equal and dont know the wrong path for it.. also relying on human to write correct COT, that is a very expensive process and model will never be better than human at those tasks ! 
+
+But in RL, model learn from its mistake and that is corrected with reward model, a reasoning could go wrong in 1000 ways and only one way to correct it that's why we need RL here ! 
+
+### Deep seek R1 zero 
+
+They used the base model ( the one that is pretrained ), then added reward function for 2 things that are format reward + correctness / accuracy rewards and they got nice accuracy to openai-o1 model. 
+
+They just did RL no CoT SFT, so there is this paper called Dr. grpo, there it's explained the moments from the paper (specifically 2 moments one is the aha moment and other is the longer output thinking the model is producing more tokens for a complex problem) so this paper tells about why model has not learned from it and these are in its pretraining dataset and wrong initialisation in the loss function ! 
+
+Learnings from this settings: the base model already has a lot of sense about thinking and its just that its not using it and a small thinking dataset of 1000 examples really increases all the benchmarks and makes it a nice model.  
+
+this was trained on maths and physics dataset to make sure that it is giving some nice verifiable rewards in its cot thinking ... once that is done
+
+### DeepSeek R1 
+
+This starts where the r1 zero ends, 
+so SFT on this thinking text, aka sft-2 , so model knows where to start from 
+
+and then trains a reward model that tells where its wrong or right, once this reward model is trained its now able to generalise well on both the mathematical tasks as well as english tasks 
+
+Here we start with the CoT SFT dataset so that its not a cold start problem and make sure model actually learn how to do the thinking part .. 
+then train it on verifiable rewards like maths, physics (that is called as RLVR) , then do the 
+
+
+
+
+
