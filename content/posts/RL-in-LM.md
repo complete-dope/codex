@@ -120,17 +120,19 @@ Learnings from this settings: the base model already has a lot of sense about th
 
 this was trained on maths and physics dataset to make sure that it is giving some nice verifiable rewards in its cot thinking ... once that is done
 
-### DeepSeek R1 
+### DeepSeek R1 (successor to the r1 zero paper)
 
 This starts where the r1 zero ends, 
 so SFT on this thinking text, aka sft-2 , so model knows where to start from 
 
-and then trains a reward model that tells where its wrong or right, once this reward model is trained its now able to generalise well on both the mathematical tasks as well as english tasks 
+and then trains a reward model (on human outcome rewarding) that tells where its wrong or right, once this reward model is trained its now able to generalise well on both the mathematical tasks as well as english tasks.
 
 Here we start with the CoT SFT dataset so that its not a cold start problem and make sure model actually learn how to do the thinking part .. 
-then train it on verifiable rewards like maths, physics (that is called as RLVR) , then do the 
+then train it on verifiable rewards like maths, physics (that is called as RLVR) , then do the training on tasks like english and others
 
 
+They tried with process based rewarding but they achieved nothing from that ... :(
 
 
+### Kimi 1.5 paper 
 
