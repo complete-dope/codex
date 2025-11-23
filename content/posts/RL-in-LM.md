@@ -1,5 +1,5 @@
 ---
-date: 23-11-2025
+date: 2025-11-23
 draft : false
 title : Reinforcement learning in Language Modelling 
 ---
@@ -135,4 +135,35 @@ They tried with process based rewarding but they achieved nothing from that ... 
 
 
 ### Kimi 1.5 paper 
+
+Important parts of this paper and what we can learn from this paper 
+Its similar to R1, its uses a different policy model
+
+Data curation : balanced dataset across domains, only verifiable rewards, model that doesnt do reasoning, only choose tough questions that fail best of 8 from hosted models 
+
+SFT : little description, dont know how they generated there reasoning dataset for sft from .. 
+
+Algorithm : more like dpo but htis comes down to the one that is quite similar to the grpo loss 
+
+
+### Qwen3 model
+Similar pipeline as above , the cold start CoT sft solution, then we have think and no-think tags that sees once a model reaches a long thinking they add a statement along with stopping think tag, step we need to stop at a max-length of this token statement .. and start with the answer tag now. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
