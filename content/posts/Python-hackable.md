@@ -70,25 +70,25 @@ network calls using API that use `json` as a serializer to serialize dataset int
   <summary>
     TypeError: cannot pickle 'dict_values' object
   </summary>
-  This here says that a you are trying to serialize dict values but as that is not a container dtype so that is not allowed in this case .. . 
+  This here says that a you are trying to serialize dict values but as that is not a container dtype so that is not allowed in this case ... 
 </details>
 
 
 
 ### Multiprocessing 
-so multiprocessing in python depends on 
+so multiprocessing in python depends on pickle library and we create processes using pool and inside pool we define max no. of processes that we need to run so this acts as 'semaphores' and this limits the compute ! 
 
 <details>
   <summary> 
-    Recuriive 
+    Runtime error : An attempt has been made to start a new process before the current process has finished its bootstrapping phase. 
   </summary>
-
-  
+That means you are trying to load something in your file that is recursively calling that function ( function that spawns more processes ) so that is the reason we use this `if __name__ == '__main__'` as a guard here , in macos this is how `spawn` method works 
 </details>
 
 
 
 ### Guard 
-if __name__ == '__main__' : This says if you are the main process running this then only run it if its a subprocess ignore this part .. 
+if `__name__ == '__main__'` : This says if you are the main process running this then only run it if its importing from a subprocess ignore this part .. 
 
-
+### functools
+`partial` : this is to define the functions with some default paramter values  
