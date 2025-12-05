@@ -43,3 +43,52 @@ common error that are often repeated :
 
 
 ### `sys library `
+
+
+
+### python serializer
+
+so python has an inbuilt serializer called `pickle` that is used to serialize (convert that to bytes) all *container dtypes* so what cannot be pickled are objects that contain things like : 
+* open file handlers
+* sockets
+* lambda functions
+* generators
+* dict_values ( as that is not a type container )
+
+
+Some more seralizers in python : 
+1. json  : `import json`
+2. pickle : `import pickle`
+3. marshal : `import marshal`
+etc (many open sourced also available)
+
+network calls using API that use `json` as a serializer to serialize dataset into bytes and then that gets transferred over to TCP to make a network call 
+
+`pickle` is designed for internal python processes only ,that is, if doing multiprocessing in python , or serializing something in python process to share to be consumed by some other python process, in these scenarios pickle is very useful in those scenarios  .. 
+
+<details>
+  <summary>
+    TypeError: cannot pickle 'dict_values' object
+  </summary>
+  This here says that a you are trying to serialize dict values but as that is not a container dtype so that is not allowed in this case .. . 
+</details>
+
+
+
+### Multiprocessing 
+so multiprocessing in python depends on 
+
+<details>
+  <summary> 
+    Recuriive 
+  </summary>
+
+  
+</details>
+
+
+
+### Guard 
+if __name__ == '__main__' : This says if you are the main process running this then only run it if its a subprocess ignore this part .. 
+
+
