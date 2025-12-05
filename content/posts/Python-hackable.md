@@ -12,6 +12,9 @@ tags: ["python","easy hacks"]
 `os.path.abspath(__file__)` : this list the current path of file that we are on / scripting on 
 `os.path.dirname(str)` : for whatever string path file defined we list the directory name for the same 
 `os.path.getsize(path)` : outputs the byte count for that file  
+`os.path.isfile(path)` : this outputs bool value of whether this is a True or False
+`os.path.isdir(path)` : directory path , outputs bool value whether this is true or false
+`os.path.exists(path)` : bool , tells if this path exists or not 
 
 common error that are often repeated : 
 
