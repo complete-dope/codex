@@ -78,6 +78,10 @@ network calls using API that use `json` as a serializer to serialize dataset int
 ### Multiprocessing 
 so multiprocessing in python depends on pickle library and we create processes using pool and inside pool we define max no. of processes that we need to run so this acts as 'semaphores' and this limits the compute ! 
 
+Use `multiprocessing.pool(num_processes)` in python to distribute computation loads across, and this also gives a limit on no. of open processes at a time
+
+
+
 <details>
   <summary> 
     Runtime error : An attempt has been made to start a new process before the current process has finished its bootstrapping phase. 
@@ -92,3 +96,19 @@ if `__name__ == '__main__'` : This says if you are the main process running this
 
 ### functools
 `partial` : this is to define the functions with some default paramter values  
+`traceable` : 
+
+
+### Network requests
+To make mulitple network calls for a same session we can open up a client session that makes sure to keep a TCP /IP session alive for more time and helps between shared authentications between the sessions that can further help in lower latency (by avoid irrelevant handshakes) 
+
+```python 
+async with aiohttp.ClientSession() as session:
+  async with session.get('') as response:
+
+
+```
+
+
+
+
