@@ -109,6 +109,36 @@ async with aiohttp.ClientSession() as session:
 
 ```
 
+### Uploading a pypi package  
+
+#### uv vs pip 
+If your project setup is done using uv, then you need to do the `uv add <package>` to install the package in global such that it is reproducible .. 
+
+Installing in editable mode :
+<to check this out>
+
+Intellisense : This completes the type check and type hints .. 
+pylance : language server
+pywrite : type hinter / writer
+Editable install : this is done when you want to live debugs a python package and is installed using : `pip install -e . `  this just stores the pointer to the folder and we can edit the files and see the results getting updated at the same moment .. 
+
+Always check `which python` , and also check this `which pip`, and these should point to same environments (not necessary as pip is a module and should be used via `python -m pip`   
+
+Its common that sometimes pip doesnt get shipped in a python env so we can install it using `python -m ensurepip --upgrade` , this command installs the latest pip version and should always use the pip that is in the same env as the python and for doing that we can use it as a python module `python -m pip install <file>`    
+
+* module : minimal code that is contained in a single .py file 
+* package : python folder that is wrapped in `__init__.py` file 
+* library : pyhton files that are related modules in a directory  
+* framework : a comprehensive set of packages and modules that provides a complete structure for building an application.
+
+
+  
+
+
+
+
+
+
 
 
 
