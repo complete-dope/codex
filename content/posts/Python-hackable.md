@@ -80,6 +80,10 @@ so multiprocessing in python depends on pickle library and we create processes u
 
 Use `multiprocessing.pool(num_processes)` in python to distribute computation loads across, and this also gives a limit on no. of open processes at a time
 
+So in a unix system, everything is a file and is read using its file offset and file descriptor so this becomes   
+Each file read has 2 flags 
+1. file-descriptor : OS level, this is how processes talk to each other 
+2. file-cursor : tells what is open what is closed  
 
 
 <details>
