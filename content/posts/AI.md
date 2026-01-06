@@ -22,6 +22,15 @@ There also we have true distribution and we need to minimize the output distribu
 
 `entropy(P,Q) = cross_entropy(P,Q)`
 
+Cross entropy works like how much suprised you are seeing the output from model   
+Consider these examples : 
+
+```python
+1. if the predicted probability is 0.1 and the true was 1 so the loss is calculated as : 1 * ln (0.1) = -2.3
+2. if the predicted prob is 1 and true was also 1 so suprise is 0
+3. if the predicted probability is 1 and true is 0.1, this case will never come (as we dont take that case, we only consider taking the correct probability case always)       
+```
+
 
 So this way we calculate the loss !! and update the parameters / weights of the model ( aka the complex equation estimator )  
 
