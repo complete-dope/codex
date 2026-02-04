@@ -49,8 +49,8 @@ docker run -d image_name
 ```
 
 ## After docker container is up and running 
-You can only exec into it if its running, else you have to run it in iterative mode and go to its terminal 
-`docker exec -it ed4f1a1d1880 /bin/bash` : Opens up a new terminal inside that container to interact with the processes running in the container. 
+You can only exec into it if its running (means it should be a container), else you have to run it in iterative mode and go to its terminal    
+`docker exec -it <contaier-id> /bin/bash` : Opens up a new terminal inside that container to interact with the processes running in the container. 
 
 ## Code failed
 1. fix code and redeploy container, `docker build --no-cache <image-name> -f Dockerfile .`
