@@ -67,6 +67,15 @@ Rebase True
 
 ```
 
+in one branch , we have config.json(dev) files and in another branch we have another config.json(prod), so while merging this raises merge conflict that can be easily sorted , but in PR this gets reflected so a better way to do this is for dev , use dev config , then when merging from prod use prod config, 
+
+```
+git checkout my-branch // this is the original branch in which we need to make the changes
+git checkout origin/main -- path/to/unwanted/files // take these files from the origin/main branch 
+git commit -m "Drop unrelated changes" // commit to the original branch
+
+// then raise a PR for it but remember in dev you need to revert back to the prod one for this 
+```
 
 
 
