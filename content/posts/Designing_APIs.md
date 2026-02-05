@@ -46,5 +46,13 @@ REST API designs
 * PATCH for fixing some data that was already added before in db or somewhere
 * DELETE for deleting a resource
 
-  
+
+Before a browser calls any API, it sends a preset fetch request that tells what all can be extracted or is there is an CORS issue in this request. 
+
+## Webhook 
+There are few problems in doing a webhook call request,
+you cant check that in localhost if your server is deployed (you need to call call something that is available from public internet)
+
+And to segregate this a possible way is to change server code and check a condition when to call (very doable, possible , best approach )   
+Another way , if the webhook calls are dynamic then pass this as a request param   
 
