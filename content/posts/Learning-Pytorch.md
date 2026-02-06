@@ -100,3 +100,10 @@ for c in range(input_size[2]):
 
 visualizing `ConvTranspose2d` is a bit more complex and tough than the conv2d layers and the reason is less intutive nature behind it. 
 Dont think much about it ... just know that it works and gives results.( I dont know much about it too)
+
+For wrorking with image dataset, we need to do understand , how important resolution is, resolution of an image is the no. of pixels that we have in an image  
+*2k image : 2048 x 1080 pixels, more pixels better clarity of image and this way the model also learns better
+*4k image : 4096 x 2160 pixels, 
+
+Most models are trained on 512 x 512 dataset , and that is one reason its limited, but if your dataset is at 1024 x 1024 , aka upscaled then that leads to better results 
+
