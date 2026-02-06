@@ -63,3 +63,6 @@ Refresh token : this is a token used to get a new access token
 Access token : short lived JWT (15 min) and they are passed to auth server when frontend starts getting 401, and auth server returns a new refresh token and a new access token that is used for next 15 minutes, this is how its in web most time
 HMAC : Hash-based Message Authentication Code, this is like JWT, so generate a hash on both servers and match it ( obvio add this in header as well ) 
 
+## Timeout 
+Always add timeout to API, so if a request fails , raise a ConnectionTimedOut error and change status to False 
+
