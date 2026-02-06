@@ -58,7 +58,7 @@ for param in model.parameters():
 
 
 ### Convolutional Layers demystified with alias codes 
-
+[3b1b video conv](https://youtu.be/KuXjwB4LzSA)
 Nice [link](https://github.com/vdumoulin/conv_arithmetic/blob/master/README.md) for visualizing the convolution operation.
 
 `conv2d( kernel_size = 3, stride = 1, padding = 1)` translates to   
