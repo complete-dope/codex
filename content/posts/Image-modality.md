@@ -1,8 +1,10 @@
 ---
-title : Image Modality
-date : 06-02-2026
-desc : 
-tags : ['Image models', 'conv model' , 'Diffusion' , 'learnings']
+draft: false
+title: "Image modality"
+date: 2026-02-06
+tags: ["image", "modality"]
+ShowToc: true
+TocOpen: false
 ---
 
 Resolution means a lot for image domains an upscale from 512 to 1204 can make or break your AI model   
