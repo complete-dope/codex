@@ -66,3 +66,10 @@ HMAC : Hash-based Message Authentication Code, this is like JWT, so generate a h
 ## Timeout 
 Always add timeout to API, so if a request fails , raise a ConnectionTimedOut error and change status to False 
 
+
+## Making multiple requests and next one depends on prev one 
+These all cases are handled via sending that in the request headers to make sure someone didnt injected that in between and to make sure this is an consistent request .. add in headers for handling auth for request. These are called signed URL , that means this URL is signed by someone that has the SECRET-KEY .   
+
+
+
+
