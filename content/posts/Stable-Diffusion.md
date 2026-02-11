@@ -7,6 +7,35 @@ tags: ["FM","flow matching","diffusion model","stable diffusion","DDPM","samplin
 
 The pre-requisites for this blog post is Journey till diffusion model 
 
+## Generative image models 
+We start with some image dataset, lets say x ~ X  (where x is a sample and X is the dataset)  
+this x belongs to `R_(1024 x 1024 x 3)` space 
+
+and doing any operations in this space is very hard so we try to do these in a lower dimension (z)   
+z belongs to `R_(1 x 512)` 
+
+so assume we somehow made a function that did `z = f(x)` , this z is in lower dimension 
+and now we need to construct this back also that is `x_hat = q(z)` , this x_hat is the predicted one   
+and we can minise this `loss = || x - x_hat || **2 `
+
+but here we have a catch, the formulation has till now learned to reverse back the input image, nothing new can be generated.   
+
+So how to solve this ?   
+One simple method is, to assume our latent space to be a normal distribution `N(0,1)` by doing this all representations are tightly nit together and translation in latent space would actually mean something (unlike in case of discrete one, where each had void space and sparsely aligned vectors)   
+
+So till now we got uniformly distributed latent space and latent vectors,  
+To make this able to generate from any point in latent space we add noise to it 
+
+so initial latent state : z_0 belongs to N(0,1)
+noise distribution belongs to N(0,1)
+
+so we are just rotating that latent vector in latent space   
+z_t = z_0 + t * N(0,1)   
+
+now using the timestamp and conditional prompt, we predict the added noise, and we try to recover back to z_0 and in the recovery process we add some noise back so that we dont land up in same spot each time , add some random directions to this leads to creative solution   
+
+once we get our cleaned z0 out we can generate an image using that latent vector   
+
 ## Stable Diffusion model:
 
 Uses cross-attention for allowing conditional modelling ( using text/segmentation map + image to generate image) 
@@ -151,6 +180,7 @@ The forward path is deterministic, so there we can use velocity field
 ### Connection to VLA models
 
 this same approach is used in the VLA models to predict the action tokens in robotics . Here we have continous action space in flow matching in tokens we had discrete tokens / space. its predicts velocity in continous space
+
 
 
 
