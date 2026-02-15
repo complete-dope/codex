@@ -188,18 +188,48 @@ So we use a [vector field](https://en.wikipedia.org/wiki/Vector_field) that tell
 `P_t` : probability density path
 `P_t(x|x1)` : conditional probability field 
 `u_t` : vector field 
-`u_t( x | x1 )` : conditional vector field
+`u_t( x | x1 )` : conditional vector field , that we take an 
 
 
 So flow matching says, rather than taking the whole dataset why dont we just take a sample of it and try to get out the probability density path for a single data points  
 <img width="3998" height="1239" alt="image" src="https://github.com/user-attachments/assets/51df041b-6200-4903-b2d5-c2ff2fb2c7c2" />
 
-    
+$u_t(x)$ : "global" vector field for a billion images, but we dont that and getting for all the possible images that is also intractable   
+$u_t(x|x1)$ : conditional vector field, we are taking only one image and getting its whole path out 
+so the loss has now become : 
+
+1. Prev loss / flow matching loss : `$L$ = MSE[$v_t(x)$ , $u_t(x)$]`
+
+2. Updated loss value / conditional flow matching : `$L$ = MSE[$v_t(x)$ , $u_t(x|$x_t$)$]`
+
+probability path $p_t(x|x_1)$, we are essentially building a bridge between noise and a real image
+
+* Standard Gaussian: $\mathcal{N}(0, 1)$ — This is a bell curve centered at zero   
+* Conditional Gaussian: $p(x | x_1) = \mathcal{N}(x | x_1, \sigma^2)$ — "This is a bell curve centered wherever $x_1$ is.
+
+$v_t(x)$ : predicted vector field   
+$u_t(x)$ : original vector field  
+
+
+What is the simplest way to move a cloud of noise toward a target $x_1$ so that it remains a Gaussian (bell curve) the whole way?"   
+> They decided on two simple rules for the "Scale" and "Shift"   
+
+$\psi_t(x) = \sigma_t(x_1)x + \mu_t(x_1)$ is an Affine Transformation  
+
+So the simple scaling equation becomes `y = Variance * X + Mean`, where variance is for scaling and mean is for shifting compare this to `y = mx + x`
+
+Shifting : we want mean at `t=0` to be at origin, and at `t=1`to be at x1, so best is to shift that is linearly `t * x1`, 
+
+At the start ($t=0$), we want the noise to be full size ($1$). At the end ($t=1$), we want the noise to be almost gone (so the image is sharp).The simplest way to do that is:$$\sigma_t = 1 - t$$
+
+From here we get the velocity gradient as : 
+<img width="769" height="676" alt="image" src="https://github.com/user-attachments/assets/04db3f83-8612-4410-b6fc-c5d4cd53f034" />
 
 
 ### Connection to VLA models
 
 this same approach is used in the VLA models to predict the action tokens in robotics . Here we have continous action space in flow matching in tokens we had discrete tokens / space. its predicts velocity in continous space
+
 
 
 
