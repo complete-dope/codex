@@ -185,7 +185,12 @@ So we use a [vector field](https://en.wikipedia.org/wiki/Vector_field) that tell
 
 <img width="1707" height="851" alt="image" src="https://github.com/user-attachments/assets/9d91ef51-7b63-48f5-b341-5b28e1f6fb94" />
 
-`P_t` : probability density path   
+`P_t` : probability density path
+`P_t(x|x1)` : conditional probability field 
+`u_t` : vector field 
+`u_t( x | x1 )` : conditional vector field
+
+
 So flow matching says, rather than taking the whole dataset why dont we just take a sample of it and try to get out the probability density path for a single data points  
 <img width="3998" height="1239" alt="image" src="https://github.com/user-attachments/assets/51df041b-6200-4903-b2d5-c2ff2fb2c7c2" />
 
@@ -195,6 +200,7 @@ So flow matching says, rather than taking the whole dataset why dont we just ta
 ### Connection to VLA models
 
 this same approach is used in the VLA models to predict the action tokens in robotics . Here we have continous action space in flow matching in tokens we had discrete tokens / space. its predicts velocity in continous space
+
 
 
 
