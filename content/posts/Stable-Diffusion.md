@@ -207,6 +207,9 @@ probability path $p_t(x|x_1)$, we are essentially building a bridge between nois
 * Standard Gaussian: $\mathcal{N}(0, 1)$ — This is a bell curve centered at zero   
 * Conditional Gaussian: $p(x | x_1) = \mathcal{N}(x | x_1, \sigma^2)$ — "This is a bell curve centered wherever $x_1$ is.
 
+<img width="3836" height="1396" alt="image" src="https://github.com/user-attachments/assets/d5825f68-1e4d-42bb-be8d-679a5bb46845" />
+
+
 $v_t(x)$ : predicted vector field   
 $u_t(x)$ : original vector field  
 
@@ -229,6 +232,7 @@ From here we get the velocity gradient as :
 ### Connection to VLA models
 
 this same approach is used in the VLA models to predict the action tokens in robotics . Here we have continous action space in flow matching in tokens we had discrete tokens / space. its predicts velocity in continous space
+
 
 
 
