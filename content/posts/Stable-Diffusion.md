@@ -177,9 +177,25 @@ FM is deterministic, the value of noise (e) doesnt depend on timestamp, once its
 The forward path is deterministic, so there we can use velocity field
 
 
+## Flow matching from Generative Matching 
+* Differential equations : Differential equation are used at places where the value / state at an instant of time gives us a vague meaning (like why is hot water hot at x=0,t=0 and cold at t = 1), here we use differential equations to come up with a real-equation as rate of telling rate of change is easier in this case.   
+
+In diffusion models one known probability distribution (normal / gaussian distribution) is getting transformed to some unknown one and in saying `Why is distribution looking like this at t = 0 and like this at t = 0.5 , that different in t = 0.7 , makes no sense` so in this case we rather make an differential equation to explain this flow (here getting that differential equation is also tough but easier than getting the real transformation equation)  
+So we use a [vector field](https://en.wikipedia.org/wiki/Vector_field) that tells us how the distribution is supposed to flow in time, from t belonging to [0,1]    
+
+<img width="1707" height="851" alt="image" src="https://github.com/user-attachments/assets/9d91ef51-7b63-48f5-b341-5b28e1f6fb94" />
+
+`P_t` : probability density path   
+So flow matching says, rather than taking the whole dataset why dont we just take a sample of it and try to get out the probability density path for a single data points  
+<img width="3998" height="1239" alt="image" src="https://github.com/user-attachments/assets/51df041b-6200-4903-b2d5-c2ff2fb2c7c2" />
+
+    
+
+
 ### Connection to VLA models
 
 this same approach is used in the VLA models to predict the action tokens in robotics . Here we have continous action space in flow matching in tokens we had discrete tokens / space. its predicts velocity in continous space
+
 
 
 
