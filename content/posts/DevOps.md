@@ -7,10 +7,11 @@ draft : false
 ---
 
 ## Kubernetes 
-This is a manager of docker containers 
+Kubernetes is a manager of pods, those pods could be running on different machines and we can have multiple roles to this, one could be `control panel` other could be `worker` role  
 
-So assume it like this , we have a VM from azure , that has some specs and we now want to spin up 4 containers in it so to do this we need manager as well that handles the routing, load balance, code updates reflection ( CI/CD ) and someone that we can talk to at manager level and it gives all information about the internal working of the containers, logs etc so that role is taken cared by kubernetes (k8s) 
+So k8s takes your machine ( or you can define via virtualisation, the amount / ratio it should take) and then it orchestrates it, so you have to define a .yaml file and k8s will take care of on which cluster to run this and how many pods to spin up for this , everything is taken care of just you need `namespace`, `entry file / project` etc all this written in a `yaml` file. 
 
+And you have mulitple such machines like assume `one rasberry pi`, `one rtx machine` , etc etc those all can be orchested via a single k8s control panel.  
 
 ## Docker Container 
 Create your dockerfile , then create its image and then from image create a container, so this is the same that as before only additional step is to register this container to a registry ( docker hub / private hub like gitea)  
