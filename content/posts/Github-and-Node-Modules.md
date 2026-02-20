@@ -41,7 +41,7 @@ to check the remote of branch we get,
 `git status -sb` : helps to find the remote branch 
 
 
-`git config pull.rebase false`: makes the default git behaviour as pull and merge 
+`git config pull.rebase false`: makes the default git behaviour as pull and merge (your commit history is not maintained in this)
 `git config pull.rebase true `: pulls the latest commits to the branch and add your commits on top of that 
 
 ```
@@ -63,7 +63,7 @@ Rebase false
 
 Rebase True
 ```
-   A---B---C---X'---Y'   ← your branch now
+   A---B---C---X'---Y'   ← your branch now 
 
 ```
 
@@ -76,6 +76,7 @@ git commit -m "Drop unrelated changes" // commit to the original branch
 
 // then raise a PR for it but remember in dev you need to revert back to the prod one for this 
 ```
+
 
 
 
