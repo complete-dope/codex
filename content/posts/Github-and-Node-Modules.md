@@ -77,6 +77,40 @@ git commit -m "Drop unrelated changes" // commit to the original branch
 // then raise a PR for it but remember in dev you need to revert back to the prod one for this 
 ```
 
+# Problem when working in a large team where many are working on same features 
+
+Problems: 
+1. many people working on same file, potential conflict
+2. you working on a seperate feature , others working on other features 
+
+## Best way to merge branches together
+`Rebase` : 
+Lifts your local commits off the branch and puts them in a temporary "holding area."  
+Resets your branch to match the latest commit on the origin (origin/main).  
+Replays your commits one by one on top of that new base.  
+
+Industry standard is to first do rebase, fix errors that come in between and jsut stage those dont commit , and continue your replay using this command : `git rebase --continue` that and then do squash and merge, else if no conflict comes then change this part  
+
+`Rebase , Squash and Merge and then Rebase `: deadly , first you rebased (nice) , then did squash and merge ( nice , and now a new commit was created that your feature branch has no idea of and then you try to do rebase ( git tries to rerun your commits over top of the new commit and results in massive conflicts ) so you start getting merge conflicts in that part. 
+
+Once a branch is squashed , retire that branch dont use that same branch again
 
 
+`Merge` : 
+Keeps the commits seperately so that everything can be known like when was this started , its first commit and helps in keeping all the history
+`--no-commit` : stages all the commit but doesnt create that final merge commit.    
+`simple merge` : merges the branch and adds that final merge commit as well to it.    
 
+BEST METHOD : 
+```
+Many modern tech companies (think Google, Meta, and high-growth startups) prefer Squash and Merge.
+
+Why they prefer it: When hundreds of developers are pushing code daily, a "Normal Merge" makes the main branch history impossible to read. It becomes a jungle of tiny, meaningless commits.
+
+The Workflow: 1.  Dev works on a feature (50 messy commits).
+2.  Dev Rebases locally to stay up to date.
+3.  Dev Squash-Merges into main.
+
+The Result: The main branch looks like a clean, professional list of features:
+Feature A added -> Feature B added -> Bug C fixed.
+```
