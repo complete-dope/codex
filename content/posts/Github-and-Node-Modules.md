@@ -81,7 +81,8 @@ git commit -m "Drop unrelated changes" // commit to the original branch
 
 Problems: 
 1. many people working on same file, potential conflict
-2. you working on a seperate feature , others working on other features 
+2. you working on a seperate feature , others working on other features
+3. you deployed branch on prod and then rebased the branch, that leads to fast-forward errors cause remote feat branch doesnt know about these rebased commits   
 
 ## Best way to merge branches together
 `Rebase` : 
@@ -114,3 +115,7 @@ The Workflow: 1.  Dev works on a feature (50 messy commits).
 The Result: The main branch looks like a clean, professional list of features:
 Feature A added -> Feature B added -> Bug C fixed.
 ```
+
+To solve problem 3, we need to push but with lease so use : `git push --force-with-lease` , this makes sure to push changes only if no one else has pushed in your branch in that time 
+
+
