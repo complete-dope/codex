@@ -1,15 +1,35 @@
 ---
-title : Designing APIs from first principles
-description : Designing APIs 
+title : Reliable / scalable Backend 
+description : includes queues, balancers , low-level design , high-level design, designing APIs 
 date : 2026-01-12
-tags : ['apis']
+tags : ['apis', 'lld' , 'hld' , 'balancers' , 'queue']
 ---
 
-# HTTP designs 
 
-Options list what all options are present for this host method , (POST, GET , PUT, PATCH, DELETE) 
+## Terms 
+1. Ephemeral (efimeral) : short lived functions like google-cloud functions , that are running for per request and has a fixed timeout and at that timeout it sends a SIGTERM to close it.
+
+2. Presigned / Signed URL : Is used for upload / download directly to storage (w/o involving backend in this all), its a time based URL that expires with time, the generator of the link should have access and uploader can just upload ... so this is used in Customer support as well , when we upload images of a damaged item, this is used to reduce load to backend and solve this   
+
+3. Serialization : 
+To convert / store data in a compatible format that can be used later. Means lets say I want to store a list of dictionary `[{'key1' : 'val1'},{'key2' : 'val2'}]` in redis .. so there is not data structure supported in redis for this so only way to store this is to serialize it into bytes to store and then to retrive back we need to deserialize this .. 
+How to do this : 
+`json.dumps()` : convert the dictionary to json string then store it in bytes
+`json.loads()` : converts back the serialized object to the original state by deserialization     
+
+4. Hydration : The process of "filling in" a data structure (like a feature vector, a request object, or a model input) with its full set of required data. So when a data comes in from an API we usually pass that data through some data structure for schema verification that part is called hydration  
+
+## Event driven architecture
+This works in a queue based system, that is, we have a producer that is doing some operations and sending that to broker (kafka / mq) and then on other side of message queue are consuming it. 
+
+These queue are usually designed for kb-mb of message sizes only 
+
+and assume we get 1000's producers producing and sending messages to brokers, kafka handles this internally using `epolls` that sleep when nothing is producing and as soon as we get somethign on network stack it does an NIC interrupt and wakes up a sleeping thread and that is passed on to the CPU for processing 
+
 
 # API designs 
+Options list what all options are present for this host method , (POST, GET , PUT, PATCH, DELETE) 
+
 
 ## Validation 
 
@@ -69,6 +89,16 @@ Always add timeout to API, so if a request fails , raise a ConnectionTimedOut er
 
 ## Making multiple requests and next one depends on prev one 
 These all cases are handled via sending that in the request headers to make sure someone didnt injected that in between and to make sure this is an consistent request .. add in headers for handling auth for request. These are called signed URL , that means this URL is signed by someone that has the SECRET-KEY .   
+
+
+
+# Design patterns 
+
+1. `Strategy Pattern` : Think of this as a game strategy , the underlying input that is the game that is same for all strategies it's just that the implementation is changed so liek that the design pattern that we can use for all sorting functions
+
+2. `Iterator Pattern `: dont tell the underlying Data structure like tree , linked-list , etc just use an `__iter__` and `__next__` method to sort this out.
+
+3. `Adapter Pattern` : So this is bridge between 2 code base , the client wants in a specific format and you have implemented in other format so its a kind of adaptation from old code to a new code
 
 
 
