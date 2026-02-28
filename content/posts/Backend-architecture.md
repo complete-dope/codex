@@ -1,7 +1,7 @@
 ---
 draft: false 
 date: 2025-07-20
-title: Building Backend Architecture from scratch 
+title: Django
 tags : ["django", "Django ", "Backend", "microservices"]
 ---
 
