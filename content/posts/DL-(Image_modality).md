@@ -1,6 +1,6 @@
 ---
 draft: false
-title: "Image modality"
+title: "DL (image modality)"
 date: 2026-02-06
 tags: ["image", "modality"]
 ShowToc: true
