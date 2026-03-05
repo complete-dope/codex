@@ -19,6 +19,9 @@ How to do this :
 
 4. Hydration : The process of "filling in" a data structure (like a feature vector, a request object, or a model input) with its full set of required data. So when a data comes in from an API we usually pass that data through some data structure for schema verification that part is called hydration  
 
+5. Idempotent : that means same request , irrespective of how many times we are calling it should return an deterministic output and should not lead to reacreation of the same document or resource again and again, one method is to atomically change the status to rendering so that if some other request comes in then you can return it. But if the processing takes long time from client side we send in some idempotent keys and we check that is the key is already present in db then we dont need to redo that request  
+
+  
 ## Event driven architecture
 This works in a queue based system, that is, we have a producer that is doing some operations and sending that to broker (kafka / mq) and then on other side of message queue are consuming it. 
 
