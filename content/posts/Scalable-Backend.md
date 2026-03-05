@@ -94,11 +94,96 @@ These all cases are handled via sending that in the request headers to make sure
 
 # Design patterns 
 
-1. `Strategy Pattern` : Think of this as a game strategy , the underlying input that is the game that is same for all strategies it's just that the implementation is changed so liek that the design pattern that we can use for all sorting functions
+1. `Strategy Pattern` : So this replaces the pattern from 'is a' refers to inheritance and 'has a' refers to strategy pattern.
 
-2. `Iterator Pattern `: dont tell the underlying Data structure like tree , linked-list , etc just use an `__iter__` and `__next__` method to sort this out.
+```python
+class Robot:
+    def move(self):
+        pass
 
-3. `Adapter Pattern` : So this is bridge between 2 code base , the client wants in a specific format and you have implemented in other format so its a kind of adaptation from old code to a new code
+
+class WalkingRobot(Robot):
+    def move(self):
+        pass
+
+
+class FlyingRobot(Robot):
+    def move(self):
+        pass
+
+# -- 
+
+class MoveStrategy:
+    def move(self):
+        pass
+
+class Walk(MoveStrategy):
+    def move(self):
+        print("walking")
+
+class Fly(MoveStrategy):
+    def move(self):
+        print("flying")
+
+class Robot:
+    def __init__(self, strategy: MoveStrategy):
+        self.strategy = strategy
+
+    def move(self):
+        self.strategy.move()
+
+Robot(Walk()).move()
+
+# Inheritance-- 
+# Robot
+#   ├── WalkingRobot
+#   └── FlyingRobot
+
+
+# Strategy -- 
+# Robot
+#   └── MoveStrategy
+#         ├── Walk
+#         └── Fly
+
+```
+
+2. `Singleton Pattern` :
+
+```python
+# logging systems uses this singleton patterns 
+
+# Eager execution means the instance is created before it is needed ( works for objects that require small initialization overhead, if something requires more memory / initiliasation we ignore this part)
+
+# lazy execution means the instance is created when it is needed ( works for objects that require more memory / initiliasation)
+
+import threading
+
+lock = threading.Lock()
+
+class Singleton:
+    _instance = None
+    def __new__(cls):
+        # thread safe
+        with lock:
+            if cls._instance is None:
+                cls._instance = super(Singleton, cls).__new__(cls)
+            return cls._instance
+
+
+class A(Singleton):
+    def __init__(self):
+        print("A")
+
+a = A()
+b = A()
+
+print(a is b)
+```
+
+4. `Iterator Pattern `: dont tell the underlying Data structure like tree , linked-list , etc just use an `__iter__` and `__next__` method to sort this out.
+
+5. `Adapter Pattern` : So this is bridge between 2 code base , the client wants in a specific format and you have implemented in other format so its a kind of adaptation from old code to a new code
 
 
 
