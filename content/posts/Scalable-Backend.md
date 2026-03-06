@@ -23,6 +23,7 @@ How to do this :
 
 6. Transactional : A transactional process is a process where a set of operations is treated as one single unit of work, means if we get some error and want to retry it , this should rollback all the changes that were done till that step. This error comes from db as thats one place where we add these changes in the db, so a modern way to solve this by using transactions, so we tell db that I am starting an transaction and all the stages are kept in some temporary location and if any error comes we do `abortTransaction()` else if everything works as required we commit that to db        
 
+7. Status Flag Method : Another method is that we dont delete data and instead we use a state machine, that is we keep document status as 'pending' and leave it as it is in end, not even do the cleanup   
 
 ## Event driven architecture
 This works in a queue based system, that is, we have a producer that is doing some operations and sending that to broker (kafka / mq) and then on other side of message queue are consuming it. 
