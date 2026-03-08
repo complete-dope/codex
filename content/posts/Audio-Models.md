@@ -52,19 +52,19 @@ No. of spectogram frames :
 `frames ≈ (num_samples - N_FFT) / HOP_LENGTH + 1`
 
 # ASR models
-Input : waveform
-Output : text 
-Loss : [CTC loss](https://docs.pytorch.org/docs/stable/generated/torch.nn.CTCLoss.html) 
-Dataset : (Audio, text) pairs 
+Input : waveform  
+Output : text   
+Loss : [CTC loss](https://docs.pytorch.org/docs/stable/generated/torch.nn.CTCLoss.html)   
+Dataset : (Audio, text) pairs   
 
 In this we have input as waveform and we try to get features out from this waveform to a latent space (using an CNN model) then we pass that features to transformer encoder for training to get samples out.    
 
 # Generation model 
 
-Input : text 
-Output : spectrogram
-Loss : original spectrogram with predicted spectrogram 
-Vocoder : converts from spectrogram to waveform   
+Input : text   
+Output : spectrogram  
+Loss : original spectrogram with predicted spectrogram   
+Vocoder : converts from spectrogram to waveform     
 
 
 so this is more like a seq to seq problem , where in input we have text and in output we spectrogram values for that input
