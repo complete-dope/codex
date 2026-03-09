@@ -27,6 +27,8 @@ How to do this :
 
 8. Dedup : deduplication , removing the duplicate / identical documents so to prevent it from re-creation   
 
+9. `i18n` : Internalizational, this is used to handle region-dependent behavior in software. so we create a class for same and then use the methods from that class and all region specific things are handled from there 
+
 ## Event driven architecture
 This works in a queue based system, that is, we have a producer that is doing some operations and sending that to broker (kafka / mq) and then on other side of message queue are consuming it. 
 
