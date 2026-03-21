@@ -97,7 +97,7 @@ Industry standard is to first do rebase, fix errors that come in between and jsu
 Once a branch is squashed , retire that branch dont use that same branch again
 
 
-`Merge` : 
+### `Merge` : 
 Keeps the commits seperately so that everything can be known like when was this started , its first commit and helps in keeping all the history
 `--no-commit` : stages all the commit but doesnt create that final merge commit.    
 `simple merge` : merges the branch and adds that final merge commit as well to it.    
@@ -117,5 +117,18 @@ Feature A added -> Feature B added -> Bug C fixed.
 ```
 
 To solve problem 3, we need to push but with lease so use : `git push --force-with-lease` , this makes sure to push changes only if no one else has pushed in your branch in that time 
+
+### Stashing
+
+Using stash you save your current changes and then go back to some other branch and pop those changes there 
+
+stash push : `git stash push -m '<message>' ` , pushes into stash
+stash pop : `git stash pop`  , removes it from stash
+stash apply : `git stash apply stash@{0/1/2/..}` , does not remove the stash
+stash list : `git stash list` 
+stash drop : `git stash drop stash@{0/1/2/..}` , deletes a stash manually 
+stash clear : `git stash clear` , deletes everything 
+stash untracked files as well : `git stash -u`
+stash parts of a file : `git stash -p ` , not useful 
 
 
