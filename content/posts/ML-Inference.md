@@ -1,8 +1,9 @@
 ---
 date : 2026-04-04
 title : Inference time Optimizatons that we can do in a DL model 
-
+tags : ['gguf' , 'onnx' , 'tensorrt' , 'compile' , 'quantization' , 'ptq'] 
 ---
+
 ## Torch Compile : 
 Dev time optimization, take the computation graph , runs the sample (at runtime) sees how mathematical operations are working together then creates an optimized kernel so next requests coming then runs on the optimized kernels. Doesnt support more quantization methods ( works with limited methods )   
 `torch.compile(backend='')` : this uses  
@@ -77,9 +78,16 @@ Before optimizing anything in a new architecture / model always first profile it
 Q) How to know if you are using tensor cores or cuda cores ? 
 A) 
 
+# Quantization + optimization 
+So the quantization depends on hardware that not all GPU hardware support all quantizations so like Ampere (A40) doesnt support FP8 in this case and there quantization depends on architecture to architecture 
 
-# Profiling vs benchmarking 
+[trt calibrator](https://developer.nvidia.com/docs/drive/drive-os/6.0.6/public/drive-os-tensorrt/api-reference/docs/python/infer/Int8/EntropyCalibrator2.html)   
+
+So the flow is   
+> Pytorch model  > convert to onnx model > then run the trt calibrator > then convert that model to int8 and infer it from that model    
 
 
-Q) 
+## Where GGUF fits in this all ? 
+
+
 
