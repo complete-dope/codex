@@ -90,4 +90,40 @@ So the flow is
 ## Where GGUF fits in this all ? 
 
 
+## Calibration for a PTQ quantization 
+
+Possible method for quantizations that we use are : 
+
+1. Pytorch based Hooks : it is manually adding hooks to the model's forward pass and then seeing what activation values are we getting and then calibrate model based on the values that are received in it   
+
+2. TensorRT framework : so tensorRT has some calibration techniques defined in there official repo we can use those methods to do these parts
+
+3. ONNX runtime calibration : so onnx also has the calibrator that does the same part , calibrate the values and 
+
+4. Model optimizer by nvidia : This is the industry method for doing the calibration extensive support for tensorrt and calibration techniques by researchers ... 
+
+### Practical learnings from the model
+
+Sequence length is something that is failing us from gains the 
+That means the image-token sequence going into attention is approximately:
+(170 / 2) * (256 / 2) = 85 * 128 = 10880 tokens 
+
+And this is way beyond what the int8-mha sequence sizes can handle and they can handle max sizes of 512 .. 
+
+And this we have in fp8 and A40 doesn’t support fp8 so we need to go to a different gpu architecture for this 
+So the MHA silently falls back to FP16 architecture   
+
+Ada GPU : testing this on L40 , this has fp8 support and is considerably faster than int8 ..
+
+We use polygraphy module for inference prototype and as a debugging toolkit  
+
+
+ONNX graph : Q/DQ graph 
+
+Memory bound vs compute bound : 
+So the context is very large in our case and we need to reduce this to make sure our qkv movement is sorted out .. 
+
+So we can’t use flash attention with tensorrt and in tensorrt file the operations are combined so 
+
+
 
