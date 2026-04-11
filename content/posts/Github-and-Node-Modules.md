@@ -154,3 +154,9 @@ Very helpful feature, lets say you commited some files and made 10 commits on to
 `git reset --soft <commit-id>` : this takes all file changes that you had above this commit-id in the staged changes place and then we can compare and see that with the other branch and get to know what all changes you did in all those commits 
 
 never do `git reset --hard <commit-id>` 
+
+### Orphan branch 
+So if you need to create a branch in a repo and you dont need historical commits and baggage from it, the best way to start this a clean repo with all changes in staged is to do `git checkout --orphan <branch-name>`
+
+
+
