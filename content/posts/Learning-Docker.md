@@ -31,7 +31,7 @@ Once done, now check for
 
 ### Docker in interactive mode
 
-Here this `-i` is the interactive mode but this looks like shit !! 
+Here this `-i` is the interactive mode !! 
 ```bash
 docker run -i image_name /bin/bash
 ```
@@ -48,9 +48,13 @@ docker run -it image_name -p <host_port>:<container_port> /bin/bash
 docker run -d image_name
 ```
 
-## After docker container is up and running 
+## Enter an running docker container 
 You can only exec into it if its running (means it should be a container), else you have to run it in iterative mode and go to its terminal    
 `docker exec -it <contaier-id> /bin/bash` : Opens up a new terminal inside that container to interact with the processes running in the container. 
+
+## Entering an stopped/dead container 
+`docker run -it --rm --entrypoint /bin/sh <image-name>`
+
 
 ## Code failed
 1. fix code and redeploy container, `docker build --no-cache <image-name> -f Dockerfile .`
