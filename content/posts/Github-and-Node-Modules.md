@@ -159,4 +159,20 @@ never do `git reset --hard <commit-id>`
 So if you need to create a branch in a repo and you dont need historical commits and baggage from it, the best way to start this a clean repo with all changes in staged is to do `git checkout --orphan <branch-name>`
 
 
+### Tracked / untracked files
+
+So something you need to keep files that are branch specific in that case you can either add that to your gitignore or you can remove that from tracking area 
+
+So if the file is already untracked, then its very simple just add that file in `.gitignore`
+and if that file is already tracked then you need to stop tracking it : `git rm --cached <file>`
+
+### Pushing code to remote
+Wherever your local commits are different from the origin one you need to push it (soft or hard push)
+
+so soft push are something that are over / addition to the commits that are already present in remote and these are easily pushed and requires no more changes over top.   
+`git push`
+
+Hard push, if the commit history is different in local and remote there we need to use this hard push and possible hard push are : 
+`git push --force-with-lease` and  
+
 
