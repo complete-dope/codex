@@ -8,18 +8,24 @@ title: Learning about Hardware and ROS and controllers
 
 Nice_Chat : https://chatgpt.com/share/67c0be3f-ca80-8009-b271-f3c1f626edbf
 
+## Terms 
+1. VLSI : Very large scale integration ( millions / billions of transistors on chip 
+2. FPGA : Field programmable gate array
+3. SoC : Systems on Chip 
+4. GPIO  : general purpose input output ( can act as input or output pin, depending on the code and its usage )
+5. HDL : hardware description language
+6. verilog : its a type of hdl , that is used to model electronic system
+7. Esp32 : One of the most popular microcontroller that is inbuilt with bluetooth and wifi card ! 
+8. ATmega328P : Microcontroller that is used in Arduino UNO 
+
+
 
 ## Learning microcontrollers
 
-Esp32 : One of the most popular microcontroller that is inbuilt with bluetooth and wifi card ! 
-ATmega328P : Microcontroller that is used in Arduino UNO 
-
-GPIO  : general purpose input output ( can act as input or output pin, depending on the code and its usage ) 
-
-`What is a firmware ? `
+`What is a firmware ?`
 Firmware is a low level control over hardware , directly written in the hardware RAM, to the memory ( embedded in metal ) kinda like a kernel that manages / controls the microcontroller  
 
-Microcontroller is the main part of a board / circuit that has embedded cpu , memoy etc and it has pins exposed ( lets say 15 pins ) and each pin can be classified as an IO pin or as an data pin. Now we made microcontroller so small but the IO devices and other modules also need to be mounted on the PCB as the wires are etched in that PCB so lets say for wifi module to work with microcontroller we need to expose a wifi pin and then the wire etched in pcb need to be connected to the wifi module and then it can be used same goes for IO device and we have that whole board .. aka development board , microcontroller board 
+**Microcontroller** is the main part of a board / circuit that has embedded cpu , memoy etc and it has pins exposed ( lets say 15 pins ) and each pin can be classified as an IO pin or as an data pin. Now we made microcontroller so small but the IO devices and other modules also need to be mounted on the PCB as the wires are etched in that PCB so lets say for wifi module to work with microcontroller we need to expose a wifi pin and then the wire etched in pcb need to be connected to the wifi module and then it can be used same goes for IO device and we have that whole board .. aka development board , microcontroller board 
 
 The development board has pins exposed for external connections , power supply etc and the real struggle comes in making electrical connections / electronics is correct and make sure you dont blow up things by giving them extra voltage etc .. 
 
@@ -29,13 +35,20 @@ So the electronics parts is a bit tough part !!
 
 GND : ground pin it allows current to flow out of internal circuit into the Ground 
 
-### Learning ESP32 ( connecting things and playing around )
+### ESP32 ( connecting things and playing around )
 gpio 2 is connected to inbuilt LED so if you use gpio 2 as the input high source that would mean the inbuilt led would also glow whether you want it or not .. 
 so use some other free gpio like gpio ( 4, 5, 13, 14, 15) etc and get your work done 
 
 Buttons ( omron b3f ) , 4 legged tactile switch when pressed creates and internal connection, pressed state is called LOW state , and unpressed state is called HIGH state. 
 
 ### Serial Port
+A communication interface that sends data one bit at a time over a wire
+Serial data goes like this one bit after another (in sequence) 
+ex : `1 → 0 → 1 → 1 → 0 ...`
+
+parallel port vs serial port :  
+* Serial → 1 wire, sequential bits
+* Parallel → many wires, multiple bits at once
 
 
 
