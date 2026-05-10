@@ -17,8 +17,10 @@ torch._logging.set_logs(
 
 
 explanation = torch._dynamo.explain(model)(x)
-
+print(explanation)
 ```
+So we use `torch.dynamo()` to convert pytorch programs faster. It intercepts Python execution and extract PyTorch ops into a graph.
+
 
 ## Torch Compile : 
 Dev time optimization, take the computation graph , runs the sample (at runtime) sees how mathematical operations are working together then creates an optimized kernel so next requests coming then runs on the optimized kernels. Doesnt support more quantization methods ( works with limited methods )   
