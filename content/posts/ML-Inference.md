@@ -4,13 +4,28 @@ title : Inference time Optimizatons that we can do in a DL model
 tags : ['gguf' , 'onnx' , 'tensorrt' , 'compile' , 'quantization' , 'ptq'] 
 ---
 
+## Torch tracing to get better efficiency 
+so we can log / trace the model / network to see where the torch graph is breaking and where we can make it fast 
+
+```python
+os.environ["TORCH_LOGS"] = "graph_breaks,recompiles"
+
+torch._dynamo.config.verbose = True
+torch._logging.set_logs(
+    dynamo=logging.DEBUG
+)
+
+
+explanation = torch._dynamo.explain(model)(x)
+
+```
+
 ## Torch Compile : 
 Dev time optimization, take the computation graph , runs the sample (at runtime) sees how mathematical operations are working together then creates an optimized kernel so next requests coming then runs on the optimized kernels. Doesnt support more quantization methods ( works with limited methods )   
 `torch.compile(backend='')` : this uses  
 So there are many possible backends : 
 
 1. `torch-tensorrt`
-2. 
 
 
 ## Tensor RT : 
