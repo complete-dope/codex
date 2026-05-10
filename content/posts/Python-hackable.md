@@ -27,11 +27,78 @@ All Instance-variables and class-variables have the same
 
 OOPS has 4 main pillars: 
 1. Encapsulation : Adding data fields to a class and then using it as class variable   
-2. Abstraction : Hiding away the complexities of the code so the code looks a bit clean  
-3. Inheritance : Inheriting from a base class to avoid rewriting same methods  
-4. Polymorphism ( many-forms) : so more like an abstract class , where define @abstractmethod and the class inheriting it has to use it   
+
+```python
+
+# while doing encapsulation you also have to think about SOLID principles also
+
+# designing a food ordering 
+# whatever we are defining inside an class that all crud functions should also reside in that class only
+class DeliveryFleet:
+    name : 
+    age: 
+    availability : 
+        
+    def change_availability():
+    def delivery_partner():
+    def add_delivery_partner():
+
+# designing a parking lot
+class ParkingSpot:
+    def can_fit(self, vehicle):
+        pass
+
+    def park(self, vehicle):
+        pass
+    
+    def remove_vehicles(self):
+        pass
+
+class Vehicle:
+    def can_fit_in(self, spot):
+        pass
+        
+# Car class     
+class Car(Vehicle):
+    def can_fit_in(self, spot):
+        return spot.size == Large || spot.size == Medium
+    
+class Bike(Vehicle):
+    
+class Truck(Vehicle):
+
+# so here we have added can-fit in vehicle class cause tomorrow we need to add more vehicles that can be added without making any changes in the current fleet (so we that is not violating open-close priciple) 
+
+```
+
+2. Abstraction : Hiding away the complexities of the code so the code looks a bit clean
 
 
+  
+4. Inheritance : Inheriting from a base class to avoid rewriting same methods
+5. Polymorphism : so more like an abstract class , where define @abstractmethod and the class inheriting it has to implement it or override it 
+
+```python
+class Agent:
+  def __init__(self): pass
+
+  def system_prompt(self):
+    raise NotImplementedError()
+
+  def say_hello(self):
+    return "Hello"
+
+
+class OpenAIAgent(Agent):
+  def system_prompt(self):
+    return "I am an open ai agent"
+
+class GeminiAgent(Agent):
+  def system_prompt(self):
+    return 'I am an gemini agent'    
+
+```
+   
 
 ### `os library`
 
