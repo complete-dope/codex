@@ -72,4 +72,53 @@ so this is more like a seq to seq problem , where in input we have text and in o
 Architecture includes an full transformer model (encoder , decoder model) . 
 This can be done using diffusion also 
 
+## Basics
 
+### Converting to tokens aka making a codec (tokenization) 
+Codec refers to a speech tokenizer (nothing else)
+so the very first step is to convert these speech signal to some representable that models can then learn from . In short we need to represent this to an float array format 
+
+Some of the methods of doing this is :
+
+1. Residual vector quantization
+2. dMel (speech tokenization)
+
+#### Residual vector quantization
+best : https://kyutai.org/codec-explainer
+
+"Make sampling 100x and the model also becomes 100x more coherent"
+
+So we use an autoencoder, a simple autoencoder misses many parts while decoding (if its a small model with limited data) so we need to make it efficient one way is to add embedding quantization and the algo that does this is : 
+
+```python 
+x = get_batch()
+z = encoder(x)
+
+residual = z - to_nearest_cluster(z)
+# .detach() means "forget that this needs a gradient"
+z_quantized = z - residual.detach()
+x_reconstructed = decoder(z_quantized)
+
+loss = reconstruction_loss(x, x_reconstructed)
+```
+the encoder’s weights will be updated to improve the reconstruction loss, but they’re updated as if the quantization didn’t happen, so they won’t move in the optimal direction.
+
+This is called as VQ-VAE (vector quantized , variational autoencoder) 
+
+Residual vector quantization : 
+To improve reconstruction fidelity, we can just increase the number of cluster centers. Get this residual and quantize that as well and do it till you reach your desired level 
+
+```python
+def rvq_quantize(z):
+    residual = z
+    codes = []
+
+    for level in range(levels):
+        quantized, cluster_i = to_nearest_cluster(level, residual)
+        residual -= quantized
+        codes.append(cluster_i)
+
+    return codes
+```
+
+### dMel
