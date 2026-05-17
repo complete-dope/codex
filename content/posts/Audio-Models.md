@@ -121,4 +121,12 @@ def rvq_quantize(z):
     return codes
 ```
 
-### dMel
+#### dMel
+A simple algo based encoder (no neural learning) , its just a function that takes mel spectrogram and converts that to this model ..
+
+
+### Vision encoder
+https://arxiv.org/pdf/2203.09795
+
+In case of transfomer, its always best to finetune the model rather than pretraining the model .. 
+
