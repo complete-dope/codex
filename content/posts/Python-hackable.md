@@ -229,7 +229,12 @@ Its common that sometimes pip doesnt get shipped in a python env so we can insta
 * framework : a comprehensive set of packages and modules that provides a complete structure for building an application.
 
 
-  
+## Contextlib 
+So what is the benefit of making context sessions in python 
+
+So its used in cleanup, so without contextlib we would have to do manual cleanup 
+with contextlib we get `__enter__` and `__exit__` methods defined and so first we enter to it using the `with EXP as VAR` and then use this var as next 
+
 
 
 
