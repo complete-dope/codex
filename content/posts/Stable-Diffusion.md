@@ -229,6 +229,24 @@ From here we get the velocity gradient as :
 <img width="769" height="676" alt="image" src="https://github.com/user-attachments/assets/04db3f83-8612-4410-b6fc-c5d4cd53f034" />
 
 
+### Image generation 
+<img width="3074" height="1591" alt="image" src="https://github.com/user-attachments/assets/d71a31c9-96b8-4f6c-872b-a1c97727e7eb" />
+
+----
+<img width="3081" height="2708" alt="image" src="https://github.com/user-attachments/assets/4fef2edb-56e4-4631-b85d-37d780d29817" />
+
+----
+<img width="2408" height="2825" alt="image" src="https://github.com/user-attachments/assets/fac79c99-616c-43ff-853f-134e60bcaf42" />
+
+
+`VAE`: we use a VAE model to convert from an image to a latent image so that we can reduce complexity of the rest of the steps
+`Forward process`: Add noise to this , either stochastically ( like DDPM ) or deterministically ( like DDIM / Flow based models ) , this is just pure maths
+`Backward process`: Predict the added noise in this step ( like SD3 model has MMDiT block for predicting this noise ) 
+`Guidance`: so we use text / image guidance here to steer predicted noise
+`Scheduler`: once we have the predicted noise , z_t (latent) , v_t (velocity) we need to do the denoising step , here we have 2 options Stochastic denoising ( like DDPM , where it adds back some noise back) and other is ODE (Ordinary differential equation) where we model image generation as a fixed step model (without adding any extra noise to it) 
+
+
+
 ### Connection to VLA models
 
 this same approach is used in the VLA models to predict the action tokens in robotics . Here we have continous action space in flow matching in tokens we had discrete tokens / space. its predicts velocity in continous space
