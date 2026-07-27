@@ -8,7 +8,8 @@ tags: ['gpu', 'ml', 'cuda', 'rocm', 'amd', 'nvidia' , 'user-space', 'kernel-spac
 ## GPU resources
 https://github.com/karpathy/llm.c
 https://siboehm.com/articles/22/CUDA-MMM
-https://docs.nvidia.com/cuda/cuda-programming-guide/02-basics/writing-tile-kernels.html
+Tiling1 : https://docs.nvidia.com/cuda/cuda-programming-guide/02-basics/writing-tile-kernels.html
+Tiling2 : https://cvw.cac.cornell.edu/cuda-intro/gpu-performance-topics/tiling
 
 
 ## Theory of GPU 
@@ -25,14 +26,16 @@ https://docs.nvidia.com/cuda/cuda-programming-guide/02-basics/writing-tile-kerne
 ### Terms: 
 
 1. Threads : So smallest execution unit on a GPU is a thread, its role is to complete an atomic instruction on SM
-2. Warp : Group of 32 threads that are sequential and in same thread block is called a warp ( they are faster cause they use Shared memory) .. this is useful if the data needs to be shared among all like in reduce operations
-3. blocks : Group / Collection of threads (around 1024) make up a thread block 
-4. grid : group of blocks in a gpu makes up a grid ( where blocks are arranged ) 
-5. Streaming Multiprocessors : the fundamental building block of an NVIDIA GPU, this is where the operations are executed on 
-6. Tiling : A software memory strategy. It is a technique where you break down large datasets into small chunks ("tiles") that fit inside fast, local SRAM (Shared Memory or Registers) to avoid pulling repeatedly from slow VRAM. (memory bound ops with high data reuse)
-7. SIMT (Single Instruction, Multiple Threads) means that multiple threads execute the same instruction at the same time, but each thread operates on its own data. Here we need a global thread index , loads 
-8. SIMD (Single instruction multiple data) : 
-9. Tile kernel : level of entire tile block, load a whole tile, perform ops on that tile and store back the tile
+2. Warp : Group of 32 threads that are sequential and in same thread block is called a warp ( they are faster cause they use Shared memory) .. this is useful if the data needs to be shared among all like in reduce operations.
+3. Active mask : So this is used to define which all threads to use in a warp so a mask looks like this `0x00000001` or this `0xFFFFFFFF` 
+4. blocks : Group / Collection of threads (around 1024) make up a thread block 
+5. grid : group of blocks in a gpu makes up a grid ( where blocks are arranged ) 
+6. Streaming Multiprocessors : the fundamental building block of an NVIDIA GPU, this is where the operations are executed on cuda cores
+7. Tiling : A software memory strategy. It is a technique where you break down large datasets into small chunks ("tiles") that fit inside fast, local SRAM (Shared Memory or Registers) to avoid pulling repeatedly from slow VRAM. (memory bound ops with high data reuse)
+8. SIMT (Single Instruction, Multiple Threads) means that multiple threads execute the same instruction at the same time, but each thread operates on its own data. Here we need a global thread index , loads 
+9. SIMD (Single instruction multiple data) : TODO
+10. Tile kernel : level of entire tile block, load a whole tile, perform ops on that tile and store back the tile
+11. Single thread : There is nothing as single thread in a GPU execution. even if you define `<<<1,1>>>` its basically initiating a full 32 thread hardware warp to execute a single thread. Just that active mask changes in this case 
 
 <img width="850" height="1008" alt="image" src="https://github.com/user-attachments/assets/f9e469b7-d4f3-46d8-ac18-c83c069bf917" />
 
@@ -62,9 +65,10 @@ memory dimension in GPU
 7. `__shfl_down_sync` : One thread can read value from another thread that is in same warp
 8. `reduce` ops : that takes a list of array of items and combines them into a single value.
 9. threadIdx : these are local x,y coordinates inside a thread block ( not global) 
-10. blockIdx : this is the block idx in a grid
+10. blockIdx : this is the thread block idx in a grid
 11. blockDim : x, y dimension of a thread block this tells how many threads are present in a thread block 
-12. gridIdx :  
+12. gridIdx : this is a grid of thread block
+13. __syncthreads(): 
 
 ## Kernel in GPU 
 kernel is a piece of cuda using which we write instruction / code over a GPU and it executes them
@@ -126,7 +130,7 @@ Group of 32 threads performing SIMT in same thread block using shared memory
 #define FULL_MASK 0xffffffff
 __device__ float warpReduceSum(float value){
   for(int offset = 16; offset > 0; offset /= 2){
-    value += __shfl_down_sync(FULL_MASK, value, offset); // so the offset value here, offset is of 16 value 
+    value += __shfl_down_sync(FULL_MASK, value, offset); // so the offset value here, offset is a variable that we are looping here .. 
   }
 }
 
@@ -165,6 +169,11 @@ __global__ void array_add(float* out, float* inp1, float* inp2, int N ){
   }
 }
 ```
+
+
+### Tiling vs Warp 
+Warp, its a hardware defined execution concept, executes under SIMT ( single instruction , multiple threads) model. So if in a warp a single thread (thread 0) is doing / completing an instruction then thread 1-31 are physically forced to execute that exact same instruction at the instant.
+
 
 
 
