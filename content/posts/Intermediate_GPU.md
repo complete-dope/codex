@@ -6,11 +6,14 @@ tags: ['gpu', 'ml', 'cuda', 'rocm', 'amd', 'nvidia' , 'user-space', 'kernel-spac
 ---
 
 ## GPU resources
-https://github.com/karpathy/llm.c
-https://siboehm.com/articles/22/CUDA-MMM
-Tiling1 : https://docs.nvidia.com/cuda/cuda-programming-guide/02-basics/writing-tile-kernels.html
-Tiling2 : https://cvw.cac.cornell.edu/cuda-intro/gpu-performance-topics/tiling
-
+https://github.com/karpathy/llm.c   
+https://siboehm.com/articles/22/CUDA-MMM  
+Tiling1 : https://docs.nvidia.com/cuda/cuda-programming-guide/02-basics/writing-tile-kernels.html  
+Tiling2 : https://cvw.cac.cornell.edu/cuda-intro/gpu-performance-topics/tiling      
+Cornell cuda intro : https://cvw.cac.cornell.edu/cuda-intro/       
+Tensor cores : https://youtu.be/Yt1A-vaWTck 
+Tensor cores2 : https://tgautam03.github.io/2024/10/30/TensorCores/  
+tensor cores3 : https://www.glennklockwood.com/garden/tensor-cores    
 
 ## Theory of GPU 
 
@@ -28,7 +31,7 @@ Tiling2 : https://cvw.cac.cornell.edu/cuda-intro/gpu-performance-topics/tiling
 1. Threads : So smallest execution unit on a GPU is a thread, its role is to complete an atomic instruction on SM
 2. Warp : Group of 32 threads that are sequential and in same thread block is called a warp ( they are faster cause they use Shared memory) .. this is useful if the data needs to be shared among all like in reduce operations.
 3. Active mask : So this is used to define which all threads to use in a warp so a mask looks like this `0x00000001` or this `0xFFFFFFFF` 
-4. blocks : Group / Collection of threads (around 1024) make up a thread block 
+4. blocks : Group / Collection of threads (cuda limits this no. of threads to 1024) make up a thread block 
 5. grid : group of blocks in a gpu makes up a grid ( where blocks are arranged ) 
 6. Streaming Multiprocessors : the fundamental building block of an NVIDIA GPU, this is where the operations are executed on cuda cores
 7. Tiling : A software memory strategy. It is a technique where you break down large datasets into small chunks ("tiles") that fit inside fast, local SRAM (Shared Memory or Registers) to avoid pulling repeatedly from slow VRAM. (memory bound ops with high data reuse)
@@ -53,22 +56,42 @@ memory dimension in GPU
 2. L2 cache : owned by entire GPU chip , sits between HBM and shared memory (~10 to 12 TB/s )
 3. L1 cache : sit directly on the physical Streaming Multiprocessor (SM), caches global memory loads/stores for any thread running on that SM. ( ~30 – 33 TB/s )
 4. Shared memory : sit directly on the physical Streaming Multiprocessor (SM), allocated to particular thread block
-5. Registers : small storage units from where GPU reads data  
+5. Registers : small storage units from where GPU reads data
+6. Row major order : So this means how a matrix is laid out in memory, this means rows are laid out besides each other in matrix
+```cpp
+A = [[1,2,3], [4,5,6]]
+
+Row major in memory :
+Row memory = [1,2,3,4,5,6]
+```
+7. Column major order : Means cols are laid out besides each other in a matrix
+```cpp
+A = [[1,2,3], [4,5,6]]
+
+Col major in memory :
+Col memory : [1,4,2,5,3,6]
+``` 
 
 ### CUDA language
 1. `__global__` : means this function / kernel will run on the device
 2. `extern` : declare dynamic shared memory inside a kernel function 
 3. Atomics make a single memory operation thread-safe in hardware ( like incrementing a variable )
-4. Mutex makes an entire block of code thread-safe by allowing only one thread to execute it at a time.
-5. `cooperative groups` : easy way to allow and manage groups of threads that can synchronize and communicate with each other
-6. `__device__` : this means this is a utility function that will run on one of the kernels of the GPU
-7. `__shfl_down_sync` : One thread can read value from another thread that is in same warp
-8. `reduce` ops : that takes a list of array of items and combines them into a single value.
-9. threadIdx : these are local x,y coordinates inside a thread block ( not global) 
-10. blockIdx : this is the thread block idx in a grid
-11. blockDim : x, y dimension of a thread block this tells how many threads are present in a thread block 
-12. gridIdx : this is a grid of thread block
-13. __syncthreads(): 
+4. `__shared__` : used to declare shared memory 
+5. Mutex makes an entire block of code thread-safe by allowing only one thread to execute it at a time.
+6. `cooperative groups` : easy way to allow and manage groups of threads that can synchronize and communicate with each other
+7. `__device__` : this means this is a utility function that will run on one of the kernels of the GPU
+8. `__shfl_down_sync` : This first syncs / waits for all values to get initialised in thread and then can read its values . Major benefit is it can read value from any thread that is in the same warp without doing an HBM or any other transfer. 
+9. `reduce` ops : that takes a list of array of items and combines them into a single value.
+10. threadIdx : these are local x,y coordinates inside a thread block ( not global) 
+11. blockIdx : this is the thread block idx in a grid
+12. blockDim : x, y dimension of a thread block this tells how many threads are present in a thread block 
+13. gridIdx : this is a grid of thread block
+14. global indexing : `int idx = blockIdx.x * blockDim.x + threadIdx.x;`
+15. __syncthreads() : so wait for each thread to reach that line of code / to reach to that instruction
+16. coalesced : unified / combined memory 
+17. Bank Conflicts : TODO
+18. Tensor cores : TODO
+19. Cache line : Smallest unit of data that a computer processor reads from or writes to its internal memory. 
 
 ## Kernel in GPU 
 kernel is a piece of cuda using which we write instruction / code over a GPU and it executes them
@@ -155,24 +178,160 @@ __global__ void array_add(float* output, const float* input, const int N ){
 ```
 
 
-`Warp + Tiled` matmul of matrices 
+Shared memory matmul of matrices 
 ```cpp
-__global__ void array_add(float* out, float* inp1, float* inp2, int N ){
+__global__ void matmul2x2(int* out, int* inp1, int* inp2, int N ){
   // inp1 : NxN
   // inp2 : NxN
   // out : NxN
-  int idx = threadIdx.x + blockIdx.x * blockDim.x;
+  __shared__ int sm_a[2][2];
+  __shared__ int sm_b[2][2];
 
-  // total threads are = N
-  if(idx < N){
-    out[idx] = inp1[idx] + inp2[idx]; 
+  int value = 0;
+  int tx = threadIdx.x;
+  int ty = threadIdx.y;
+
+  sm_a[tx][ty] = a[2*ty + tx];
+  sm_b[tx][ty] = b[2*ty + tx];
+
+  __syncthreads();
+  for(int i = 0;i<2;i++){
+    value += sm_a[ty][i] + sm_b[i][tx];
   }
+  c[ty * 2 + tx] = value;
 }
 ```
 
 
 ### Tiling vs Warp 
 Warp, its a hardware defined execution concept, executes under SIMT ( single instruction , multiple threads) model. So if in a warp a single thread (thread 0) is doing / completing an instruction then thread 1-31 are physically forced to execute that exact same instruction at the instant.
+
+
+So as the shared memory in a thread block is limited so therefore we need tiling. so block level restrictions are the real motivation for tiling in CUDA.
+
+```cpp
+#define TILE_SIZE 16
+#define MATRIX_WIDTH  4096
+#define MATRIX_HEIGHT 4096
+
+__global__ void tiled_matmul(int *a, int *b, int *c)
+{
+    __shared__ int tile_a[TILE_SIZE][TILE_SIZE];
+    __shared__ int tile_b[TILE_SIZE][TILE_SIZE];
+
+    int tx = threadIdx.x;
+    int ty = threadIdx.y;
+    int bx = blockIdx.x;
+    int by = blockIdx.y;
+    int row = by * TILE_SIZE + ty;
+    int col = bx * TILE_SIZE + tx;
+
+    int value = 0;
+    for (int i = 0; i < (MATRIX_WIDTH + TILE_SIZE - 1) / TILE_SIZE; i++) {
+        if (row < MATRIX_HEIGHT && i * TILE_SIZE + tx < MATRIX_WIDTH) {
+            tile_a[ty][tx] = a[row * MATRIX_WIDTH + i * TILE_SIZE + tx]; // the most complex part of tiling  
+        } else {
+            tile_a[ty][tx] = 0;
+        }
+
+        if (col < MATRIX_WIDTH && i * TILE_SIZE + ty < MATRIX_HEIGHT) {
+            tile_b[ty][tx] = b[(i * TILE_SIZE + ty) * MATRIX_WIDTH + col];
+        } else {
+            tile_b[ty][tx] = 0;
+        }
+
+        __syncthreads();
+
+        for (int j = 0; j < TILE_SIZE; j++) {
+            value += tile_a[ty][j] * tile_b[j][tx];
+        }
+
+        __syncthreads();
+    }
+
+    if (row < MATRIX_HEIGHT && col < MATRIX_WIDTH) {
+        c[row * MATRIX_WIDTH + col] = value;
+    }
+}
+```
+
+
+## Tensor cores 
+Introduced in 2017, Specialized physical ALU's designed for matrix multiply and addition (MMA) operations. 
+And these are new so they only support few matrix sizes like `16 x 16` and others 
+these are also just tiled matrix multiplication and nothing else
+
+
+## Coalesced memory access
+Combining global memory accesses from some/ all threads in a warp to a single memory operation. Easily achieved when overall request brings in data from consecutive memory addresses starting on a good memory boundary. 
+
+So we have row major and col major memory access patterns and based on how you are accesing it / defining threads you can improve it 
+
+```cpp
+#define WIDTH 4096 
+#define HEIGHT 4096
+
+// col major
+__global__ void col_order(int* a, int* b , int n){
+  int i = blockIdx.x * blockDim.x + threadIdx.x;
+  int col = i % WIDTH;
+  int row = i / WIDTH;
+  int idx = col * HEIGHT + row; // cause here we are using this method to acces memory and this access it col major access
+
+  if (idx < N){
+    a[idx] += idx;
+    b[idx] += idx;
+  }
+}
+
+// row major
+__global__ void row_order(int* a, int* b , int n){
+  int idx = blockIdx.x * blockDim.x + threadIdx.x;
+  int col = idx % WIDTH;
+  int row = idx / WIDTH;
+  
+  if (idx < N){
+    a[idx] += idx;
+    b[idx] += idx;
+  }
+}
+```
+
+## Bank conflicts 
+Shared memory is divided into equal sized memory modules and if each thread in a warp accesses a different bank then all memory transfers can be done in parallel. 
+
+CUDA configures bank using this : 
+NO_OF_BANKS = 32  
+`bank_index  = (address/word_size) % NO_OF_BANKS`
+
+No. of banks is fixed at 32 matching the warp size. word size is 4 bytes by default
+So if we are using something like this : `shared[threadIdx.x * 2]` then addresses become 0,2,4,6 .. and now 2 different threads access Bank 0.
+A bank has only one read port and it cannot fetch both words ("word" means one addressable memory unit)
+
+
+```cpp
+#define OFFSET 33 // different offset can cause more / less conflicts
+__global__ void func(int *a, int n)
+{
+    // shared memory
+    __shared__ int val[1024];
+    int tid = threadIdx.x;
+    int idx = blockIdx.x * blockDim.x + threadIdx.x;
+
+    if (idx < n) {
+        int c = tid * OFFSET % 1024;
+        val[c] = a[idx];
+        a[idx] = val[c] + 1;
+    }
+}
+```
+
+
+
+
+
+
+
 
 
 
