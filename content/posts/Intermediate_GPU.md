@@ -72,6 +72,20 @@ Col major in memory :
 Col memory : [1,4,2,5,3,6]
 ``` 
 
+#### Thread indexing : 
+```
+             Columns
+
+          0    1 | 2    3
+       ---------------------
+Row 0 |   0    1 | 2    3
+Row 1 |   4    5 | 6    7
+       ---------------------
+Row 2 |   8    9 |10   11
+Row 3 |  12   13 |14   15
+       ---------------------
+```
+
 ### CUDA language
 1. `__global__` : means this function / kernel will run on the device
 2. `extern` : declare dynamic shared memory inside a kernel function 
@@ -209,6 +223,8 @@ Warp, its a hardware defined execution concept, executes under SIMT ( single ins
 
 So as the shared memory in a thread block is limited so therefore we need tiling. so block level restrictions are the real motivation for tiling in CUDA.
 
+In tiling, each thread is doing 
+
 ```cpp
 #define TILE_SIZE 16
 #define MATRIX_WIDTH  4096
@@ -325,6 +341,8 @@ __global__ void func(int *a, int n)
     }
 }
 ```
+
+
 
 
 
