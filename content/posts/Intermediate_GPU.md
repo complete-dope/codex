@@ -10,6 +10,7 @@ https://github.com/karpathy/llm.c
 https://siboehm.com/articles/22/CUDA-MMM  
 Tiling1 : https://docs.nvidia.com/cuda/cuda-programming-guide/02-basics/writing-tile-kernels.html  
 Tiling2 : https://cvw.cac.cornell.edu/cuda-intro/gpu-performance-topics/tiling      
+Tiling video : http://youtube.com/watch?v=ccHyFnEZt7M  
 Cornell cuda intro : https://cvw.cac.cornell.edu/cuda-intro/       
 Tensor cores : https://youtu.be/Yt1A-vaWTck 
 Tensor cores2 : https://tgautam03.github.io/2024/10/30/TensorCores/  
@@ -230,43 +231,36 @@ In tiling, each thread is doing
 #define MATRIX_WIDTH  4096
 #define MATRIX_HEIGHT 4096
 
-__global__ void tiled_matmul(int *a, int *b, int *c)
-{
-    __shared__ int tile_a[TILE_SIZE][TILE_SIZE];
-    __shared__ int tile_b[TILE_SIZE][TILE_SIZE];
 
+__global__ void tiled_matmul(float* a, float* b, int N){
+    __shared__ float a_tile[TILE_WIDTH][TILE_HEIGHT];
+    __shared__ float b_tile[TILE_WIDTH][TILE_HEIGHT];
+
+    int row = threadIdx.x + blockIdx.x * blockDim.x; // output matrix row
+    int col = threadIdx.y + blockIdx.y * blockDim.y; // output matrix col
     int tx = threadIdx.x;
     int ty = threadIdx.y;
-    int bx = blockIdx.x;
-    int by = blockIdx.y;
-    int row = by * TILE_SIZE + ty;
-    int col = bx * TILE_SIZE + tx;
+    float dot_prod = 0.0f;
 
-    int value = 0;
-    for (int i = 0; i < (MATRIX_WIDTH + TILE_SIZE - 1) / TILE_SIZE; i++) {
-        if (row < MATRIX_HEIGHT && i * TILE_SIZE + tx < MATRIX_WIDTH) {
-            tile_a[ty][tx] = a[row * MATRIX_WIDTH + i * TILE_SIZE + tx]; // the most complex part of tiling  
-        } else {
-            tile_a[ty][tx] = 0;
-        }
+    for(int tile_offset=0;tile_offset<N;tile_offset += TILE_WIDTH){
+        // check boundaries
+        int a_check = (tile_offset + tx < N) && (row < N); // col that we are using in this 
+        a_tile[ty][tx] = a_check ? a[row * N + tile_offset + tx] : 0.0f;
 
-        if (col < MATRIX_WIDTH && i * TILE_SIZE + ty < MATRIX_HEIGHT) {
-            tile_b[ty][tx] = b[(i * TILE_SIZE + ty) * MATRIX_WIDTH + col];
-        } else {
-            tile_b[ty][tx] = 0;
-        }
-
+        int b_check = (tile_offset + ty < N) && (col < N);
+        b_tile[ty][tx] = b_check ? b[col + N*(tile_offset + ty)] : 0.f; // to check  
+        // here we are assuming row major indexing that is : 
+        // row = tile_offset + ty; (cause the indexing here is done in this x,y manner that is same as the axis that we follow in maths)
+        // col = col
         __syncthreads();
 
-        for (int j = 0; j < TILE_SIZE; j++) {
-            value += tile_a[ty][j] * tile_b[j][tx];
+        for(int i =0;i<TILE_WIDTH;i++){
+            dot_prod += a_tile[ty][i] * b_tile[i][tx];
         }
-
-        __syncthreads();
     }
 
-    if (row < MATRIX_HEIGHT && col < MATRIX_WIDTH) {
-        c[row * MATRIX_WIDTH + col] = value;
+    if(row < N && col < N){
+        c[row * N + col] = dot_prod;
     }
 }
 ```
