@@ -39,7 +39,10 @@ tensor cores3 : https://www.glennklockwood.com/garden/tensor-cores
 8. SIMT (Single Instruction, Multiple Threads) means that multiple threads execute the same instruction at the same time, but each thread operates on its own data. Here we need a global thread index , loads 
 9. SIMD (Single instruction multiple data) : TODO
 10. Tile kernel : level of entire tile block, load a whole tile, perform ops on that tile and store back the tile
-11. Single thread : There is nothing as single thread in a GPU execution. even if you define `<<<1,1>>>` its basically initiating a full 32 thread hardware warp to execute a single thread. Just that active mask changes in this case 
+11. Single thread : There is nothing as single thread in a GPU execution. even if you define `<<<1,1>>>` its basically initiating a full 32 thread hardware warp to execute a single thread. Just that active mask changes in this case
+12. Cuda stream : single stream vs multiple streams TODO
+13. sync vs async GPU operations
+14. 
 
 <img width="850" height="1008" alt="image" src="https://github.com/user-attachments/assets/f9e469b7-d4f3-46d8-ac18-c83c069bf917" />
 
@@ -59,6 +62,9 @@ memory dimension in GPU
 4. Shared memory : sit directly on the physical Streaming Multiprocessor (SM), allocated to particular thread block
 5. Registers : small storage units from where GPU reads data
 6. Row major order : So this means how a matrix is laid out in memory, this means rows are laid out besides each other in matrix
+7. bump allocation : so we allocate memory in single shot and keep one pointer and keeps on expanding it
+8. cudaCheck : Check for if the command that you will be running can that command be run successfully or not and if this fails this immediately prints a failure message and terminates the program. 
+ 
 ```cpp
 A = [[1,2,3], [4,5,6]]
 
@@ -105,8 +111,9 @@ Row 3 |  12   13 |14   15
 15. __syncthreads() : so wait for each thread to reach that line of code / to reach to that instruction
 16. coalesced : unified / combined memory 
 17. Bank Conflicts : TODO
-18. Tensor cores : TODO
-19. Cache line : Smallest unit of data that a computer processor reads from or writes to its internal memory. 
+18. Tensor cores : 
+19. Cache line : Smallest unit of data that a computer processor reads from or writes to its internal memory.
+20. wmma : warp matrix multiply and accumulate specialized api inside cuda to let programmers talk directly to tensor core hardware
 
 ## Kernel in GPU 
 kernel is a piece of cuda using which we write instruction / code over a GPU and it executes them
@@ -325,7 +332,7 @@ __global__ void func(int *a, int n)
 {
     // shared memory
     __shared__ int val[1024];
-    int tid = threadIdx.x;
+    int tid = threadIdx.x;wa
     int idx = blockIdx.x * blockDim.x + threadIdx.x;
 
     if (idx < n) {
@@ -336,6 +343,7 @@ __global__ void func(int *a, int n)
 }
 ```
 
+## Tensor cores 
 
 
 
