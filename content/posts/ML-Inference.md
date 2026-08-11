@@ -4,6 +4,10 @@ title : Inference time Optimizatons that we can do in a DL model
 tags : ['gguf' , 'onnx' , 'tensorrt' , 'compile' , 'quantization' , 'ptq'] 
 ---
 
+## Logging / profiling and tracing
+* Nightly build : every night at a fixed time a cron runs that takes all the commits of the prev day and make a new compiled binary ( this is usually done for companies where the work is GPU heavy and they cant bog down there whole system for this). This is done in addition to github actions that run on each commit and it has some precommit hooks there so that makes helps to identify most of the basic issues and this nightly build is used to check for hardware issue , security issues that are not possible to run on each commit.
+*  
+
 ## Torch tracing to get better efficiency 
 so we can log / trace the model / network to see where the torch graph is breaking and where we can make it fast 
 
