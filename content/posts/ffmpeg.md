@@ -1,6 +1,6 @@
 ---
 title : learning ffmpeg 
-date : 2026/05/01
+date : 2026-05-01
 tags : ['ffmpeg' , 'video making' , 'video'] 
 ---
 
