@@ -1,6 +1,6 @@
 ---
-Date : 17-06-2026
-Title : Scaling a transformer model  
+date : 2026-06-17
+title : Scaling a transformer model  
 ---
 
 Following this : https://jax-ml.github.io/scaling-book/inference/#the-basics-of-transformer-inference

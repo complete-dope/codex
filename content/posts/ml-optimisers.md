@@ -1,7 +1,7 @@
 ---
-draft : False
-date: 2025-09-09T07:39:52+05:30
-title : Deep learning Optimizers
+draft: false
+date: 2025-09-09
+title: Deep learning Optimizers
 ---
 
 [Gradients visualised](https://www.youtube.com/watch?v=7JEWlfFoJJQ)  

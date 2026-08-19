@@ -1,8 +1,8 @@
 ---
-draft: false 
+draft: false
 date: 2025-07-20
 title: Django
-tags : ["django", "Django ", "Backend", "microservices"]
+tags : ["django", "Django", "Backend", "microservices"]
 ---
 
 # Building a scalable backend arch

@@ -2,7 +2,7 @@
 date: 2025-08-31
 title: Home Lab
 layout : post
-tags : ["Home lab", "k8s ", "k9s", "k3s ", "kubernetes", "jenkins", "docker", "helm", "kind", "kubectl"]
+tags : ["Home lab", "k8s", "k9s", "k3s", "kubernetes", "jenkins", "docker", "helm", "kind", "kubectl"]
 draft : false
 ---
 

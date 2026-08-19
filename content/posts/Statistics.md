@@ -2,7 +2,6 @@
 draft: false
 title: "Statistics for ML"
 date: 2024-09-08
-draft : False
 tags : ['probability' ,'likelihood' , 'marginal', 'distruibutions', 'entropy' , 'cross-entropy' ,'kld']
 ---
 

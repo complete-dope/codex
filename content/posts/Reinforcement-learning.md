@@ -3,7 +3,7 @@ layout : post
 date : 2025-08-23
 draft : false
 title : Post training methods in LLM using RL 
-tags : ["Reinforcement Learning", "RL ", "Machine learning", "deep learning ", "ML ", "DL  ", "Post training"]
+tags : ["Reinforcement Learning", "RL", "Machine learning", "deep learning", "ML", "DL", "Post training"]
 ---
 
 Tags : 

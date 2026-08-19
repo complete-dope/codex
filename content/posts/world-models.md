@@ -1,6 +1,6 @@
 ---
 title: World Models
-date: 2026-05-3
+date: 2026-05-03
 author: Mohit
 ---
 

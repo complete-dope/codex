@@ -11,9 +11,6 @@ summary: "Learning about AI agents and how they are built in real world"
 
 [AI agents by andrew ng](https://www.youtube.com/watch?v=KrRD7r7y7NY)
 
-
-======================
-
 Normal flow ::
 
 LLM writes from first word, start to end with no backspace. and this is not how humans write
