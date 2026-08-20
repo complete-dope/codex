@@ -38,7 +38,20 @@ ResDIT paper : (https://arxiv.org/abs/2512.01426)
 * 
 ResDiT's controlled ablation says native hurts detail. Their finding was that positional embeddings govern layout, while the attention receptive-field scale governs detail fidelity. Going native at 4K means every token attends across a field 16× wider than anything the model saw in training. Their fix for the resulting blur was to reintroduce patch-level local attention at base resolution — which is tiling. You'd be paying a lot to create a problem and then paying more to undo it.
 
-
-
+* Global attention over a highresolution feature map often causes blurred textures and loss of fine details because the model is forced far beyond the spatial scale it was trained on, to overcome we use partitioning and splicing techniques like minimum overlap partitioning
+* 
+* 
 * Tiling works better with sd3.5 also has stablility factors for 4k so its worth a shot ! 
 
+
+Removing VAE completely (https://studio.aifilms.ai/blog/l2p-latent-pixel-generation)
+paper : https://arxiv.org/pdf/2605.12013 
+
+
+
+SD3 : 
+F = 8 , downscaling 
+C = 16, VAE channels are 16 
+
+
+so we cant use VAE of a model that is 
