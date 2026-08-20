@@ -34,9 +34,22 @@ VAE channels
 
 
 ResDIT paper : (https://arxiv.org/abs/2512.01426)
-* training free solution for getting to 4k resolution images
-* 
-ResDiT's controlled ablation says native hurts detail. Their finding was that positional embeddings govern layout, while the attention receptive-field scale governs detail fidelity. Going native at 4K means every token attends across a field 16× wider than anything the model saw in training. Their fix for the resulting blur was to reintroduce patch-level local attention at base resolution — which is tiling. You'd be paying a lot to create a problem and then paying more to undo it.
+- Training free solution for getting to 4k resolution images
+- Currently in industry we have 4 methods only to generate a 4k image
+   * Full training / finetuning
+   * 2 stage paradigm, generate a base resolution image then use it to guide high resolution synthesis. (they treat high res generation as super resolution task, relying on external guidance)
+   * Tiling based method
+
+- Attention is the only mechanism that enables token interaction in DiT, it has 2 crucial aspects :
+   * Positional embedding
+   * Attention range field
+     
+- Their finding was that positional embeddings govern layout, while the attention receptive-field scale governs detail fidelity.
+- Going native at 4K means every token attends across a field 16× wider than anything the model saw in training. Their fix for the resulting blur was to reintroduce patch-level local attention at base resolution — which is tiling. 
+- Overlapping parts of an image are averaged (using gaussian here )  
+<img width="633" height="340" alt="image" src="https://github.com/user-attachments/assets/d4b15abd-86d3-4932-9398-806c92dd142c" />
+
+----
 
 * Global attention over a highresolution feature map often causes blurred textures and loss of fine details because the model is forced far beyond the spatial scale it was trained on, to overcome we use partitioning and splicing techniques like minimum overlap partitioning
 * 
@@ -52,6 +65,9 @@ paper : https://arxiv.org/pdf/2605.12013
 SD3 : 
 F = 8 , downscaling 
 C = 16, VAE channels are 16 
+The compression ratio essentially becomes something as : H x W x 3 to H/F x W/F x C so that is : `F x F x 3 / C` so this tells up how much compression is done from pixel space to latent space compression 
 
-
-so we cant use VAE of a model that is 
+Other papers that are doing same : 
+* SEGA (https://arxiv.org/pdf/2605.22668)
+* PixelRush (https://arxiv.org/pdf/2602.12769)
+  
